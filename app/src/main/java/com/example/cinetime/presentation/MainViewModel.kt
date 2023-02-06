@@ -1,4 +1,4 @@
-package com.example.cinetime.ui
+package com.example.cinetime.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
