@@ -8,21 +8,12 @@
     <fragment
         android:id="@+id/nav_popular_movies"
         android:name="com.example.cinetime.ui.popularMovies.PopularMoviesFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_popular_movies">
+        android:label="@string/popular_movies_label"
+        tools:layout="@layout/fragment_popular_movies"/>
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/nav_now_playing" />
-    </fragment>
     <fragment
         android:id="@+id/nav_now_playing"
         android:name="com.example.cinetime.ui.nowPlaying.NowPlayingFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_now_playing">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/nav_popular_movies" />
-    </fragment>
+        android:label="@string/now_playing_label"
+        tools:layout="@layout/fragment_now_playing"/>
 </navigation>
