@@ -1,4 +1,4 @@
-package com.example.cinetime.ui.nowPlaying
+package com.lira.cinetime.ui.nowPlaying
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.cinetime.R
-import com.example.cinetime.databinding.FragmentNowPlayingBinding
+import com.lira.cinetime.R
+import com.lira.cinetime.databinding.FragmentNowPlayingBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.

@@ -1,7 +1,7 @@
-package com.example.cinetime
+package com.lira.cinetime
 
 import android.app.Application
-import com.example.cinetime.presentation.di.PresentationModule
+import com.lira.cinetime.presentation.di.PresentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

@@ -1,12 +1,12 @@
-package com.example.cinetime.ui.login
+package com.lira.cinetime.ui.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.cinetime.databinding.FragmentLoginBinding
-import com.example.cinetime.presentation.LoginViewModel
+import com.lira.cinetime.databinding.FragmentLoginBinding
+import com.lira.cinetime.presentation.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {

@@ -1,8 +1,8 @@
-package com.example.cinetime.presentation.di
+package com.lira.cinetime.presentation.di
 
-import com.example.cinetime.presentation.LoginViewModel
-import com.example.cinetime.presentation.MainViewModel
-import com.example.cinetime.presentation.RegisterViewModel
+import com.lira.cinetime.presentation.LoginViewModel
+import com.lira.cinetime.presentation.MainViewModel
+import com.lira.cinetime.presentation.RegisterViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module

@@ -1,13 +1,12 @@
-package com.example.cinetime.ui.popularMovies
+package com.lira.cinetime.ui.popularMovies
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.example.cinetime.R
-import com.example.cinetime.databinding.FragmentPopularMoviesBinding
+import com.lira.cinetime.R
+import com.lira.cinetime.databinding.FragmentPopularMoviesBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

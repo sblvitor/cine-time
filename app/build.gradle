@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.cinetime'
+    namespace 'com.lira.cinetime'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.cinetime"
+        applicationId "com.lira.cinetime"
         minSdk 24
         targetSdk 33
         versionCode 1

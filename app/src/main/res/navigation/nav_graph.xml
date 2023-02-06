@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/nav_login"
-        android:name="com.example.cinetime.ui.login.LoginFragment"
+        android:name="com.lira.cinetime.ui.login.LoginFragment"
         android:label="@string/txt_log_in"
         tools:layout="@layout/fragment_login" />
 
     <fragment
         android:id="@+id/nav_register"
-        android:name="com.example.cinetime.ui.register.RegisterFragment"
+        android:name="com.lira.cinetime.ui.register.RegisterFragment"
         android:label="@string/txt_register"
         tools:layout="@layout/fragment_register" />
 
     <fragment
         android:id="@+id/nav_popular_movies"
-        android:name="com.example.cinetime.ui.popularMovies.PopularMoviesFragment"
+        android:name="com.lira.cinetime.ui.popularMovies.PopularMoviesFragment"
         android:label="@string/popular_movies_label"
         tools:layout="@layout/fragment_popular_movies"/>
 
     <fragment
         android:id="@+id/nav_now_playing"
-        android:name="com.example.cinetime.ui.nowPlaying.NowPlayingFragment"
+        android:name="com.lira.cinetime.ui.nowPlaying.NowPlayingFragment"
         android:label="@string/now_playing_label"
         tools:layout="@layout/fragment_now_playing"/>
 </navigation>

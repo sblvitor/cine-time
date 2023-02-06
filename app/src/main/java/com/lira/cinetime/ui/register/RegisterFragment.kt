@@ -1,12 +1,12 @@
-package com.example.cinetime.ui.register
+package com.lira.cinetime.ui.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.cinetime.databinding.FragmentRegisterBinding
-import com.example.cinetime.presentation.RegisterViewModel
+import com.lira.cinetime.databinding.FragmentRegisterBinding
+import com.lira.cinetime.presentation.RegisterViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterFragment : Fragment() {

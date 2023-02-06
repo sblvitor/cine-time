@@ -1,4 +1,4 @@
-package com.example.cinetime.ui
+package com.lira.cinetime.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -13,9 +13,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.cinetime.R
-import com.example.cinetime.databinding.ActivityMainBinding
-import com.example.cinetime.presentation.MainViewModel
+import com.lira.cinetime.R
+import com.lira.cinetime.databinding.ActivityMainBinding
+import com.lira.cinetime.presentation.MainViewModel
 import com.google.android.material.navigation.NavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

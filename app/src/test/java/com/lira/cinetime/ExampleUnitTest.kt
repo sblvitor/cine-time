@@ -1,4 +1,4 @@
-package com.example.cinetime
+package com.lira.cinetime
 
 import org.junit.Test
 

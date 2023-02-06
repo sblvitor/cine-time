@@ -1,4 +1,4 @@
-package com.example.cinetime.core
+package com.lira.cinetime.core
 
 import android.app.Activity
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.cinetime.R
+import com.lira.cinetime.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 fun Fragment.createDialog(block: MaterialAlertDialogBuilder.() -> Unit = {}): androidx.appcompat.app.AlertDialog {

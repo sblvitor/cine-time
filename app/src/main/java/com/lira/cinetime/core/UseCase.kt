@@ -1,4 +1,4 @@
-package com.example.cinetime.core
+package com.lira.cinetime.core
 
 import kotlinx.coroutines.flow.Flow
 
