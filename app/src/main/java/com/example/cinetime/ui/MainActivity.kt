@@ -3,6 +3,7 @@ package com.example.cinetime.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
@@ -49,6 +50,16 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navView.itemIconTintList = null
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.nav_register || destination.id == R.id.nav_login) {
+                navView.visibility = View.GONE
+                binding.appBarMain.toolbar.visibility = View.GONE
+            } else {
+                navView.visibility = View.VISIBLE
+                binding.appBarMain.toolbar.visibility = View.VISIBLE
+            }
+        }
 
         // Nao necessário talvez
         /*binding.appBarMain.toolbar.setNavigationOnClickListener {

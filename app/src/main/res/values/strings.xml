@@ -47,4 +47,14 @@
     <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="nav_header_title" translatable="false">Android Studio</string>
     <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="txt_register">Register</string>
+    <string name="txt_glad">Create a new account, we\'re glad that you joined us.</string>
+    <string name="txt_email" translatable="false">Email</string>
+    <string name="txt_password">Password</string>
+    <string name="cd_email_img">Email image</string>
+    <string name="btn_confirm_txt">Confirm</string>
+    <string name="txt_has_account">Already have an account?</string>
+    <string name="txt_log_in">Log in</string>
+    <string name="txt_glad_login">Log in and discover a world of possibilities!</string>
+    <string name="txt_doesnt_have_account">Doesn\'t have an account?</string>
 </resources>
