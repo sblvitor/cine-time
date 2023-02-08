@@ -1,6 +1,8 @@
 package com.lira.cinetime
 
 import android.app.Application
+import com.lira.cinetime.data.di.DataModule
+import com.lira.cinetime.domain.di.DomainModule
 import com.lira.cinetime.presentation.di.PresentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -16,6 +18,8 @@ class App: Application() {
             androidContext(this@App)
         }
 
+        DataModule.load()
+        DomainModule.load()
         PresentationModule.load()
     }
 

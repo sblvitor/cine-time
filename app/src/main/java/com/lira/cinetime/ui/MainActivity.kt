@@ -13,10 +13,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 import com.lira.cinetime.R
 import com.lira.cinetime.databinding.ActivityMainBinding
 import com.lira.cinetime.presentation.MainViewModel
-import com.google.android.material.navigation.NavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -45,33 +45,24 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.nav_popular_movies, R.id.nav_now_playing
+        ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
         navView.itemIconTintList = null
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id == R.id.nav_register || destination.id == R.id.nav_login) {
                 navView.visibility = View.GONE
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 binding.appBarMain.toolbar.visibility = View.GONE
             } else {
                 navView.visibility = View.VISIBLE
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                 binding.appBarMain.toolbar.visibility = View.VISIBLE
             }
         }
-
-        // Nao necessário talvez
-        /*binding.appBarMain.toolbar.setNavigationOnClickListener {
-            drawerLayout.open()
-        }
-
-        navView.setNavigationItemSelectedListener { menuItem ->
-            // Handle menu item selected
-            menuItem.isChecked = true
-            drawerLayout.close()
-            true
-        }*/
 
     }
 
@@ -87,6 +78,12 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.action_sign_out -> {
+                mainViewModel.signOut()
+                val navController = findNavController(R.id.nav_host_fragment_content_main)
+                navController.navigate(R.id.action_global_navigation_login_flow)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
         android:text="@string/txt_register"
-        android:textColor="@color/dark_gray"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +68,7 @@
                 app:startIconDrawable="@drawable/baseline_email_24">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress" />
@@ -105,6 +105,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />

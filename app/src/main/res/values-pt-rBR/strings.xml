@@ -13,5 +13,6 @@
     <string name="txt_log_in">Entre</string>
     <string name="txt_glad_login">Entre e descubra um mundo de possibilidades!</string>
     <string name="txt_doesnt_have_account">Não possui uma conta?</string>
+    <string name="action_sign_out">Desconectar</string>
 
 </resources>

@@ -5,6 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.lira.cinetime.R
+import com.lira.cinetime.core.createProgressDialog
 import com.lira.cinetime.databinding.FragmentLoginBinding
 import com.lira.cinetime.presentation.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -13,6 +17,7 @@ class LoginFragment : Fragment() {
 
     private val loginViewModel by viewModel<LoginViewModel>()
     private var _binding: FragmentLoginBinding? = null
+    private val dialog by lazy { createProgressDialog() }
 
     private val binding get() = _binding!!
 
@@ -24,6 +29,32 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loginViewModel.state.observe(viewLifecycleOwner) {
+            when(it) {
+                LoginViewModel.State.Loading -> {
+                    dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                    dialog.show()
+                }
+                is LoginViewModel.State.Error -> {
+                    dialog.dismiss()
+                    //paint red
+                }
+                is LoginViewModel.State.Success -> {
+                    dialog.dismiss()
+                    findNavController().navigate(R.id.action_nav_login_to_nav_popular_movies)
+                }
+            }
+        }
+
+        binding.apply {
+            btnRegisterFromLogin.setOnClickListener {
+                it.findNavController().navigate(R.id.action_nav_login_to_nav_register)
+            }
+
+            btnConfirmLogin.setOnClickListener {
+                loginViewModel.logIn(etEmailLogin.text.toString(), etPasswordLogin.text.toString())
+            }
+        }
     }
 
     override fun onDestroyView() {
