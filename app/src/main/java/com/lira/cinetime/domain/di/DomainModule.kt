@@ -1,6 +1,6 @@
 package com.lira.cinetime.domain.di
 
-import com.lira.cinetime.domain.authFlow.IsConnectedUseCase
+import com.lira.cinetime.domain.authFlow.GetCurrentUserUseCase
 import com.lira.cinetime.domain.authFlow.LogInUseCase
 import com.lira.cinetime.domain.authFlow.RegisterUseCase
 import com.lira.cinetime.domain.authFlow.SignOutUseCase
@@ -18,7 +18,7 @@ object DomainModule {
         return module {
             factory { LogInUseCase(get()) }
             factory { RegisterUseCase(get()) }
-            factory { IsConnectedUseCase(get()) }
+            factory { GetCurrentUserUseCase(get()) }
             factory { SignOutUseCase(get()) }
         }
     }

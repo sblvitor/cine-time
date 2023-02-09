@@ -1,11 +1,12 @@
 package com.lira.cinetime.data.firebase
 
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 
 interface ServiceAuthRepository {
 
-    suspend fun isConnected(): Flow<Boolean>
+    suspend fun getCurrentUser(): Flow<FirebaseUser?>
 
     suspend fun logIn(email: String, password: String): Flow<AuthResult>
 

@@ -6,9 +6,9 @@ import kotlinx.coroutines.tasks.await
 
 class ServiceAuthRepositoryImpl(private val auth: FirebaseAuth): ServiceAuthRepository {
 
-    override suspend fun isConnected() = flow {
+    override suspend fun getCurrentUser() = flow {
         val currentUser = auth.currentUser
-        emit(currentUser != null)
+        emit(currentUser)
     }
 
     override suspend fun logIn(email: String, password: String) = flow {
