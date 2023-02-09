@@ -41,6 +41,19 @@
         app:layout_constraintStart_toStartOf="@id/tv_login"
         app:layout_constraintTop_toBottomOf="@id/tv_login" />
 
+    <TextView
+        android:id="@+id/tv_wrong_credentials_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_glad"
+        app:layout_constraintStart_toStartOf="@id/tv_login"
+        android:text="@string/txt_wrong_credentials"
+        android:textColor="@color/red"
+        android:layout_marginTop="@dimen/half_margin_default"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_email"
         android:layout_width="match_parent"

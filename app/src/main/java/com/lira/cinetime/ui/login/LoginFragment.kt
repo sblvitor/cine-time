@@ -37,9 +37,10 @@ class LoginFragment : Fragment() {
                 }
                 is LoginViewModel.State.Error -> {
                     dialog.dismiss()
-                    //paint red
+                    binding.tvWrongCredentialsLogin.visibility = View.VISIBLE
                 }
                 is LoginViewModel.State.Success -> {
+                    binding.tvWrongCredentialsLogin.visibility = View.GONE
                     dialog.dismiss()
                     findNavController().navigate(R.id.action_nav_login_to_nav_popular_movies)
                 }

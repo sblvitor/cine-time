@@ -27,6 +27,10 @@ class RegisterViewModel(private val registerUseCase: RegisterUseCase) : ViewMode
                         _state.postValue(State.Success(it.user))
                     }
             }
+        } else {
+            viewModelScope.launch {
+                _state.postValue(State.EmptyFields)
+            }
         }
     }
 
@@ -38,5 +42,6 @@ class RegisterViewModel(private val registerUseCase: RegisterUseCase) : ViewMode
         object Loading: State()
         data class Success(val user: FirebaseUser?): State()
         data class Error(val error: Throwable): State()
+        object EmptyFields: State()
     }
 }

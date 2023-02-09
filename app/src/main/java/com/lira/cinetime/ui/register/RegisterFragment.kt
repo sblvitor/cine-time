@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createProgressDialog
 import com.lira.cinetime.databinding.FragmentRegisterBinding
@@ -37,11 +38,15 @@ class RegisterFragment : Fragment() {
                 }
                 is RegisterViewModel.State.Error -> {
                     dialog.dismiss()
-                    // paint red
+                    Snackbar.make((requireActivity()).findViewById(android.R.id.content), "${it.error.message}", Snackbar.LENGTH_LONG).show()
                 }
                 is RegisterViewModel.State.Success -> {
+                    binding.tvWrongCredentialsRegister.visibility = View.GONE
                     dialog.dismiss()
                     findNavController().navigate(R.id.action_nav_register_to_nav_popular_movies)
+                }
+                RegisterViewModel.State.EmptyFields -> {
+                    binding.tvWrongCredentialsRegister.visibility = View.VISIBLE
                 }
             }
         }

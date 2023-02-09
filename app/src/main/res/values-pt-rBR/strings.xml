@@ -14,5 +14,7 @@
     <string name="txt_glad_login">Entre e descubra um mundo de possibilidades!</string>
     <string name="txt_doesnt_have_account">Não possui uma conta?</string>
     <string name="action_sign_out">Desconectar</string>
+    <string name="txt_wrong_credentials">Email e/ou senha inválidos!</string>
+    <string name="txt_fill_fields">Você deve inserir seu email e senha.</string>
 
 </resources>
