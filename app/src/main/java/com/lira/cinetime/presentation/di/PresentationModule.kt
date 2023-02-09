@@ -20,7 +20,7 @@ object PresentationModule {
             viewModel { MainViewModel(get(), get()) }
             viewModel { LoginViewModel(get()) }
             viewModel { RegisterViewModel(get()) }
-            viewModel { PopularMoviesViewModel(get()) }
+            viewModel { PopularMoviesViewModel(get(), get()) }
         }
     }
 

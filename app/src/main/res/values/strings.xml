@@ -60,4 +60,5 @@
     <string name="action_sign_out">Sign Out</string>
     <string name="txt_wrong_credentials">Email or password invalid!</string>
     <string name="txt_fill_fields">You must enter an email and password.</string>
+    <string name="movie_poster_cd">Movie poster</string>
 </resources>

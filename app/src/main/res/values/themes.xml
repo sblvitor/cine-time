@@ -4,15 +4,14 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="popupMenuBackground">@drawable/custom_popup_background</item>-->
     </style>
 
     <style name="Theme.CineTime" parent="Base.Theme.CineTime" />
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#202020</item>
-
         <item name="windowSplashScreenAnimatedIcon">@drawable/popcorn</item>
-
         <item name="postSplashScreenTheme">@style/Theme.CineTime</item>
     </style>
 </resources>

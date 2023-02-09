@@ -23,6 +23,7 @@ class PopularMoviesFragment : Fragment() {
 
     private var _binding: FragmentPopularMoviesBinding? = null
     private val popularMoviesViewModel by viewModel<PopularMoviesViewModel>()
+    private val adapter by lazy { PopularMoviesAdapter() }
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -36,6 +37,9 @@ class PopularMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.rvPopularMovies.adapter = adapter
+
+        //Login
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 popularMoviesViewModel.isConnected.collectLatest {
@@ -46,6 +50,13 @@ class PopularMoviesFragment : Fragment() {
                         updateNavHeader(it)
                     }
                 }
+            }
+        }
+
+        //Movies
+        viewLifecycleOwner.lifecycleScope.launch {
+            popularMoviesViewModel.getPopularMovies().collectLatest { movies->
+                adapter.submitData(movies)
             }
         }
     }

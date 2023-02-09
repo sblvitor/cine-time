@@ -16,5 +16,6 @@
     <string name="action_sign_out">Desconectar</string>
     <string name="txt_wrong_credentials">Email e/ou senha inválidos!</string>
     <string name="txt_fill_fields">Você deve inserir seu email e senha.</string>
+    <string name="movie_poster_cd">Poster do filme</string>
 
 </resources>
