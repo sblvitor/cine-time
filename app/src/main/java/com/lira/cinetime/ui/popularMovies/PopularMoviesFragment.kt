@@ -5,16 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
 import com.lira.cinetime.R
 import com.lira.cinetime.databinding.FragmentPopularMoviesBinding
 import com.lira.cinetime.presentation.PopularMoviesViewModel
+import com.lira.cinetime.ui.tryAgainUtil.TryAgainAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -55,10 +58,25 @@ class PopularMoviesFragment : Fragment() {
 
         //Movies
         viewLifecycleOwner.lifecycleScope.launch {
-            popularMoviesViewModel.getPopularMovies().collectLatest { movies->
+            popularMoviesViewModel.getPopularMovies().collectLatest { movies ->
                 adapter.submitData(movies)
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                adapter.loadStateFlow.collect {
+                    val state = it.refresh
+                    binding.progressBarPopularMovies.isVisible = state is LoadState.Loading
+                }
+            }
+        }
+
+        binding.rvPopularMovies.adapter = adapter.withLoadStateFooter(
+            TryAgainAdapter {
+                adapter.retry()
+            }
+        )
     }
 
     private fun updateNavHeader(user: FirebaseUser) {

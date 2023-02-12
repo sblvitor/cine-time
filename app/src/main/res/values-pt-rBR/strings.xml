@@ -17,5 +17,25 @@
     <string name="txt_wrong_credentials">Email e/ou senha inválidos!</string>
     <string name="txt_fill_fields">Você deve inserir seu email e senha.</string>
     <string name="movie_poster_cd">Poster do filme</string>
+    <string name="txt_try_again">Ops! Tente novamente!</string>
+
+    <string name="action">Ação</string>
+    <string name="adventure">Aventura</string>
+    <string name="animation">Animação</string>
+    <string name="comedy">Comédia</string>
+    <string name="crime">Crime</string>
+    <string name="documentary">Documentário</string>
+    <string name="drama">Drama</string>
+    <string name="family">Família</string>
+    <string name="fantasy">Fantasia</string>
+    <string name="history">História</string>
+    <string name="horror">Terror</string>
+    <string name="music">Música</string>
+    <string name="mystery">Mistério</string>
+    <string name="romance">Romance</string>
+    <string name="science_fiction">Ficção Científica</string>
+    <string name="tv_movie">Cinema TV</string>
+    <string name="war">Guerra</string>
+    <string name="western">Faroeste</string>
 
 </resources>

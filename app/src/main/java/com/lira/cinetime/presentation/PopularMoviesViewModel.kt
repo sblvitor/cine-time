@@ -17,9 +17,6 @@ class PopularMoviesViewModel(private val getCurrentUserUseCase: GetCurrentUserUs
     private val _isConnected = MutableStateFlow<FirebaseUser?>(null)
     val isConnected = _isConnected.asStateFlow()
 
-    private val _popularMovies = MutableStateFlow<State>(State.Loading)
-    val popularMovies = _popularMovies.asStateFlow()
-
     init {
         checkIfConnected()
     }
@@ -34,12 +31,6 @@ class PopularMoviesViewModel(private val getCurrentUserUseCase: GetCurrentUserUs
 
     fun getPopularMovies(): Flow<PagingData<PopularMoviesResult>> {
         return getPopularMoviesUseCase().cachedIn(viewModelScope)
-    }
-
-    sealed class State {
-        object Loading: State()
-        data class Success(val popularMovies: PagingData<PopularMoviesResult>): State()
-        data class Error(val error: Throwable): State()
     }
 
 }

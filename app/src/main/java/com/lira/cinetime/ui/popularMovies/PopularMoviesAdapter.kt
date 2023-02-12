@@ -1,11 +1,13 @@
 package com.lira.cinetime.ui.popularMovies
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.lira.cinetime.core.genresIDsToNamesResources
 import com.lira.cinetime.data.models.PopularMoviesResult
 import com.lira.cinetime.databinding.ItemPopularMovieBinding
 
@@ -26,16 +28,25 @@ class PopularMoviesAdapter: PagingDataAdapter<PopularMoviesResult, PopularMovies
 
         fun bind(item: PopularMoviesResult) {
             binding.tvPopularMovieTitle.text = item.title
-            val rating = "Rating: " + item.voteAverage
+            val rating = "Rating: " + item.voteAverage.toString()
             binding.tvRating.text = rating
-            if(item.genreIDS.isNotEmpty()){
-                binding.tvPopularMoviesGenres.text = item.genreIDS[0].toString()
+            if(item.genreIDS.isNotEmpty()) {
+                if (item.genreIDS.size >= 2) {
+                    binding.popularMovieChipOne.text =
+                        itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[0]))
+                    binding.popularMovieChipTwo.text =
+                        itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[1]))
+                } else {
+                    binding.popularMovieChipOne.text =
+                        itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[0]))
+                    binding.popularMovieChipTwo.visibility = View.GONE
+                }
             } else {
-                binding.tvPopularMoviesGenres.text = "Gêrenos nao disponíveis"
+                binding.popularMovieChipOne.visibility = View.GONE
+                binding.popularMovieChipTwo.visibility = View.GONE
             }
 
-
-            val posterPath: String = "https://image.tmdb.org/t/p/w500/" + item.posterPath
+            val posterPath: String = "https://image.tmdb.org/t/p/w342/" + item.posterPath
 
             Glide
                 .with(binding.root.context)

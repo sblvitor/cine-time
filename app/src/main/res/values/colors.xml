@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark_gray">#202020</color>
     <color name="red">#FF0000</color>
+    <color name="yellow_rating">#FFBC03</color>
+    <color name="movie_title_color">#303133</color>
+    <color name="sub_movie_title_color">#ACACAD</color>
 </resources>
