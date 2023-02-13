@@ -84,4 +84,8 @@
     <string name="war">War</string>
     <string name="western">Western</string>
     <string name="blank" translatable="false"> </string>
+    <string name="movies_label">Movies</string>
+    <string name="tv_shows_label">TV Shows</string>
+    <string name="my_list_label">My List</string>
+    <string name="account_label">Account</string>
 </resources>

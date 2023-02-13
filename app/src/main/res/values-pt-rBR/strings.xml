@@ -37,5 +37,9 @@
     <string name="tv_movie">Cinema TV</string>
     <string name="war">Guerra</string>
     <string name="western">Faroeste</string>
+    <string name="movies_label">Filmes</string>
+    <string name="tv_shows_label">Séries</string>
+    <string name="my_list_label">Minha Lista</string>
+    <string name="account_label">Conta</string>
 
 </resources>

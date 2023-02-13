@@ -3,25 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/nav_popular_movies">
+    app:startDestination="@id/nav_movies">
 
     <fragment
-        android:id="@+id/nav_popular_movies"
-        android:name="com.lira.cinetime.ui.popularMovies.PopularMoviesFragment"
-        android:label="@string/popular_movies_label"
-        tools:layout="@layout/fragment_popular_movies">
+        android:id="@+id/nav_movies"
+        android:name="com.lira.cinetime.ui.movies.MoviesFragment"
+        android:label="@string/movies_label"
+        tools:layout="@layout/fragment_movies">
         <action
-            android:id="@+id/action_nav_popular_movies_to_navigation_login_flow"
+            android:id="@+id/action_nav_movies_to_navigation_login_flow"
             app:destination="@id/navigation_login_flow"
-            app:popUpTo="@id/nav_popular_movies"
+            app:popUpTo="@id/nav_movies"
             app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_now_playing"
-        android:name="com.lira.cinetime.ui.nowPlaying.NowPlayingFragment"
-        android:label="@string/now_playing_label"
-        tools:layout="@layout/fragment_now_playing" />
+        android:id="@+id/nav_tv_shows"
+        android:name="com.lira.cinetime.ui.tvShows.TvShowFragment"
+        android:label="TV Shows"
+        tools:layout="@layout/fragment_tv_show" />
+
+    <fragment
+        android:id="@+id/nav_my_list"
+        android:name="com.lira.cinetime.ui.myList.MyListFragment"
+        android:label="@string/my_list_label"
+        tools:layout="@layout/fragment_my_list" />
+
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.lira.cinetime.ui.account.AccountFragment"
+        android:label="@string/account_label"
+        tools:layout="@layout/fragment_account" />
 
     <navigation
         android:id="@+id/navigation_login_flow"
@@ -29,21 +41,21 @@
 
         <fragment
             android:id="@+id/nav_login"
-            android:name="com.lira.cinetime.ui.login.LoginFragment"
+            android:name="com.lira.cinetime.ui.authFlow.login.LoginFragment"
             android:label="@string/txt_log_in"
             tools:layout="@layout/fragment_login">
             <action
                 android:id="@+id/action_nav_login_to_nav_register"
                 app:destination="@id/nav_register" />
             <action
-                android:id="@+id/action_nav_login_to_nav_popular_movies"
-                app:destination="@id/nav_popular_movies"
+                android:id="@+id/action_nav_login_to_nav_movies"
+                app:destination="@id/nav_movies"
                 app:popUpTo="@id/nav_login"
                 app:popUpToInclusive="true" />
         </fragment>
         <fragment
             android:id="@+id/nav_register"
-            android:name="com.lira.cinetime.ui.register.RegisterFragment"
+            android:name="com.lira.cinetime.ui.authFlow.register.RegisterFragment"
             android:label="@string/txt_register"
             tools:layout="@layout/fragment_register">
             <action
@@ -52,8 +64,8 @@
                 app:popUpTo="@id/nav_login"
                 app:popUpToInclusive="true" />
             <action
-                android:id="@+id/action_nav_register_to_nav_popular_movies"
-                app:destination="@id/nav_popular_movies"
+                android:id="@+id/action_nav_register_to_nav_movies"
+                app:destination="@id/nav_movies"
                 app:popUpTo="@id/nav_login"
                 app:popUpToInclusive="true" />
         </fragment>
@@ -61,6 +73,6 @@
     <action
         android:id="@+id/action_global_navigation_login_flow"
         app:destination="@id/navigation_login_flow"
-        app:popUpTo="@id/nav_popular_movies"
+        app:popUpTo="@id/nav_movies"
         app:popUpToInclusive="true"/>
 </navigation>

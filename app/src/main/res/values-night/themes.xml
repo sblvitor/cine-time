@@ -3,7 +3,17 @@
     <style name="Base.Theme.CineTime" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="android:windowTranslucentStatus">true</item>
-        <!--<item name="popupMenuBackground">@drawable/custom_popup_background</item>-->
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.CineTime.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.CineTime.TitleMedium</item>
     </style>
+
+    <style name="TextAppearance.CineTime.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+    <style name="TextAppearance.CineTime.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
 </resources>

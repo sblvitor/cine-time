@@ -1,4 +1,4 @@
-package com.lira.cinetime.ui.nowPlaying
+package com.lira.cinetime.ui.movies.nowPlaying
 
 import android.os.Bundle
 import android.view.LayoutInflater

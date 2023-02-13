@@ -1,19 +1,16 @@
-package com.lira.cinetime.ui.popularMovies
+package com.lira.cinetime.ui.movies.popularMovies
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseUser
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lira.cinetime.R
 import com.lira.cinetime.databinding.FragmentPopularMoviesBinding
 import com.lira.cinetime.presentation.PopularMoviesViewModel
@@ -42,20 +39,6 @@ class PopularMoviesFragment : Fragment() {
 
         binding.rvPopularMovies.adapter = adapter
 
-        //Login
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                popularMoviesViewModel.isConnected.collectLatest {
-                    if(it == null){
-                        val navController = findNavController()
-                        navController.navigate(R.id.action_nav_popular_movies_to_navigation_login_flow)
-                    } else{
-                        updateNavHeader(it)
-                    }
-                }
-            }
-        }
-
         //Movies
         viewLifecycleOwner.lifecycleScope.launch {
             popularMoviesViewModel.getPopularMovies().collectLatest { movies ->
@@ -77,16 +60,13 @@ class PopularMoviesFragment : Fragment() {
                 adapter.retry()
             }
         )
-    }
 
-    private fun updateNavHeader(user: FirebaseUser) {
-        val navView = requireActivity().findViewById<NavigationView>(R.id.nav_view)
-        val header = navView.getHeaderView(0)
-        val tvName: TextView = header.findViewById(R.id.tv_name)
-        val tvEmail: TextView = header.findViewById(R.id.tv_email)
-
-        tvName.text = user.displayName
-        tvEmail.text = user.email
+        val navView = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
+        navView?.setOnItemReselectedListener { item ->
+            if(item.itemId == R.id.nav_movies){
+                binding.rvPopularMovies.smoothScrollToPosition(0)
+            }
+        }
 
     }
 

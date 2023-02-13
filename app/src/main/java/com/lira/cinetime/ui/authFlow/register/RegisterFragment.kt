@@ -1,4 +1,4 @@
-package com.lira.cinetime.ui.register
+package com.lira.cinetime.ui.authFlow.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -43,7 +43,7 @@ class RegisterFragment : Fragment() {
                 is RegisterViewModel.State.Success -> {
                     binding.tvWrongCredentialsRegister.visibility = View.GONE
                     dialog.dismiss()
-                    findNavController().navigate(R.id.action_nav_register_to_nav_popular_movies)
+                    findNavController().navigate(R.id.action_nav_register_to_nav_movies)
                 }
                 RegisterViewModel.State.EmptyFields -> {
                     binding.tvWrongCredentialsRegister.visibility = View.VISIBLE

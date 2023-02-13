@@ -1,4 +1,4 @@
-package com.lira.cinetime.ui.popularMovies
+package com.lira.cinetime.ui.movies.popularMovies
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,9 @@ import com.lira.cinetime.core.genresIDsToNamesResources
 import com.lira.cinetime.data.models.PopularMoviesResult
 import com.lira.cinetime.databinding.ItemPopularMovieBinding
 
-class PopularMoviesAdapter: PagingDataAdapter<PopularMoviesResult, PopularMoviesAdapter.ViewHolder>(DiffCallBack()) {
+class PopularMoviesAdapter: PagingDataAdapter<PopularMoviesResult, PopularMoviesAdapter.ViewHolder>(
+    DiffCallBack()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

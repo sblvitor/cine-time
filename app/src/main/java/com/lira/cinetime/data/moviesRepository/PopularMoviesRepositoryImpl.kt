@@ -12,7 +12,7 @@ class PopularMoviesRepositoryImpl(private val service: TheMoviesService): Popula
     override fun getPopularMovies(): Flow<PagingData<PopularMoviesResult>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 20,
+                pageSize = 3,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {
