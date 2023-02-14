@@ -6,16 +6,20 @@ import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import com.lira.cinetime.data.firebase.ServiceAuthRepository
 import com.lira.cinetime.data.firebase.ServiceAuthRepositoryImpl
+import com.lira.cinetime.data.interceptors.CacheInterceptor
 import com.lira.cinetime.data.moviesRepository.MoviesRepository
 import com.lira.cinetime.data.moviesRepository.MoviesRepositoryImpl
 import com.lira.cinetime.data.services.TheMoviesService
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 
 object DataModule {
 
@@ -34,6 +38,8 @@ object DataModule {
                 interceptor.level = HttpLoggingInterceptor.Level.BODY
 
                 OkHttpClient.Builder()
+                    .cache(Cache(File(androidApplication().cacheDir, "http-cache"), 10L * 1024L * 1024L)) //10MiB
+                    .addNetworkInterceptor(CacheInterceptor())
                     .addInterceptor(interceptor)
                     .build()
             }
