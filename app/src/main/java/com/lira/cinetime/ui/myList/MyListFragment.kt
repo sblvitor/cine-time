@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lira.cinetime.R
-import com.lira.cinetime.presentation.MyListViewModel
+import com.lira.cinetime.presentation.myList.MyListViewModel
 
 class MyListFragment : Fragment() {
 

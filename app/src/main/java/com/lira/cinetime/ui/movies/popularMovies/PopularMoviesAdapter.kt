@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lira.cinetime.core.genresIDsToNamesResources
-import com.lira.cinetime.data.models.PopularMoviesResult
+import com.lira.cinetime.data.models.popularMovies.PopularMoviesResult
 import com.lira.cinetime.databinding.ItemPopularMovieBinding
 
 class PopularMoviesAdapter: PagingDataAdapter<PopularMoviesResult, PopularMoviesAdapter.ViewHolder>(

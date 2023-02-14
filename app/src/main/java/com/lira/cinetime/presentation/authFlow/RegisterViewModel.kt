@@ -1,4 +1,4 @@
-package com.lira.cinetime.presentation
+package com.lira.cinetime.presentation.authFlow
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

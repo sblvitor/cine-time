@@ -13,7 +13,7 @@ import androidx.paging.LoadState
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lira.cinetime.R
 import com.lira.cinetime.databinding.FragmentPopularMoviesBinding
-import com.lira.cinetime.presentation.PopularMoviesViewModel
+import com.lira.cinetime.presentation.movies.PopularMoviesViewModel
 import com.lira.cinetime.ui.tryAgainUtil.TryAgainAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -61,13 +61,26 @@ class PopularMoviesFragment : Fragment() {
             }
         )
 
+    }
+
+    override fun onResume() {
+        super.onResume()
         val navView = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
         navView?.setOnItemReselectedListener { item ->
             if(item.itemId == R.id.nav_movies){
                 binding.rvPopularMovies.smoothScrollToPosition(0)
             }
         }
+    }
 
+    override fun onPause() {
+        super.onPause()
+        val navView = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
+        navView?.setOnItemReselectedListener { item ->
+            if(item.itemId == R.id.nav_movies){
+                binding.rvPopularMovies.stopScroll()
+            }
+        }
     }
 
     override fun onDestroyView() {

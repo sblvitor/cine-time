@@ -1,4 +1,4 @@
-package com.lira.cinetime.presentation
+package com.lira.cinetime.presentation.movies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

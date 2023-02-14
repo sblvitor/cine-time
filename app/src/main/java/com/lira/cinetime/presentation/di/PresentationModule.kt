@@ -1,6 +1,11 @@
 package com.lira.cinetime.presentation.di
 
 import com.lira.cinetime.presentation.*
+import com.lira.cinetime.presentation.authFlow.LoginViewModel
+import com.lira.cinetime.presentation.authFlow.RegisterViewModel
+import com.lira.cinetime.presentation.movies.MoviesViewModel
+import com.lira.cinetime.presentation.movies.NowPlayingViewModel
+import com.lira.cinetime.presentation.movies.PopularMoviesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -19,6 +24,7 @@ object PresentationModule {
             viewModel { RegisterViewModel(get()) }
             viewModel { MoviesViewModel(get()) }
             viewModel { PopularMoviesViewModel(get()) }
+            viewModel { NowPlayingViewModel(get()) }
         }
     }
 

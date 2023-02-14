@@ -1,4 +1,4 @@
-package com.lira.cinetime.data.models
+package com.lira.cinetime.data.models.popularMovies
 
 import com.google.gson.annotations.SerializedName
 

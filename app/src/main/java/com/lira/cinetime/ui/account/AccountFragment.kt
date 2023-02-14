@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lira.cinetime.R
-import com.lira.cinetime.presentation.AccountViewModel
+import com.lira.cinetime.presentation.account.AccountViewModel
 
 class AccountFragment : Fragment() {
 

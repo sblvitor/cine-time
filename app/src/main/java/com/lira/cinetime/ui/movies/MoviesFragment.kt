@@ -13,7 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.lira.cinetime.R
 import com.lira.cinetime.databinding.FragmentMoviesBinding
-import com.lira.cinetime.presentation.MoviesViewModel
+import com.lira.cinetime.presentation.movies.MoviesViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

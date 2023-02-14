@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createProgressDialog
 import com.lira.cinetime.databinding.FragmentRegisterBinding
-import com.lira.cinetime.presentation.RegisterViewModel
+import com.lira.cinetime.presentation.authFlow.RegisterViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterFragment : Fragment() {
