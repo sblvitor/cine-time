@@ -12,6 +12,11 @@
         android:title="@string/tv_shows_label" />
 
     <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/search"
+        android:title="@string/search_label" />
+
+    <item
         android:id="@+id/nav_my_list"
         android:icon="@drawable/my_list"
         android:title="@string/my_list_label" />

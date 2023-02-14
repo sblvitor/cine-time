@@ -41,5 +41,6 @@
     <string name="tv_shows_label">Séries</string>
     <string name="my_list_label">Minha Lista</string>
     <string name="account_label">Conta</string>
+    <string name="search_label">Busca</string>
 
 </resources>
