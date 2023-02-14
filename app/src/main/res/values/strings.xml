@@ -53,4 +53,5 @@
     <string name="my_list_label">My List</string>
     <string name="account_label">Account</string>
     <string name="search_label">Search</string>
+    <string name="top_rated_label">Top Rated</string>
 </resources>

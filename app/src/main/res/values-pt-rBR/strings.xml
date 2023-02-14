@@ -42,5 +42,6 @@
     <string name="my_list_label">Minha Lista</string>
     <string name="account_label">Conta</string>
     <string name="search_label">Busca</string>
+    <string name="top_rated_label">Mais Votados</string>
 
 </resources>
