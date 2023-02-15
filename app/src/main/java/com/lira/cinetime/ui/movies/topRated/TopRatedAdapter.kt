@@ -7,6 +7,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.lira.cinetime.R
 import com.lira.cinetime.core.genresIDsToNamesResources
 import com.lira.cinetime.data.models.topRated.TopRatedResult
 import com.lira.cinetime.databinding.ItemTopRatedBinding
@@ -51,6 +52,7 @@ class TopRatedAdapter: PagingDataAdapter<TopRatedResult, TopRatedAdapter.ViewHol
             Glide
                 .with(binding.root.context)
                 .load(posterPath)
+                .placeholder(R.drawable.film_poster_placeholder)
                 .into(binding.ivTopRatedPoster)
         }
     }

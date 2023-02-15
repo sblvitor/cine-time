@@ -6,7 +6,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import com.lira.cinetime.data.firebase.ServiceAuthRepository
 import com.lira.cinetime.data.firebase.ServiceAuthRepositoryImpl
-import com.lira.cinetime.data.interceptors.CacheInterceptor
 import com.lira.cinetime.data.moviesRepository.MoviesRepository
 import com.lira.cinetime.data.moviesRepository.MoviesRepositoryImpl
 import com.lira.cinetime.data.services.TheMoviesService
@@ -39,7 +38,6 @@ object DataModule {
 
                 OkHttpClient.Builder()
                     .cache(Cache(File(androidApplication().cacheDir, "http-cache"), 10L * 1024L * 1024L)) //10MiB
-                    .addNetworkInterceptor(CacheInterceptor())
                     .addInterceptor(interceptor)
                     .build()
             }
