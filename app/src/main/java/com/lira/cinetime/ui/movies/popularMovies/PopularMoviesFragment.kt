@@ -41,8 +41,8 @@ class PopularMoviesFragment : Fragment() {
         binding.rvPopularMovies.adapter = adapter
 
         //Movies
-        viewLifecycleOwner.lifecycleScope.launch {
-            popularMoviesViewModel.getPopularMovies().collectLatest { movies ->
+        lifecycleScope.launch {
+            popularMoviesViewModel.popularMovies.collectLatest { movies ->
                 adapter.submitData(movies)
             }
         }

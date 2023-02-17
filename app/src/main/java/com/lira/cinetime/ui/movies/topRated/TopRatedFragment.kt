@@ -38,8 +38,8 @@ class TopRatedFragment : Fragment() {
 
         binding.rvTopRated.adapter = adapter
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            topRatedViewModel.getTopRatedMovies().collectLatest { topRatedMovies ->
+        lifecycleScope.launch {
+            topRatedViewModel.topRatedMovies.collectLatest { topRatedMovies ->
                 adapter.submitData(topRatedMovies)
             }
         }

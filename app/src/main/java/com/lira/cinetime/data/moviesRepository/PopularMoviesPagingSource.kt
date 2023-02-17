@@ -19,7 +19,7 @@ class PopularMoviesPagingSource(private val service: TheMoviesService): PagingSo
                 page = pageIndex
             )
             val movies = response.results
-            //val nextKey = if(movies.isEmpty()) null else pageIndex + (params.loadSize / 20)
+            //val nextKey = if(movies.isEmpty()) null else pageIndex + (params.loadSize / 3)
             val nextKey = pageIndex + 1
 
             LoadResult.Page(

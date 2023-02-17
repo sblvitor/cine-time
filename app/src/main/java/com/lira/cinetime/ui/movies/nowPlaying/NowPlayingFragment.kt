@@ -40,8 +40,8 @@ class NowPlayingFragment : Fragment() {
 
         binding.rvNowPlaying.adapter = adapter
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            nowPlayingViewModel.getNowPlayingMovies().collectLatest { nowPlayingMovies ->
+        lifecycleScope.launch {
+            nowPlayingViewModel.nowPlayingMovies.collectLatest { nowPlayingMovies ->
                 adapter.submitData(nowPlayingMovies)
             }
         }

@@ -9,18 +9,16 @@ import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(private val getMovieDetailsUseCase: GetMovieDetailsUseCase) : ViewModel() {
 
-    private val _movieDetails = MutableSharedFlow<State>()
-    val movieDetails: SharedFlow<State> = _movieDetails
+    private val _movieDetails = MutableStateFlow<State>(State.Loading)
+    val movieDetails: StateFlow<State> = _movieDetails
 
     fun getMovieDetails(movieId: Long) {
         viewModelScope.launch {
             getMovieDetailsUseCase(movieId)
-                .onStart {
-                    _movieDetails.emit(State.Loading)
-                } .catch {
-                    _movieDetails.emit(State.Error(it))
+                .catch {
+                    _movieDetails.value = State.Error(it)
                 } .collect {
-                    _movieDetails.emit(State.Success(it))
+                    _movieDetails.value = State.Success(it)
                 }
         }
     }
