@@ -43,6 +43,7 @@ class MovieDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val movieId = args.movieId
         movieDetailsViewModel.getMovieDetails(movieId)
+        binding.rvMovieCast.adapter = castAdapter
         collectData()
     }
 
@@ -212,7 +213,6 @@ class MovieDetailsFragment : Fragment() {
             }
 
             // Cast
-            rvMovieCast.adapter = castAdapter
             rvMovieCast.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             castAdapter.submitList(movieDetails.credits.cast)
         }

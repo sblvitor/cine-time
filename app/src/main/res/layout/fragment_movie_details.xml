@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.movies.MovieDetailsFragment"
-    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    tools:context=".ui.movies.MovieDetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -98,10 +98,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/half_margin_default"
             android:clickable="false"
-            app:srb_clearRatingEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_movie_genres_details"
+            app:srb_clearRatingEnabled="false"
             app:srb_drawableEmpty="@drawable/star_empty"
             app:srb_drawableFilled="@drawable/star_filled"
             app:srb_isIndicator="true"
@@ -233,10 +233,11 @@
             android:id="@+id/rv_movie_cast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_movie_cast"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/item_cast" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
