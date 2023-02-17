@@ -53,12 +53,22 @@ class MainActivity : AppCompatActivity() {
         navView.itemIconTintList = null
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.nav_register || destination.id == R.id.nav_login) {
-                navView.visibility = View.GONE
-                binding.toolbar.visibility = View.GONE
-            } else {
-                navView.visibility = View.VISIBLE
-                binding.toolbar.visibility = View.VISIBLE
+            when(destination.id) {
+                R.id.nav_register -> {
+                    navView.visibility = View.GONE
+                    binding.toolbar.visibility = View.GONE
+                }
+                R.id.nav_login -> {
+                    navView.visibility = View.GONE
+                    binding.toolbar.visibility = View.GONE
+                }
+                R.id.nav_movie_details -> {
+                    navView.visibility = View.GONE
+                }
+                else -> {
+                    navView.visibility = View.VISIBLE
+                    binding.toolbar.visibility = View.VISIBLE
+                }
             }
         }
 

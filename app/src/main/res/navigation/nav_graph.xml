@@ -15,6 +15,19 @@
             app:destination="@id/navigation_login_flow"
             app:popUpTo="@id/nav_movies"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nav_movies_to_nav_movie_details"
+            app:destination="@id/nav_movie_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_movie_details"
+        android:name="com.lira.cinetime.ui.movies.MovieDetailsFragment"
+        android:label="Movie Details"
+        tools:layout="@layout/fragment_movie_details" >
+        <argument
+            android:name="movie_id"
+            app:argType="long" />
     </fragment>
 
     <fragment

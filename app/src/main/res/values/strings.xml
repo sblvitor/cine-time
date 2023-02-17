@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">CineTime</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="popular_movies_label">Popular Movies</string>
+    <string name="popular_movies_label">Popular</string>
     <string name="now_playing_label">Now Playing</string>
     <string name="next" translatable="false">Next</string>
     <string name="previous" translatable="false">Previous</string>
@@ -54,4 +54,12 @@
     <string name="account_label">Account</string>
     <string name="search_label">Search</string>
     <string name="top_rated_label">Top Rated</string>
+    <string name="dot_divider_cd" translatable="false">Dot Divider</string>
+    <string name="txt_overview">Overview</string>
+    <string name="txt_available_at">Available at</string>
+    <string name="provider_logo_cd" translatable="false">provider logo</string>
+    <string name="txt_cast">Cast</string>
+    <string name="cast_profile_image_cd" translatable="false">Cast profile image</string>
+    <string name="txt_no_overview">Overview not available right now.</string>
+    <string name="txt_not_available">Not streaming yet!</string>
 </resources>

@@ -3,6 +3,7 @@ package com.lira.cinetime.ui.movies.topRated
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.lira.cinetime.R
 import com.lira.cinetime.core.genresIDsToNamesResources
 import com.lira.cinetime.data.models.topRated.TopRatedResult
 import com.lira.cinetime.databinding.ItemTopRatedBinding
+import com.lira.cinetime.ui.movies.MoviesFragmentDirections
 
 class TopRatedAdapter: PagingDataAdapter<TopRatedResult, TopRatedAdapter.ViewHolder>(DiffCallBack()) {
 
@@ -54,6 +56,11 @@ class TopRatedAdapter: PagingDataAdapter<TopRatedResult, TopRatedAdapter.ViewHol
                 .load(posterPath)
                 .placeholder(R.drawable.film_poster_placeholder)
                 .into(binding.ivTopRatedPoster)
+
+            itemView.setOnClickListener {
+                val action = MoviesFragmentDirections.actionNavMoviesToNavMovieDetails(item.id)
+                it.findNavController().navigate(action)
+            }
         }
     }
 

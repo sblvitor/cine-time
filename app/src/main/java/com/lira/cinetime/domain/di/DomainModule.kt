@@ -4,6 +4,7 @@ import com.lira.cinetime.domain.authFlow.GetCurrentUserUseCase
 import com.lira.cinetime.domain.authFlow.LogInUseCase
 import com.lira.cinetime.domain.authFlow.RegisterUseCase
 import com.lira.cinetime.domain.authFlow.SignOutUseCase
+import com.lira.cinetime.domain.movieDetails.GetMovieDetailsUseCase
 import com.lira.cinetime.domain.nowPlaying.GetNowPlayingMoviesUseCase
 import com.lira.cinetime.domain.popularMovies.GetPopularMoviesUseCase
 import com.lira.cinetime.domain.topRated.GetTopRatedMoviesUseCase
@@ -26,6 +27,7 @@ object DomainModule {
             factory { GetPopularMoviesUseCase(get()) }
             factory { GetNowPlayingMoviesUseCase(get()) }
             factory { GetTopRatedMoviesUseCase(get()) }
+            factory { GetMovieDetailsUseCase(get()) }
         }
     }
 

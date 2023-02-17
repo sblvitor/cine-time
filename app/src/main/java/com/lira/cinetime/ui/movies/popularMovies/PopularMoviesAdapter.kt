@@ -3,6 +3,7 @@ package com.lira.cinetime.ui.movies.popularMovies
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.lira.cinetime.R
 import com.lira.cinetime.core.genresIDsToNamesResources
 import com.lira.cinetime.data.models.popularMovies.PopularMoviesResult
 import com.lira.cinetime.databinding.ItemPopularMovieBinding
+import com.lira.cinetime.ui.movies.MoviesFragmentDirections
 
 class PopularMoviesAdapter: PagingDataAdapter<PopularMoviesResult, PopularMoviesAdapter.ViewHolder>(
     DiffCallBack()
@@ -56,6 +58,11 @@ class PopularMoviesAdapter: PagingDataAdapter<PopularMoviesResult, PopularMovies
                 .load(posterPath)
                 .placeholder(R.drawable.film_poster_placeholder)
                 .into(binding.ivPopularMoviePoster)
+
+            itemView.setOnClickListener {
+                val action = MoviesFragmentDirections.actionNavMoviesToNavMovieDetails(item.id)
+                it.findNavController().navigate(action)
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package com.lira.cinetime.ui.movies.nowPlaying
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.lira.cinetime.R
 import com.lira.cinetime.core.genresIDsToNamesResources
 import com.lira.cinetime.data.models.nowPlaying.NowPlayingResult
 import com.lira.cinetime.databinding.ItemNowPlayingMovieBinding
+import com.lira.cinetime.ui.movies.MoviesFragmentDirections
 
 class NowPlayingAdapter: PagingDataAdapter<NowPlayingResult, NowPlayingAdapter.ViewHolder>(DiffCallBack()) {
 
@@ -54,6 +56,11 @@ class NowPlayingAdapter: PagingDataAdapter<NowPlayingResult, NowPlayingAdapter.V
                 .load(posterPath)
                 .placeholder(R.drawable.film_poster_placeholder)
                 .into(binding.ivNowPlayingMoviePoster)
+
+            itemView.setOnClickListener {
+                val action = MoviesFragmentDirections.actionNavMoviesToNavMovieDetails(item.id)
+                it.findNavController().navigate(action)
+            }
         }
     }
 
