@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Configurações</string>
-    <string name="popular_movies_label">Populares</string>
+    <string name="popular_label">Populares</string>
     <string name="now_playing_label">Nos Cinemas</string>
     <string name="movies_title">Filmes</string>
     <string name="txt_register">Registre-se</string>
@@ -48,5 +48,6 @@
     <string name="txt_cast">Elenco</string>
     <string name="txt_no_overview">Visão geral não disponível no momento.</string>
     <string name="txt_not_available">Nenhum streaming por enquanto!</string>
+    <string name="airing_today_label">No Ar Hoje</string>
 
 </resources>

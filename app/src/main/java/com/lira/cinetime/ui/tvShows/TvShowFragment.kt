@@ -1,33 +1,60 @@
 package com.lira.cinetime.ui.tvShows
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lira.cinetime.R
-import com.lira.cinetime.presentation.tvShows.TvShowViewModel
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.lira.cinetime.databinding.FragmentTvShowBinding
 
 class TvShowFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = TvShowFragment()
+    private var _binding: FragmentTvShowBinding? = null
+
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentTvShowBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    private lateinit var viewModel: TvShowViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tv_show, container, false)
+        val tabLayout = binding.tabLayoutTv
+        val viewPager2 = binding.viewPagerTv
+        val tvShowViewPagerAdapter = TvShowViewPagerAdapter(this)
+
+        viewPager2.adapter = tvShowViewPagerAdapter
+
+        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                if(tab != null) {
+                    viewPager2.currentItem = tab.position
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                // nada por enquanto
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                // nada por enquanto
+            }
+        })
+
+        viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                tabLayout.getTabAt(position)?.select()
+            }
+        })
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(TvShowViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-
 }
