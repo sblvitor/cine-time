@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lira.cinetime.R
-import com.lira.cinetime.data.models.movieDetails.Cast
+import com.lira.cinetime.data.models.movies.movieDetails.Cast
 import com.lira.cinetime.databinding.ItemCastBinding
 
 class MovieCastAdapter: ListAdapter<Cast, MovieCastAdapter.ViewHolder>(DiffCallBack()) {

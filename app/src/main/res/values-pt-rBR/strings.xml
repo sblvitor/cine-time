@@ -37,6 +37,13 @@
     <string name="tv_movie">Cinema TV</string>
     <string name="war">Guerra</string>
     <string name="western">Faroeste</string>
+    <string name="action_adventure">Ação &amp; Aventura</string>
+    <string name="kids">Crianças</string>
+    <string name="news">Notícias</string>
+    <string name="scifi_fantasy">Sci-Fi &amp; Fantasia</string>
+    <string name="soap">Novela</string>
+    <string name="talk">Talk Show</string>
+    <string name="war_politics">Guerra &amp; Política</string>
     <string name="movies_label">Filmes</string>
     <string name="tv_shows_label">Séries</string>
     <string name="my_list_label">Minha Lista</string>

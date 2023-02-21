@@ -6,8 +6,10 @@ import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import com.lira.cinetime.data.firebase.ServiceAuthRepository
 import com.lira.cinetime.data.firebase.ServiceAuthRepositoryImpl
-import com.lira.cinetime.data.moviesRepository.MoviesRepository
-import com.lira.cinetime.data.moviesRepository.MoviesRepositoryImpl
+import com.lira.cinetime.data.repositories.moviesRepository.MoviesRepository
+import com.lira.cinetime.data.repositories.moviesRepository.MoviesRepositoryImpl
+import com.lira.cinetime.data.repositories.tvShowsRepository.TvShowsRepository
+import com.lira.cinetime.data.repositories.tvShowsRepository.TvShowsRepositoryImpl
 import com.lira.cinetime.data.services.TheMoviesService
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -55,6 +57,7 @@ object DataModule {
     private fun repositoriesModule(): Module {
         return module {
             single<MoviesRepository> { MoviesRepositoryImpl(get()) }
+            single<TvShowsRepository> { TvShowsRepositoryImpl(get()) }
         }
     }
 

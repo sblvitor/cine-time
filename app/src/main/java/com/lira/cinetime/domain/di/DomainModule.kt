@@ -4,10 +4,11 @@ import com.lira.cinetime.domain.authFlow.GetCurrentUserUseCase
 import com.lira.cinetime.domain.authFlow.LogInUseCase
 import com.lira.cinetime.domain.authFlow.RegisterUseCase
 import com.lira.cinetime.domain.authFlow.SignOutUseCase
-import com.lira.cinetime.domain.movieDetails.GetMovieDetailsUseCase
-import com.lira.cinetime.domain.nowPlaying.GetNowPlayingMoviesUseCase
-import com.lira.cinetime.domain.popularMovies.GetPopularMoviesUseCase
-import com.lira.cinetime.domain.topRated.GetTopRatedMoviesUseCase
+import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
+import com.lira.cinetime.domain.movies.nowPlaying.GetNowPlayingMoviesUseCase
+import com.lira.cinetime.domain.movies.popularMovies.GetPopularMoviesUseCase
+import com.lira.cinetime.domain.movies.topRated.GetTopRatedMoviesUseCase
+import com.lira.cinetime.domain.tvShows.popular.GetPopularTvShowsUseCase
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -28,6 +29,7 @@ object DomainModule {
             factory { GetNowPlayingMoviesUseCase(get()) }
             factory { GetTopRatedMoviesUseCase(get()) }
             factory { GetMovieDetailsUseCase(get()) }
+            factory { GetPopularTvShowsUseCase(get()) }
         }
     }
 

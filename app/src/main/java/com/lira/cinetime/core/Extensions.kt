@@ -55,6 +55,14 @@ fun genresIDsToNamesResources(id: Int): Int {
         53 -> R.string.thriller
         10752 -> R.string.war
         37 -> R.string.western
+        10759 -> R.string.action_adventure
+        10762 -> R.string.kids
+        10763 -> R.string.news
+        10764 -> R.string.reality
+        10765 -> R.string.scifi_fantasy
+        10766 -> R.string.soap
+        10767 -> R.string.talk
+        10768 -> R.string.war_politics
         else -> R.string.blank
     }
 }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lira.cinetime.R
 import com.lira.cinetime.core.genresIDsToNamesResources
-import com.lira.cinetime.data.models.popularMovies.PopularMoviesResult
+import com.lira.cinetime.data.models.movies.popularMovies.PopularMoviesResult
 import com.lira.cinetime.databinding.ItemPopularMovieBinding
 import com.lira.cinetime.ui.movies.MoviesFragmentDirections
 

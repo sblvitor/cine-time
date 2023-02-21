@@ -4,6 +4,7 @@ import com.lira.cinetime.presentation.*
 import com.lira.cinetime.presentation.authFlow.LoginViewModel
 import com.lira.cinetime.presentation.authFlow.RegisterViewModel
 import com.lira.cinetime.presentation.movies.*
+import com.lira.cinetime.presentation.tvShows.PopularTvViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -25,6 +26,7 @@ object PresentationModule {
             viewModel { NowPlayingViewModel(get()) }
             viewModel { TopRatedViewModel(get()) }
             viewModel { MovieDetailsViewModel(get()) }
+            viewModel { PopularTvViewModel(get()) }
         }
     }
 

@@ -47,6 +47,14 @@
     <string name="thriller" translatable="false">Thriller</string>
     <string name="war">War</string>
     <string name="western">Western</string>
+    <string name="action_adventure">Action &amp; Adventure</string>
+    <string name="kids">Kids</string>
+    <string name="news">News</string>
+    <string name="reality" translatable="false">Reality</string>
+    <string name="scifi_fantasy">Sci-Fi &amp; Fantasy</string>
+    <string name="soap">Soap</string>
+    <string name="talk">Talk</string>
+    <string name="war_politics">War &amp; Politics</string>
     <string name="blank" translatable="false"> </string>
     <string name="movies_label">Movies</string>
     <string name="tv_shows_label">TV Shows</string>

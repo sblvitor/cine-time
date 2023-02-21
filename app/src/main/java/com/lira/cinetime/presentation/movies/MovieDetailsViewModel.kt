@@ -2,8 +2,8 @@ package com.lira.cinetime.presentation.movies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lira.cinetime.data.models.movieDetails.MovieDetailsResponse
-import com.lira.cinetime.domain.movieDetails.GetMovieDetailsUseCase
+import com.lira.cinetime.data.models.movies.movieDetails.MovieDetailsResponse
+import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 

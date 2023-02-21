@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createDialog
 import com.lira.cinetime.core.createProgressDialog
-import com.lira.cinetime.data.models.movieDetails.MovieDetailsResponse
+import com.lira.cinetime.data.models.movies.movieDetails.MovieDetailsResponse
 import com.lira.cinetime.databinding.FragmentMovieDetailsBinding
 import com.lira.cinetime.presentation.movies.MovieDetailsViewModel
 import kotlinx.coroutines.flow.collectLatest
