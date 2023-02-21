@@ -8,6 +8,7 @@ import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
 import com.lira.cinetime.domain.movies.nowPlaying.GetNowPlayingMoviesUseCase
 import com.lira.cinetime.domain.movies.popularMovies.GetPopularMoviesUseCase
 import com.lira.cinetime.domain.movies.topRated.GetTopRatedMoviesUseCase
+import com.lira.cinetime.domain.tvShows.airingToday.GetAiringTodayTvUseCase
 import com.lira.cinetime.domain.tvShows.popular.GetPopularTvShowsUseCase
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -30,6 +31,7 @@ object DomainModule {
             factory { GetTopRatedMoviesUseCase(get()) }
             factory { GetMovieDetailsUseCase(get()) }
             factory { GetPopularTvShowsUseCase(get()) }
+            factory { GetAiringTodayTvUseCase(get()) }
         }
     }
 
