@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import com.lira.cinetime.R
 import com.lira.cinetime.databinding.FragmentTvShowBinding
 
 class TvShowFragment : Fragment() {
@@ -29,28 +29,14 @@ class TvShowFragment : Fragment() {
 
         viewPager2.adapter = tvShowViewPagerAdapter
 
-        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                if(tab != null) {
-                    viewPager2.currentItem = tab.position
-                }
+        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
+            when(position) {
+                0 -> tab.text = getString(R.string.popular_label)
+                1 -> tab.text = getString(R.string.airing_today_label)
+                2 -> tab.text = getString(R.string.top_rated_label)
             }
+        }.attach()
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                // nada por enquanto
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                // nada por enquanto
-            }
-        })
-
-        viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                tabLayout.getTabAt(position)?.select()
-            }
-        })
     }
 
     override fun onDestroyView() {

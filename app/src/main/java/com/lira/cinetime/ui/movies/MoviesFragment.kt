@@ -9,8 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.lira.cinetime.R
 import com.lira.cinetime.databinding.FragmentMoviesBinding
 import com.lira.cinetime.presentation.movies.MoviesViewModel
@@ -39,29 +38,13 @@ class MoviesFragment : Fragment() {
 
         viewPager2.adapter = moviesViewPagerAdapter
 
-        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                if (tab != null) {
-                    viewPager2.currentItem = tab.position
-                }
+        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
+            when(position) {
+                0 -> tab.text = getString(R.string.popular_label)
+                1 -> tab.text = getString(R.string.now_playing_label)
+                2 -> tab.text = getString(R.string.top_rated_label)
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                // nada por enquanto
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                // nada por enquanto (voltar para o topo?)
-            }
-
-        })
-
-        viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                tabLayout.getTabAt(position)?.select()
-            }
-        })
+        }.attach()
 
         //Login
         viewLifecycleOwner.lifecycleScope.launch {
