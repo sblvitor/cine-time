@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.lira.cinetime.data.models.tvShows.airingToday.AiringTodayTvResult
 import com.lira.cinetime.data.models.tvShows.popularTv.PopularTvResult
+import com.lira.cinetime.data.models.tvShows.topRated.TopRatedTvResult
 import com.lira.cinetime.data.services.TheMoviesService
 import kotlinx.coroutines.flow.Flow
 
@@ -30,6 +31,18 @@ class TvShowsRepositoryImpl(private val service: TheMoviesService): TvShowsRepos
             ),
             pagingSourceFactory = {
                 AiringTodayTvPagingSource(service = service)
+            }
+        ).flow
+    }
+
+    override fun getTopRatedTv(): Flow<PagingData<TopRatedTvResult>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 3,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                TopRatedTvPagingSource(service = service)
             }
         ).flow
     }
