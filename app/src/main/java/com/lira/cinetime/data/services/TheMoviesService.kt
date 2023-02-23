@@ -4,6 +4,7 @@ import com.lira.cinetime.data.models.movies.movieDetails.MovieDetailsResponse
 import com.lira.cinetime.data.models.movies.nowPlaying.NowPlayingResponse
 import com.lira.cinetime.data.models.movies.popularMovies.PopularMoviesResponse
 import com.lira.cinetime.data.models.movies.topRated.TopRatedResponse
+import com.lira.cinetime.data.models.search.trending.TrendingResponse
 import com.lira.cinetime.data.models.tvShows.airingToday.AiringTodayTvResponse
 import com.lira.cinetime.data.models.tvShows.popularTv.PopularTvResponse
 import com.lira.cinetime.data.models.tvShows.topRated.TopRatedTvResponse
@@ -56,5 +57,10 @@ interface TheMoviesService {
                              @Query("api_key") api_key: String,
                              @Query("language") language: String,
                              @Query("append_to_response") append_to_response: String): TvDetailsResponse
+
+    @GET("trending/all/day")
+    suspend fun getTrending(@Query("api_key") api_key: String,
+                            @Query("language") language: String,
+                            @Query("page") page: Int): TrendingResponse
 
 }

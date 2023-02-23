@@ -64,9 +64,13 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_movie_details -> {
                     navView.visibility = View.GONE
+                    //binding.toolbar.setBackgroundColor(getColor(android.R.color.transparent))
                 }
                 R.id.nav_tv_details -> {
                     navView.visibility = View.GONE
+                }
+                R.id.nav_search -> {
+                    binding.toolbar.visibility = View.GONE
                 }
                 else -> {
                     navView.visibility = View.VISIBLE

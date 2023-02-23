@@ -8,6 +8,8 @@ import com.lira.cinetime.data.firebase.ServiceAuthRepository
 import com.lira.cinetime.data.firebase.ServiceAuthRepositoryImpl
 import com.lira.cinetime.data.repositories.moviesRepository.MoviesRepository
 import com.lira.cinetime.data.repositories.moviesRepository.MoviesRepositoryImpl
+import com.lira.cinetime.data.repositories.searchRepository.SearchRepository
+import com.lira.cinetime.data.repositories.searchRepository.SearchRepositoryImpl
 import com.lira.cinetime.data.repositories.tvShowsRepository.TvShowsRepository
 import com.lira.cinetime.data.repositories.tvShowsRepository.TvShowsRepositoryImpl
 import com.lira.cinetime.data.services.TheMoviesService
@@ -58,6 +60,7 @@ object DataModule {
         return module {
             single<MoviesRepository> { MoviesRepositoryImpl(get()) }
             single<TvShowsRepository> { TvShowsRepositoryImpl(get()) }
+            single<SearchRepository> { SearchRepositoryImpl(get()) }
         }
     }
 

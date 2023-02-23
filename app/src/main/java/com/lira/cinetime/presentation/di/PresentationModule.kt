@@ -4,6 +4,7 @@ import com.lira.cinetime.presentation.*
 import com.lira.cinetime.presentation.authFlow.LoginViewModel
 import com.lira.cinetime.presentation.authFlow.RegisterViewModel
 import com.lira.cinetime.presentation.movies.*
+import com.lira.cinetime.presentation.search.SearchViewModel
 import com.lira.cinetime.presentation.tvShows.AiringTodayTvViewModel
 import com.lira.cinetime.presentation.tvShows.PopularTvViewModel
 import com.lira.cinetime.presentation.tvShows.TopRatedTvViewModel
@@ -33,6 +34,7 @@ object PresentationModule {
             viewModel { AiringTodayTvViewModel(get()) }
             viewModel { TopRatedTvViewModel(get()) }
             viewModel { TvDetailsViewModel(get()) }
+            viewModel { SearchViewModel(get()) }
         }
     }
 

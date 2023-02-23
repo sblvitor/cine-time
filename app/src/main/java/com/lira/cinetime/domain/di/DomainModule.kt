@@ -8,6 +8,7 @@ import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
 import com.lira.cinetime.domain.movies.nowPlaying.GetNowPlayingMoviesUseCase
 import com.lira.cinetime.domain.movies.popularMovies.GetPopularMoviesUseCase
 import com.lira.cinetime.domain.movies.topRated.GetTopRatedMoviesUseCase
+import com.lira.cinetime.domain.search.GetTrendingUseCase
 import com.lira.cinetime.domain.tvShows.airingToday.GetAiringTodayTvUseCase
 import com.lira.cinetime.domain.tvShows.popular.GetPopularTvShowsUseCase
 import com.lira.cinetime.domain.tvShows.topRated.GetTopRatedTvUseCase
@@ -36,6 +37,7 @@ object DomainModule {
             factory { GetAiringTodayTvUseCase(get()) }
             factory { GetTopRatedTvUseCase(get()) }
             factory { GetTvDetailsUseCase(get()) }
+            factory { GetTrendingUseCase(get()) }
         }
     }
 
