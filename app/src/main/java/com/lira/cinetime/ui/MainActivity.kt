@@ -65,6 +65,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_movie_details -> {
                     navView.visibility = View.GONE
                 }
+                R.id.nav_tv_details -> {
+                    navView.visibility = View.GONE
+                }
                 else -> {
                     navView.visibility = View.VISIBLE
                     binding.toolbar.visibility = View.VISIBLE

@@ -3,6 +3,7 @@ package com.lira.cinetime.ui.tvShows.popular
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.lira.cinetime.R
 import com.lira.cinetime.core.genresIDsToNamesResources
 import com.lira.cinetime.data.models.tvShows.popularTv.PopularTvResult
 import com.lira.cinetime.databinding.ItemPopularTvShowBinding
+import com.lira.cinetime.ui.tvShows.TvShowFragmentDirections
 
 class PopularTvAdapter: PagingDataAdapter<PopularTvResult, PopularTvAdapter.ViewHolder>(DiffCallBack()) {
 
@@ -55,6 +57,11 @@ class PopularTvAdapter: PagingDataAdapter<PopularTvResult, PopularTvAdapter.View
                     .load(posterPath)
                     .placeholder(R.drawable.film_poster_placeholder)
                     .into(binding.ivPopularTvPoster)
+
+            }
+            itemView.setOnClickListener {
+                val action = TvShowFragmentDirections.actionNavTvShowsToNavTvDetails(item.id)
+                it.findNavController().navigate(action)
             }
         }
 

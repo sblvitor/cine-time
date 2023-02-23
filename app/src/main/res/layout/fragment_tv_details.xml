@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    tools:context=".ui.tvShows.TvDetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_tv_poster_details"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:contentDescription="@string/tv_show_poster_cd"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Small"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_tv_title_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginTop="@dimen/half_margin_default"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_tv_poster_details"
+            tools:text="The Last of Us" />
+
+        <TextView
+            android:id="@+id/tv_tv_genres_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/half_margin_default"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@id/tv_tv_title_details"
+            app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_title_details"
+            tools:text="Action, Adventure" />
+
+        <com.willy.ratingbar.BaseRatingBar
+            android:id="@+id/rb_tv_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/half_margin_default"
+            android:clickable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_genres_details"
+            app:srb_clearRatingEnabled="false"
+            app:srb_drawableEmpty="@drawable/star_empty"
+            app:srb_drawableFilled="@drawable/star_filled"
+            app:srb_isIndicator="true"
+            app:srb_numStars="5"
+            app:srb_rating="0"
+            app:srb_scrollable="false"
+            app:srb_starHeight="30dp"
+            app:srb_starWidth="30dp"
+            app:srb_stepSize="0.1" />
+
+        <TextView
+            android:id="@+id/tv_number_of_seasons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/half_margin_default"
+            android:fontFamily="@font/montserrat"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/iv_tv_dot"
+            app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+            app:layout_constraintTop_toBottomOf="@id/rb_tv_details"
+            tools:text="5 temporadas" />
+
+        <ImageView
+            android:id="@+id/iv_tv_dot"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_marginStart="@dimen/half_margin_default"
+            android:contentDescription="@string/dot_divider_cd"
+            android:src="@drawable/dot_separator"
+            app:layout_constraintBottom_toBottomOf="@id/tv_number_of_seasons"
+            app:layout_constraintEnd_toStartOf="@id/tv_number_of_episodes"
+            app:layout_constraintStart_toEndOf="@id/tv_number_of_seasons"
+            app:layout_constraintTop_toTopOf="@id/tv_number_of_seasons" />
+
+        <TextView
+            android:id="@+id/tv_number_of_episodes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/half_margin_default"
+            android:fontFamily="@font/montserrat"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/iv_tv_dot"
+            app:layout_constraintTop_toTopOf="@id/tv_number_of_seasons"
+            tools:text="62 episódios" />
+
+        <TextView
+            android:id="@+id/txt_tv_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/half_margin_default"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/txt_overview"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+            app:layout_constraintTop_toBottomOf="@id/tv_number_of_seasons" />
+
+        <TextView
+            android:id="@+id/tv_tv_overview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat"
+            android:maxLines="6"
+            app:layout_constraintEnd_toEndOf="@id/tv_tv_title_details"
+            app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+            app:layout_constraintTop_toBottomOf="@id/txt_tv_overview"
+            tools:text="Situado duas décadas após a implosão de nossa sociedade, o drama seguirá Joel, um sobrevivente difícil, que é contratado para contrabandear uma garota de 14 anos chamada Ellie para fora de uma zona de quarentena opressiva. O que começa como um pequeno trabalho logo se torna uma jornada brutal e de partir o coração, já que os dois precisam atravessar os Estados Unidos e dependem um do outro para sobreviver." />
+
+        <TextView
+            android:id="@+id/tv_last_air_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:fontFamily="@font/montserrat"
+            app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+            app:layout_constraintTop_toBottomOf="@id/tv_tv_overview"
+            tools:text="Último episódio: 19/02/2023" />
+
+        <TextView
+            android:id="@+id/tv_next_air_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+            app:layout_constraintTop_toBottomOf="@id/tv_last_air_date"
+            tools:text="Próximo episódio: 26/02/2023" />
+
+        <TextView
+            android:id="@+id/txt_tv_available_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/half_margin_default"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/txt_available_at"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+            app:layout_constraintTop_toBottomOf="@id/tv_next_air_date" />
+
+        <TextView
+            android:id="@+id/tv_tv_not_available"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:text="@string/txt_not_available"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_tv_available_at" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_tv_provider_one"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/half_margin_default"
+            android:contentDescription="@string/provider_logo_cd"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+            app:layout_constraintTop_toBottomOf="@id/txt_tv_available_at"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
+            tools:src="@drawable/popcorn_icon"
+            tools:visibility="visible" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_tv_provider_two"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/half_margin_default"
+            android:contentDescription="@string/provider_logo_cd"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@id/iv_tv_provider_one"
+            app:layout_constraintTop_toTopOf="@id/iv_tv_provider_one"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
+            tools:src="@drawable/popcorn_icon"
+            tools:visibility="visible" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_tv_provider_three"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/half_margin_default"
+            android:contentDescription="@string/provider_logo_cd"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@id/iv_tv_provider_two"
+            app:layout_constraintTop_toTopOf="@id/iv_tv_provider_one"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
+            tools:src="@drawable/popcorn_icon"
+            tools:visibility="visible" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_tv_provider_four"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/half_margin_default"
+            android:contentDescription="@string/provider_logo_cd"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@id/iv_tv_provider_three"
+            app:layout_constraintTop_toTopOf="@id/iv_tv_provider_one"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
+            tools:src="@drawable/popcorn_icon"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_tv_cast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/half_margin_default"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/txt_cast"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+            app:layout_constraintTop_toBottomOf="@id/iv_tv_provider_one" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tv_cast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_tv_cast"
+            tools:listitem="@layout/item_tv_cast" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

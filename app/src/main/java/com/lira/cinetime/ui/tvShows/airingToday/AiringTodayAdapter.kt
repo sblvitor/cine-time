@@ -3,6 +3,7 @@ package com.lira.cinetime.ui.tvShows.airingToday
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.lira.cinetime.R
 import com.lira.cinetime.core.genresIDsToNamesResources
 import com.lira.cinetime.data.models.tvShows.airingToday.AiringTodayTvResult
 import com.lira.cinetime.databinding.ItemAiringTodayBinding
+import com.lira.cinetime.ui.tvShows.TvShowFragmentDirections
 
 class AiringTodayAdapter: PagingDataAdapter<AiringTodayTvResult, AiringTodayAdapter.ViewHolder>(DiffCallBack()) {
 
@@ -54,6 +56,10 @@ class AiringTodayAdapter: PagingDataAdapter<AiringTodayTvResult, AiringTodayAdap
                     .load(posterPath)
                     .placeholder(R.drawable.film_poster_placeholder)
                     .into(binding.ivAiringTodayTvPoster)
+            }
+            itemView.setOnClickListener {
+                val action = TvShowFragmentDirections.actionNavTvShowsToNavTvDetails(item.id)
+                it.findNavController().navigate(action)
             }
         }
 

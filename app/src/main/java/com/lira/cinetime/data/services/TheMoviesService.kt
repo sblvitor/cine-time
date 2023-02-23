@@ -7,6 +7,7 @@ import com.lira.cinetime.data.models.movies.topRated.TopRatedResponse
 import com.lira.cinetime.data.models.tvShows.airingToday.AiringTodayTvResponse
 import com.lira.cinetime.data.models.tvShows.popularTv.PopularTvResponse
 import com.lira.cinetime.data.models.tvShows.topRated.TopRatedTvResponse
+import com.lira.cinetime.data.models.tvShows.tvDetails.TvDetailsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -49,5 +50,11 @@ interface TheMoviesService {
     suspend fun getTopRatedTv(@Query("api_key") api_key: String,
                               @Query("language") language: String,
                               @Query("page") page: Int): TopRatedTvResponse
+
+    @GET("tv/{tv_id}")
+    suspend fun getTvDetails(@Path("tv_id") tvId: Long,
+                             @Query("api_key") api_key: String,
+                             @Query("language") language: String,
+                             @Query("append_to_response") append_to_response: String): TvDetailsResponse
 
 }

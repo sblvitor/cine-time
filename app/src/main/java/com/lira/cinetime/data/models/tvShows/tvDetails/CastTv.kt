@@ -7,6 +7,6 @@ data class CastTv(
     val name: String,
     @SerializedName("profile_path")
     val profilePath: String?,
-    val roles: List<Role>? = null,
+    val roles: List<Role>?,
     val totalEpisodeCount: Int
 )

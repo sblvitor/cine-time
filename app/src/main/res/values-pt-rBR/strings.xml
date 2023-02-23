@@ -56,5 +56,10 @@
     <string name="txt_no_overview">Visão geral não disponível no momento.</string>
     <string name="txt_not_available">Nenhum streaming por enquanto!</string>
     <string name="airing_today_label">No Ar Hoje</string>
+    <string name="seasons">temporadas</string>
+    <string name="episodes">episódios</string>
+    <string name="last_air_date">Último episódio em:</string>
+    <string name="next_air_date">Próximo episódio em:</string>
+    <string name="season">temporada</string>
 
 </resources>

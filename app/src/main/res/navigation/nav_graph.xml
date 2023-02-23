@@ -34,7 +34,21 @@
         android:id="@+id/nav_tv_shows"
         android:name="com.lira.cinetime.ui.tvShows.TvShowFragment"
         android:label="@string/tv_shows_label"
-        tools:layout="@layout/fragment_tv_show" />
+        tools:layout="@layout/fragment_tv_show" >
+        <action
+            android:id="@+id/action_nav_tv_shows_to_nav_tv_details"
+            app:destination="@id/nav_tv_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_tv_details"
+        android:name="com.lira.cinetime.ui.tvShows.TvDetailsFragment"
+        android:label="Tv Show Detail"
+        tools:layout="@layout/fragment_tv_details" >
+        <argument
+            android:name="tv_id"
+            app:argType="long" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_search"

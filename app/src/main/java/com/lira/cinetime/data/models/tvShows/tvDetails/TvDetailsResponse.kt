@@ -17,7 +17,7 @@ data class TvDetailsResponse(
     val lastEpisodeToAir: TEpisodeToAir,
     val name: String,
     @SerializedName("next_episode_to_air")
-    val nextEpisodeToAir: TEpisodeToAir,
+    val nextEpisodeToAir: TEpisodeToAir?,
     @SerializedName("number_of_episodes")
     val numberOfEpisodes: Int,
     @SerializedName("number_of_seasons")
@@ -36,6 +36,8 @@ data class TvDetailsResponse(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Long,
+    @SerializedName("watch/providers")
     val watchProviders: WatchProvidersTv,
+    @SerializedName("aggregate_credits")
     val aggregateCredits: AggregateCredits
 )

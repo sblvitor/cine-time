@@ -11,6 +11,7 @@ import com.lira.cinetime.domain.movies.topRated.GetTopRatedMoviesUseCase
 import com.lira.cinetime.domain.tvShows.airingToday.GetAiringTodayTvUseCase
 import com.lira.cinetime.domain.tvShows.popular.GetPopularTvShowsUseCase
 import com.lira.cinetime.domain.tvShows.topRated.GetTopRatedTvUseCase
+import com.lira.cinetime.domain.tvShows.tvDetails.GetTvDetailsUseCase
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -34,6 +35,7 @@ object DomainModule {
             factory { GetPopularTvShowsUseCase(get()) }
             factory { GetAiringTodayTvUseCase(get()) }
             factory { GetTopRatedTvUseCase(get()) }
+            factory { GetTvDetailsUseCase(get()) }
         }
     }
 
