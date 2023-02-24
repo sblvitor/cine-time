@@ -121,7 +121,10 @@ class SearchFragment : Fragment() {
         val navView = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
         navView?.setOnItemReselectedListener { item ->
             if(item.itemId == R.id.nav_search){
-                binding.rvTrending.smoothScrollToPosition(0)
+                if(binding.searchView.isShowing)
+                    binding.rvSearch.smoothScrollToPosition(0)
+                else
+                    binding.rvTrending.smoothScrollToPosition(0)
             }
         }
     }
