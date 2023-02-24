@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createProgressDialog
@@ -80,11 +81,6 @@ class SearchFragment : Fragment() {
 
         setupSearch()
 
-        // trocar nestedScrollView para recyclerView e tentar colocar Header
-        // Colocar trending
-        // Fazer a busca com resultado dentro do search view
-        // Tentar colocar sugestao no searchview
-        // depois testar fora
     }
 
     private fun setupSearch() {
@@ -118,6 +114,26 @@ class SearchFragment : Fragment() {
             }
         })
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val navView = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
+        navView?.setOnItemReselectedListener { item ->
+            if(item.itemId == R.id.nav_search){
+                binding.rvTrending.smoothScrollToPosition(0)
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val navView = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
+        navView?.setOnItemReselectedListener { item ->
+            if(item.itemId == R.id.nav_search){
+                binding.rvTrending.stopScroll()
+            }
+        }
     }
 
     override fun onDestroy() {
