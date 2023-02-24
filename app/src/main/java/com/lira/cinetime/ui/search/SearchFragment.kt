@@ -113,7 +113,8 @@ class SearchFragment : Fragment() {
             override fun handleOnBackPressed() {
                 if(searchView.isShowing){
                     searchView.hide()
-                }
+                } else
+                    this.isEnabled = false
             }
         })
 
