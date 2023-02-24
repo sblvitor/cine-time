@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -88,6 +89,7 @@ class SearchFragment : Fragment() {
 
     private fun setupSearch() {
         val searchView = binding.searchView
+
         searchView
             .editText
             .setOnEditorActionListener { textView, _, _ ->
@@ -106,6 +108,15 @@ class SearchFragment : Fragment() {
                 }
                 false
             }
+
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if(searchView.isShowing){
+                    searchView.hide()
+                }
+            }
+        })
+
     }
 
     override fun onDestroy() {
