@@ -19,7 +19,7 @@ class PopularTvShowsPagingSource(private val service: TheMoviesService): PagingS
                 page = pageIndex
             )
             val tvShows = response.results
-            val nextKey = pageIndex + 1
+            val nextKey = if(tvShows.isEmpty()) null else pageIndex + 1
 
             LoadResult.Page(
                 data = tvShows,

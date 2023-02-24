@@ -21,7 +21,7 @@ class NowPlayingPagingSource(private val service: TheMoviesService): PagingSourc
             )
 
             val movies = response.results
-            val nextKey = pageIndex + 1
+            val nextKey = if(movies.isEmpty()) null else pageIndex + 1
 
             LoadResult.Page(
                 data = movies,

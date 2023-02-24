@@ -20,7 +20,7 @@ class TrendingPagingSource(private val service: TheMoviesService): PagingSource<
             )
 
             val trending = response.results
-            val nextKey = pageIndex + 1
+            val nextKey = if(trending.isEmpty()) null else pageIndex + 1
 
             LoadResult.Page(
                 data = trending,
