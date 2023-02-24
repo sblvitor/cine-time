@@ -40,16 +40,14 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Lottie animation
         binding.animationView.repeatCount = 2
+
+        // Status bar
         binding.appbarLayout.statusBarForeground = MaterialShapeDrawable.createWithElevationOverlay(context)
-        //binding.searchView.setupWithSearchBar(binding.searchBar)
-        /*binding.searchView
-            .editText
-            .setOnEditorActionListener { textView, i, keyEvent ->
-                binding.searchBar.text = binding.searchView.text
-                binding.searchView.hide()
-                false
-            }*/
+
+        // Adapters
         binding.rvTrending.adapter = trendingAdapter
         binding.rvSearch.adapter = searchAdapter
 
@@ -80,6 +78,10 @@ class SearchFragment : Fragment() {
                 searchAdapter.retry()
             }
         )
+
+        if(searchAdapter.itemCount > 0) {
+            binding.animationView.visibility = View.GONE
+        }
 
         setupSearch()
 

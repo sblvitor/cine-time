@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_nav_search_to_nav_movie_details"
             app:destination="@id/nav_movie_details" />
+        <action
+            android:id="@+id/action_nav_search_to_nav_tv_details"
+            app:destination="@id/nav_tv_details" />
     </fragment>
 
     <fragment

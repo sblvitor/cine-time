@@ -2,6 +2,7 @@ package com.lira.cinetime.ui.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -48,6 +49,19 @@ class SearchAdapter: PagingDataAdapter<MultiSearchResult, SearchAdapter.ViewHold
                             .into(binding.ivPosterSearch)
                     } else {
                         binding.ivPosterSearch.setImageResource(R.drawable.film_poster_placeholder)
+                    }
+                }
+            }
+
+            itemView.setOnClickListener {
+                when(item.mediaType) {
+                    "movie" -> {
+                        val action = SearchFragmentDirections.actionNavSearchToNavMovieDetails(item.id)
+                        it.findNavController().navigate(action)
+                    }
+                    "tv" -> {
+                        val action = SearchFragmentDirections.actionNavSearchToNavTvDetails(item.id)
+                        it.findNavController().navigate(action)
                     }
                 }
             }
