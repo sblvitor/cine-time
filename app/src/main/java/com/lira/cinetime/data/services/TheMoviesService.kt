@@ -4,6 +4,7 @@ import com.lira.cinetime.data.models.movies.movieDetails.MovieDetailsResponse
 import com.lira.cinetime.data.models.movies.nowPlaying.NowPlayingResponse
 import com.lira.cinetime.data.models.movies.popularMovies.PopularMoviesResponse
 import com.lira.cinetime.data.models.movies.topRated.TopRatedResponse
+import com.lira.cinetime.data.models.search.multiSearch.MultiSearchResponse
 import com.lira.cinetime.data.models.search.trending.TrendingResponse
 import com.lira.cinetime.data.models.tvShows.airingToday.AiringTodayTvResponse
 import com.lira.cinetime.data.models.tvShows.popularTv.PopularTvResponse
@@ -62,5 +63,11 @@ interface TheMoviesService {
     suspend fun getTrending(@Query("api_key") api_key: String,
                             @Query("language") language: String,
                             @Query("page") page: Int): TrendingResponse
+
+    @GET("search/multi")
+    suspend fun searchMulti(@Query("api_key") api_key: String,
+                            @Query("language") language: String,
+                            @Query("query") query: String,
+                            @Query("page") page: Int): MultiSearchResponse
 
 }

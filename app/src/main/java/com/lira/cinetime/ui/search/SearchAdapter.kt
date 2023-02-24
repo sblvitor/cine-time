@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lira.cinetime.R
-import com.lira.cinetime.data.models.search.trending.TrendingResult
-import com.lira.cinetime.databinding.ItemTrendingBinding
+import com.lira.cinetime.data.models.search.multiSearch.MultiSearchResult
+import com.lira.cinetime.databinding.ItemSearchResultBinding
 
-class TrendingAdapter: PagingDataAdapter<TrendingResult, TrendingAdapter.ViewHolder>(DiffCallBack()) {
+class SearchAdapter: PagingDataAdapter<MultiSearchResult, SearchAdapter.ViewHolder>(DiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemTrendingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemSearchResultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -22,9 +22,9 @@ class TrendingAdapter: PagingDataAdapter<TrendingResult, TrendingAdapter.ViewHol
         holder.bind(getItem(position)!!)
     }
 
-    inner class ViewHolder(private val binding: ItemTrendingBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemSearchResultBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: TrendingResult) {
+        fun bind(item: MultiSearchResult) {
             when(item.mediaType) {
                 "person" -> {
                     if(item.profilePath != null) {
@@ -33,9 +33,9 @@ class TrendingAdapter: PagingDataAdapter<TrendingResult, TrendingAdapter.ViewHol
                             .with(binding.root.context)
                             .load(profilePath)
                             .placeholder(R.drawable.person_placeholder)
-                            .into(binding.ivPosterTrending)
+                            .into(binding.ivPosterSearch)
                     } else {
-                        binding.ivPosterTrending.setImageResource(R.drawable.person_placeholder)
+                        binding.ivPosterSearch.setImageResource(R.drawable.person_placeholder)
                     }
                 }
                 else -> {
@@ -45,20 +45,20 @@ class TrendingAdapter: PagingDataAdapter<TrendingResult, TrendingAdapter.ViewHol
                             .with(binding.root.context)
                             .load(posterPath)
                             .placeholder(R.drawable.film_poster_placeholder)
-                            .into(binding.ivPosterTrending)
+                            .into(binding.ivPosterSearch)
                     } else {
-                        binding.ivPosterTrending.setImageResource(R.drawable.film_poster_placeholder)
+                        binding.ivPosterSearch.setImageResource(R.drawable.film_poster_placeholder)
                     }
                 }
             }
         }
     }
 
-    class DiffCallBack: DiffUtil.ItemCallback<TrendingResult>() {
+    class DiffCallBack: DiffUtil.ItemCallback<MultiSearchResult>() {
 
-        override fun areItemsTheSame(oldItem: TrendingResult, newItem: TrendingResult) = oldItem == newItem
+        override fun areItemsTheSame(oldItem: MultiSearchResult, newItem: MultiSearchResult) = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: TrendingResult, newItem: TrendingResult) = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: MultiSearchResult, newItem: MultiSearchResult) = oldItem.id == newItem.id
 
     }
 }

@@ -78,4 +78,5 @@
     <string name="next_air_date">Next On Air:</string>
     <string name="season">season</string>
     <string name="search_hint">Search for movies, tv shows or cast</string>
+    <string name="search_something">Search for something!</string>
 </resources>

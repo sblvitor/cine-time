@@ -62,5 +62,5 @@
     <string name="next_air_date">Próximo episódio em:</string>
     <string name="season">temporada</string>
     <string name="search_hint">Busque por filme, série ou elenco</string>
-
+    <string name="search_something">Busque por algo!</string>
 </resources>

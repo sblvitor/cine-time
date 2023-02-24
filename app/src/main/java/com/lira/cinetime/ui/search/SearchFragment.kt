@@ -10,10 +10,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
+import com.google.android.material.snackbar.Snackbar
+import com.lira.cinetime.R
+import com.lira.cinetime.core.createProgressDialog
 import com.lira.cinetime.databinding.FragmentSearchBinding
 import com.lira.cinetime.presentation.search.SearchViewModel
 import com.lira.cinetime.ui.tryAgainUtil.TryAgainAdapter
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,6 +25,8 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val searchViewModel by viewModel<SearchViewModel>()
     private val trendingAdapter by lazy { TrendingAdapter() }
+    private val searchAdapter by lazy { SearchAdapter() }
+    private val dialog by lazy { createProgressDialog() }
 
     private val binding get() = _binding!!
 
@@ -33,7 +37,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //binding.animationView.repeatCount = 2
+        binding.animationView.repeatCount = 2
         //binding.searchView.setupWithSearchBar(binding.searchBar)
         /*binding.searchView
             .editText
@@ -43,6 +47,7 @@ class SearchFragment : Fragment() {
                 false
             }*/
         binding.rvTrending.adapter = trendingAdapter
+        binding.rvSearch.adapter = searchAdapter
 
         // Trending
         lifecycleScope.launch {
@@ -66,11 +71,41 @@ class SearchFragment : Fragment() {
             }
         )
 
+        binding.rvSearch.adapter = searchAdapter.withLoadStateFooter(
+            TryAgainAdapter {
+                searchAdapter.retry()
+            }
+        )
+
+        setupSearch()
+
         // trocar nestedScrollView para recyclerView e tentar colocar Header
         // Colocar trending
         // Fazer a busca com resultado dentro do search view
         // Tentar colocar sugestao no searchview
         // depois testar fora
+    }
+
+    private fun setupSearch() {
+        val searchView = binding.searchView
+        searchView
+            .editText
+            .setOnEditorActionListener { textView, _, _ ->
+                if(textView.text.isNotEmpty()) {
+                    binding.animationView.visibility = View.GONE
+                    dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                    dialog.show()
+                    lifecycleScope.launch {
+                        searchViewModel.search(textView.text.toString()).collectLatest { results ->
+                            dialog.dismiss()
+                            searchAdapter.submitData(results)
+                        }
+                    }
+                } else {
+                    Snackbar.make(binding.root, getString(R.string.search_something), Snackbar.LENGTH_SHORT).show()
+                }
+                false
+            }
     }
 
     override fun onDestroy() {

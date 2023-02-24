@@ -34,7 +34,7 @@ object PresentationModule {
             viewModel { AiringTodayTvViewModel(get()) }
             viewModel { TopRatedTvViewModel(get()) }
             viewModel { TvDetailsViewModel(get()) }
-            viewModel { SearchViewModel(get()) }
+            viewModel { SearchViewModel(get(), get()) }
         }
     }
 
