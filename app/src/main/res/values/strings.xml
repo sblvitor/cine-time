@@ -79,4 +79,5 @@
     <string name="season">season</string>
     <string name="search_hint">Search for movies, tv shows or cast</string>
     <string name="search_something">Search for something!</string>
+    <string name="txt_trending" translatable="false">Trending</string>
 </resources>

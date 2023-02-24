@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createProgressDialog
@@ -40,6 +41,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.animationView.repeatCount = 2
+        binding.appbarLayout.statusBarForeground = MaterialShapeDrawable.createWithElevationOverlay(context)
         //binding.searchView.setupWithSearchBar(binding.searchBar)
         /*binding.searchView
             .editText

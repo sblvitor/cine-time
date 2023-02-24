@@ -1,246 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
     tools:context=".ui.movies.MovieDetailsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.search.SearchBar$ScrollingViewBehavior">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_movie_poster_details"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:contentDescription="@string/movie_poster_cd"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Small"
-            tools:src="@tools:sample/avatars" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_movie_title_details"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="@dimen/half_margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
-            android:maxLines="2"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_movie_poster_details"
-            tools:text="Pantera Negra: Wakanda para Sempre" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_movie_poster_details"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:contentDescription="@string/movie_poster_cd"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Small"
+                tools:src="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/tv_year_release_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/half_margin_default"
-            android:layout_marginEnd="@dimen/half_margin_default"
-            android:fontFamily="@font/montserrat"
-            app:layout_constraintEnd_toStartOf="@id/iv_movie_first_dot"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_title_details"
-            tools:text="2022" />
+            <TextView
+                android:id="@+id/tv_movie_title_details"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/half_margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_movie_poster_details"
+                tools:text="Pantera Negra: Wakanda para Sempre" />
 
-        <ImageView
-            android:id="@+id/iv_movie_first_dot"
-            android:layout_width="5dp"
-            android:layout_height="5dp"
-            android:layout_marginEnd="@dimen/half_margin_default"
-            android:contentDescription="@string/dot_divider_cd"
-            android:src="@drawable/dot_separator"
-            app:layout_constraintBottom_toBottomOf="@id/tv_year_release_details"
-            app:layout_constraintEnd_toStartOf="@id/tv_movie_genres_details"
-            app:layout_constraintTop_toTopOf="@id/tv_year_release_details" />
+            <TextView
+                android:id="@+id/tv_year_release_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/half_margin_default"
+                android:layout_marginEnd="@dimen/half_margin_default"
+                android:fontFamily="@font/montserrat"
+                app:layout_constraintEnd_toStartOf="@id/iv_movie_first_dot"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_title_details"
+                tools:text="2022" />
 
-        <TextView
-            android:id="@+id/tv_movie_genres_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_year_release_details"
-            tools:text="Action, Adventure" />
+            <ImageView
+                android:id="@+id/iv_movie_first_dot"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginEnd="@dimen/half_margin_default"
+                android:contentDescription="@string/dot_divider_cd"
+                android:src="@drawable/dot_separator"
+                app:layout_constraintBottom_toBottomOf="@id/tv_year_release_details"
+                app:layout_constraintEnd_toStartOf="@id/tv_movie_genres_details"
+                app:layout_constraintTop_toTopOf="@id/tv_year_release_details" />
 
-        <ImageView
-            android:id="@+id/iv_movie_second_dot"
-            android:layout_width="5dp"
-            android:layout_height="5dp"
-            android:layout_marginStart="@dimen/half_margin_default"
-            android:contentDescription="@string/dot_divider_cd"
-            android:src="@drawable/dot_separator"
-            app:layout_constraintBottom_toBottomOf="@id/tv_year_release_details"
-            app:layout_constraintStart_toEndOf="@id/tv_movie_genres_details"
-            app:layout_constraintTop_toTopOf="@id/tv_year_release_details" />
+            <TextView
+                android:id="@+id/tv_movie_genres_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_year_release_details"
+                tools:text="Action, Adventure" />
 
-        <TextView
-            android:id="@+id/tv_movie_runtime_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/half_margin_default"
-            android:fontFamily="@font/montserrat"
-            app:layout_constraintStart_toEndOf="@id/iv_movie_second_dot"
-            app:layout_constraintTop_toTopOf="@id/tv_year_release_details"
-            tools:text="2h 42m" />
+            <ImageView
+                android:id="@+id/iv_movie_second_dot"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginStart="@dimen/half_margin_default"
+                android:contentDescription="@string/dot_divider_cd"
+                android:src="@drawable/dot_separator"
+                app:layout_constraintBottom_toBottomOf="@id/tv_year_release_details"
+                app:layout_constraintStart_toEndOf="@id/tv_movie_genres_details"
+                app:layout_constraintTop_toTopOf="@id/tv_year_release_details" />
 
-        <com.willy.ratingbar.BaseRatingBar
-            android:id="@+id/rb_movie_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/half_margin_default"
-            android:clickable="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_genres_details"
-            app:srb_clearRatingEnabled="false"
-            app:srb_drawableEmpty="@drawable/star_empty"
-            app:srb_drawableFilled="@drawable/star_filled"
-            app:srb_isIndicator="true"
-            app:srb_numStars="5"
-            app:srb_rating="0"
-            app:srb_scrollable="false"
-            app:srb_starHeight="30dp"
-            app:srb_starWidth="30dp"
-            app:srb_stepSize="0.1" />
+            <TextView
+                android:id="@+id/tv_movie_runtime_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/half_margin_default"
+                android:fontFamily="@font/montserrat"
+                app:layout_constraintStart_toEndOf="@id/iv_movie_second_dot"
+                app:layout_constraintTop_toTopOf="@id/tv_year_release_details"
+                tools:text="2h 42m" />
 
-        <TextView
-            android:id="@+id/txt_movie_overview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="@dimen/margin_default"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/txt_overview"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rb_movie_details" />
+            <com.willy.ratingbar.BaseRatingBar
+                android:id="@+id/rb_movie_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/half_margin_default"
+                android:clickable="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_genres_details"
+                app:srb_clearRatingEnabled="false"
+                app:srb_drawableEmpty="@drawable/star_empty"
+                app:srb_drawableFilled="@drawable/star_filled"
+                app:srb_isIndicator="true"
+                app:srb_numStars="5"
+                app:srb_rating="0"
+                app:srb_scrollable="false"
+                app:srb_starHeight="30dp"
+                app:srb_starWidth="30dp"
+                app:srb_stepSize="0.1" />
 
-        <TextView
-            android:id="@+id/tv_movie_overview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:ellipsize="end"
-            android:fontFamily="@font/montserrat"
-            android:maxLines="6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_movie_overview"
-            tools:text="Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’Challa’s death.  As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda." />
+            <TextView
+                android:id="@+id/txt_movie_overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_default"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/txt_overview"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rb_movie_details" />
 
-        <TextView
-            android:id="@+id/txt_movie_available_at"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/half_margin_default"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/txt_available_at"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@id/txt_movie_overview"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_overview" />
+            <TextView
+                android:id="@+id/tv_movie_overview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat"
+                android:maxLines="6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_movie_overview"
+                tools:text="Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’Challa’s death.  As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda." />
 
-        <TextView
-            android:id="@+id/tv_movie_not_available"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="@dimen/half_margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@string/txt_not_available"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_movie_available_at" />
+            <TextView
+                android:id="@+id/txt_movie_available_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/half_margin_default"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/txt_available_at"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/txt_movie_overview"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_overview" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_movie_provider_one"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/half_margin_default"
-            android:contentDescription="@string/provider_logo_cd"
-            android:scaleType="centerCrop"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@id/txt_movie_overview"
-            app:layout_constraintTop_toBottomOf="@id/txt_movie_available_at"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
-            tools:src="@drawable/popcorn_icon"
-            tools:visibility="visible" />
+            <TextView
+                android:id="@+id/tv_movie_not_available"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/half_margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@string/txt_not_available"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_movie_available_at" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_movie_provider_two"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="@dimen/half_margin_default"
-            android:contentDescription="@string/provider_logo_cd"
-            android:scaleType="centerCrop"
-            android:visibility="invisible"
-            app:layout_constraintStart_toEndOf="@id/iv_movie_provider_one"
-            app:layout_constraintTop_toTopOf="@id/iv_movie_provider_one"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
-            tools:src="@drawable/popcorn_icon"
-            tools:visibility="visible" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_movie_provider_one"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/half_margin_default"
+                android:contentDescription="@string/provider_logo_cd"
+                android:scaleType="centerCrop"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@id/txt_movie_overview"
+                app:layout_constraintTop_toBottomOf="@id/txt_movie_available_at"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
+                tools:src="@drawable/popcorn_icon"
+                tools:visibility="visible" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_movie_provider_three"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="@dimen/half_margin_default"
-            android:contentDescription="@string/provider_logo_cd"
-            android:scaleType="centerCrop"
-            android:visibility="invisible"
-            app:layout_constraintStart_toEndOf="@id/iv_movie_provider_two"
-            app:layout_constraintTop_toTopOf="@id/iv_movie_provider_one"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
-            tools:src="@drawable/popcorn_icon"
-            tools:visibility="visible" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_movie_provider_two"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/half_margin_default"
+                android:contentDescription="@string/provider_logo_cd"
+                android:scaleType="centerCrop"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@id/iv_movie_provider_one"
+                app:layout_constraintTop_toTopOf="@id/iv_movie_provider_one"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
+                tools:src="@drawable/popcorn_icon"
+                tools:visibility="visible" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_movie_provider_four"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="@dimen/half_margin_default"
-            android:contentDescription="@string/provider_logo_cd"
-            android:scaleType="centerCrop"
-            android:visibility="invisible"
-            app:layout_constraintStart_toEndOf="@id/iv_movie_provider_three"
-            app:layout_constraintTop_toTopOf="@id/iv_movie_provider_one"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
-            tools:src="@drawable/popcorn_icon"
-            tools:visibility="visible" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_movie_provider_three"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/half_margin_default"
+                android:contentDescription="@string/provider_logo_cd"
+                android:scaleType="centerCrop"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@id/iv_movie_provider_two"
+                app:layout_constraintTop_toTopOf="@id/iv_movie_provider_one"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
+                tools:src="@drawable/popcorn_icon"
+                tools:visibility="visible" />
 
-        <TextView
-            android:id="@+id/txt_movie_cast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/half_margin_default"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/txt_cast"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@id/txt_movie_overview"
-            app:layout_constraintTop_toBottomOf="@id/iv_movie_provider_one" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_movie_provider_four"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/half_margin_default"
+                android:contentDescription="@string/provider_logo_cd"
+                android:scaleType="centerCrop"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@id/iv_movie_provider_three"
+                app:layout_constraintTop_toTopOf="@id/iv_movie_provider_one"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
+                tools:src="@drawable/popcorn_icon"
+                tools:visibility="visible" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_movie_cast"
+            <TextView
+                android:id="@+id/txt_movie_cast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/half_margin_default"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/txt_cast"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/txt_movie_overview"
+                app:layout_constraintTop_toBottomOf="@id/iv_movie_provider_one" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_movie_cast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_movie_cast"
+                tools:listitem="@layout/item_cast" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/movie_details_app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/movie_details_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_movie_cast"
-            tools:listitem="@layout/item_cast" />
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/arrow_back" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-
-</androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

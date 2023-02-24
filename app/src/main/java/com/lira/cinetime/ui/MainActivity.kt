@@ -1,16 +1,11 @@
 package com.lira.cinetime.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lira.cinetime.R
@@ -20,7 +15,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
     private val mainViewModel by viewModel<MainViewModel>()
@@ -39,16 +33,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_movies,  R.id.nav_tv_shows, R.id.nav_search, R.id.nav_my_list, R.id.nav_account
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         navView.itemIconTintList = null
 
@@ -56,32 +42,25 @@ class MainActivity : AppCompatActivity() {
             when(destination.id) {
                 R.id.nav_register -> {
                     navView.visibility = View.GONE
-                    binding.toolbar.visibility = View.GONE
                 }
                 R.id.nav_login -> {
                     navView.visibility = View.GONE
-                    binding.toolbar.visibility = View.GONE
                 }
                 R.id.nav_movie_details -> {
                     navView.visibility = View.GONE
-                    //binding.toolbar.setBackgroundColor(getColor(android.R.color.transparent))
                 }
                 R.id.nav_tv_details -> {
                     navView.visibility = View.GONE
                 }
-                R.id.nav_search -> {
-                    binding.toolbar.visibility = View.GONE
-                }
                 else -> {
                     navView.visibility = View.VISIBLE
-                    binding.toolbar.visibility = View.VISIBLE
                 }
             }
         }
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
@@ -101,11 +80,5 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }
+    }*/
 }

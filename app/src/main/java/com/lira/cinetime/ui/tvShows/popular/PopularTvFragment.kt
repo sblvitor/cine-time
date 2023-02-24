@@ -10,7 +10,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lira.cinetime.R
 import com.lira.cinetime.databinding.FragmentPopularTvBinding
@@ -66,7 +65,6 @@ class PopularTvFragment : Fragment() {
         navView?.setOnItemReselectedListener { item ->
             if(item.itemId == R.id.nav_tv_shows){
                 binding.rvPopularTv.smoothScrollToPosition(0)
-                activity?.findViewById<AppBarLayout>(R.id.app_bar_layout)?.setExpanded(true,true)
             }
         }
     }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -46,6 +47,13 @@ class TvDetailsFragment : Fragment() {
         tvDetailsViewModel.getTvDetails(tvId)
         binding.rvTvCast.adapter = castAdapter
         collectData()
+        setupAppBar()
+    }
+
+    private fun setupAppBar() {
+        binding.tvDetailsToolbar.setNavigationOnClickListener {
+            it.findNavController().navigateUp()
+        }
     }
 
     private fun collectData() {

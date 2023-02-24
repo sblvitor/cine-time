@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -45,6 +46,13 @@ class MovieDetailsFragment : Fragment() {
         movieDetailsViewModel.getMovieDetails(movieId)
         binding.rvMovieCast.adapter = castAdapter
         collectData()
+        setupAppBar()
+    }
+
+    private fun setupAppBar() {
+        binding.movieDetailsToolbar.setNavigationOnClickListener {
+            it.findNavController().navigateUp()
+        }
     }
 
     private fun collectData() {
