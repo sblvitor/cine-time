@@ -24,7 +24,7 @@ object PresentationModule {
         return module {
             viewModel { MainViewModel(get(), get()) }
             viewModel { LoginViewModel(get()) }
-            viewModel { RegisterViewModel(get()) }
+            viewModel { RegisterViewModel(get(), get()) }
             viewModel { MoviesViewModel(get()) }
             viewModel { PopularMoviesViewModel(get()) }
             viewModel { NowPlayingViewModel(get()) }

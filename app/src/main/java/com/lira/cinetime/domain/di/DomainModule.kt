@@ -1,9 +1,6 @@
 package com.lira.cinetime.domain.di
 
-import com.lira.cinetime.domain.authFlow.GetCurrentUserUseCase
-import com.lira.cinetime.domain.authFlow.LogInUseCase
-import com.lira.cinetime.domain.authFlow.RegisterUseCase
-import com.lira.cinetime.domain.authFlow.SignOutUseCase
+import com.lira.cinetime.domain.authFlow.*
 import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
 import com.lira.cinetime.domain.movies.nowPlaying.GetNowPlayingMoviesUseCase
 import com.lira.cinetime.domain.movies.popularMovies.GetPopularMoviesUseCase
@@ -40,6 +37,7 @@ object DomainModule {
             factory { GetTvDetailsUseCase(get()) }
             factory { GetTrendingUseCase(get()) }
             factory { GetMultiSearchResultUseCase(get()) }
+            factory { AddUserToDBUseCase(get()) }
         }
     }
 

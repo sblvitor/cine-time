@@ -5,12 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
+import com.lira.cinetime.data.models.firebase.User
+import com.lira.cinetime.domain.authFlow.AddUserToDBUseCase
 import com.lira.cinetime.domain.authFlow.RegisterUseCase
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
-class RegisterViewModel(private val registerUseCase: RegisterUseCase) : ViewModel() {
+class RegisterViewModel(private val registerUseCase: RegisterUseCase,
+                        private val addUserToDBUseCase: AddUserToDBUseCase) : ViewModel() {
 
     private val _state = MutableLiveData<State>()
     val state: LiveData<State> = _state
@@ -31,6 +34,12 @@ class RegisterViewModel(private val registerUseCase: RegisterUseCase) : ViewMode
             viewModelScope.launch {
                 _state.postValue(State.EmptyFields)
             }
+        }
+    }
+
+    fun addUserToDB(user: User) {
+        viewModelScope.launch {
+            addUserToDBUseCase(user)
         }
     }
 

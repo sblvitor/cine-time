@@ -58,7 +58,7 @@
         android:id="@+id/cv_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/margin_default"
         app:cardCornerRadius="@dimen/half_margin_default"
         app:cardElevation="@dimen/half_margin_default"
         app:layout_constraintEnd_toEndOf="parent"

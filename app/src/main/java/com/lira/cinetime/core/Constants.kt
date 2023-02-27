@@ -6,4 +6,6 @@ object Constants {
     const val LANG_PT_BR: String = "pt-BR"
     const val REGION_BR: String = "BR"
 
+    const val USERS: String = "users"
+
 }

@@ -1,4 +1,4 @@
-package com.lira.cinetime.data.firebase
+package com.lira.cinetime.data.firebase.auth
 
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.flow

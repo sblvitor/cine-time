@@ -2,6 +2,7 @@ package com.lira.cinetime.ui
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             when(destination.id) {
                 R.id.nav_register -> {
                     navView.visibility = View.GONE
+                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
                 }
                 R.id.nav_login -> {
                     navView.visibility = View.GONE

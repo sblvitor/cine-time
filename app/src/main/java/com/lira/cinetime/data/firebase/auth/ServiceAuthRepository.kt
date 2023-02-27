@@ -1,4 +1,4 @@
-package com.lira.cinetime.data.firebase
+package com.lira.cinetime.data.firebase.auth
 
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser

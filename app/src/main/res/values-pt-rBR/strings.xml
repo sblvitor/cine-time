@@ -63,4 +63,5 @@
     <string name="season">temporada</string>
     <string name="search_hint">Busque por filme, série ou elenco</string>
     <string name="search_something">Busque por algo!</string>
+    <string name="txt_name">Nome</string>
 </resources>

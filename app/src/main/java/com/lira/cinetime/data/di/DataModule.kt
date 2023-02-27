@@ -2,10 +2,13 @@ package com.lira.cinetime.data.di
 
 import android.util.Log
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
-import com.lira.cinetime.data.firebase.ServiceAuthRepository
-import com.lira.cinetime.data.firebase.ServiceAuthRepositoryImpl
+import com.lira.cinetime.data.firebase.auth.ServiceAuthRepository
+import com.lira.cinetime.data.firebase.auth.ServiceAuthRepositoryImpl
+import com.lira.cinetime.data.firebase.firestore.FirestoreRepository
+import com.lira.cinetime.data.firebase.firestore.FirestoreRepositoryImpl
 import com.lira.cinetime.data.repositories.moviesRepository.MoviesRepository
 import com.lira.cinetime.data.repositories.moviesRepository.MoviesRepositoryImpl
 import com.lira.cinetime.data.repositories.searchRepository.SearchRepository
@@ -29,7 +32,7 @@ object DataModule {
     private const val OK_HTTP: String = "OkHttp"
 
     fun load(){
-        loadKoinModules(firebaseAuthModule() + firebaseRepositoryModule() + networkModules() + repositoriesModule())
+        loadKoinModules(firebaseInstancesModule() + firebaseRepositoriesModule() + networkModules() + repositoriesModule())
     }
 
     private fun networkModules(): Module {
@@ -72,16 +75,18 @@ object DataModule {
             .build().create(T::class.java)
     }
 
-    private fun firebaseAuthModule(): Module{
+    private fun firebaseInstancesModule(): Module{
         return module {
             //FirebaseAuth.getInstance()
             single { Firebase.auth }
+            single { Firebase.firestore }
         }
     }
 
-    private fun firebaseRepositoryModule(): Module {
+    private fun firebaseRepositoriesModule(): Module {
         return module {
             single<ServiceAuthRepository> { ServiceAuthRepositoryImpl(get()) }
+            single<FirestoreRepository> { FirestoreRepositoryImpl(get()) }
         }
     }
 }

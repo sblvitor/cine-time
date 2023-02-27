@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createProgressDialog
+import com.lira.cinetime.data.models.firebase.User
 import com.lira.cinetime.databinding.FragmentRegisterBinding
 import com.lira.cinetime.presentation.authFlow.RegisterViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,6 +43,11 @@ class RegisterFragment : Fragment() {
                 }
                 is RegisterViewModel.State.Success -> {
                     binding.tvWrongCredentialsRegister.visibility = View.GONE
+                    registerViewModel.addUserToDB(
+                        User(it.user!!.uid,
+                            binding.etNameRegister.text.toString(),
+                            binding.etEmailRegister.text.toString())
+                    )
                     dialog.dismiss()
                     findNavController().navigate(R.id.action_nav_register_to_nav_movies)
                 }

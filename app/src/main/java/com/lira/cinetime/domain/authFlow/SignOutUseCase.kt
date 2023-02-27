@@ -1,6 +1,6 @@
 package com.lira.cinetime.domain.authFlow
 
-import com.lira.cinetime.data.firebase.ServiceAuthRepository
+import com.lira.cinetime.data.firebase.auth.ServiceAuthRepository
 
 class SignOutUseCase(private val authRepository: ServiceAuthRepository) {
 
