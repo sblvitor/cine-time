@@ -37,7 +37,8 @@ class RegisterViewModel(private val registerUseCase: RegisterUseCase,
         }
     }
 
-    fun addUserToDB(user: User) {
+    fun addUserToDB(id: String, name: String, email: String) {
+        val user = User(id, name, email)
         viewModelScope.launch {
             addUserToDBUseCase(user)
         }
