@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createDialog
 import com.lira.cinetime.core.createProgressDialog
@@ -33,6 +35,8 @@ class MovieDetailsFragment : Fragment() {
 
     private val args: MovieDetailsFragmentArgs by navArgs()
 
+    private var isFavorite: Boolean = false
+
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -44,6 +48,7 @@ class MovieDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val movieId = args.movieId
         movieDetailsViewModel.getMovieDetails(movieId)
+        movieDetailsViewModel.checkIfFavorite(movieId)
         binding.rvMovieCast.adapter = castAdapter
         collectData()
         setupAppBar()
@@ -78,10 +83,73 @@ class MovieDetailsFragment : Fragment() {
                 }
             }
         }
+
+        lifecycleScope.launch {
+            movieDetailsViewModel.dbOperations.collectLatest {
+                when(it) {
+                    MovieDetailsViewModel.DBState.Loading -> {
+                        // nothing
+                    }
+                    is MovieDetailsViewModel.DBState.AddFailure -> {
+                        Snackbar
+                            .make((requireActivity()).findViewById(android.R.id.content), "${it.error.message}", Snackbar.LENGTH_LONG)
+                            .show()
+                        binding.movieDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
+                            ResourcesCompat.getDrawable(resources, R.drawable.favorite_border, null)
+                    }
+                    is MovieDetailsViewModel.DBState.AddSuccess -> {
+                        Snackbar
+                            .make((requireActivity()).findViewById(android.R.id.content), "Adicionado aos favoritos!", Snackbar.LENGTH_LONG)
+                            .show()
+                        isFavorite = true
+                    }
+                    is MovieDetailsViewModel.DBState.IsFavorite -> {
+                        if(it.favorite) {
+                            isFavorite = true
+                            binding.movieDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
+                                ResourcesCompat.getDrawable(resources, R.drawable.favorite, null)
+                        }
+                    }
+                    is MovieDetailsViewModel.DBState.Error -> {
+                        createDialog {
+                            setMessage(it.error.message)
+                        }.show()
+                    }
+                }
+            }
+        }
     }
 
     private fun setupUI(movieDetails: MovieDetailsResponse) {
         binding.apply {
+            // Menu
+            movieDetailsToolbar.setOnMenuItemClickListener { menuItem ->
+                when(menuItem.itemId) {
+                    R.id.favorite_list_button -> {
+                        if(!isFavorite){
+                            menuItem.icon = ResourcesCompat.getDrawable(resources, R.drawable.favorite, null)
+                            movieDetailsViewModel.addMovieToFavorites(
+                                movieId = movieDetails.id,
+                                title = movieDetails.title,
+                                posterPath = movieDetails.posterPath
+                            )
+                        } else {
+                            menuItem.icon = ResourcesCompat.getDrawable(resources, R.drawable.favorite_border, null)
+                            movieDetailsViewModel.deleteFavoriteMovie(movieDetails.id)
+                            isFavorite = false
+                        }
+                        true
+                    }
+                    R.id.watch_list_button -> {
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
+
+
             // Poster img
             val backdropPath: String = "https://image.tmdb.org/t/p/original/" + movieDetails.backdropPath
             Glide

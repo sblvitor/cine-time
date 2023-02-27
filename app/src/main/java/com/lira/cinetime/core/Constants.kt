@@ -7,5 +7,8 @@ object Constants {
     const val REGION_BR: String = "BR"
 
     const val USERS: String = "users"
+    const val LISTS: String = "lists"
+    const val FAVORITES: String = "favorites"
+    const val MOVIES: String = "movies"
 
 }

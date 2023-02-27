@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.movies.MovieDetailsFragment"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.movies.MovieDetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/movie_details_app_bar_layout"
@@ -17,26 +17,27 @@
             style="?attr/collapsingToolbarLayoutLargeStyle"
             android:layout_width="match_parent"
             android:layout_height="275dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary">
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/iv_movie_poster_details"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/movie_poster_cd"
-                android:scaleType="centerCrop"
                 android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
                 tools:src="@tools:sample/avatars" />
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/movie_details_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:elevation="0dp"
                 android:background="@android:color/transparent"
-                app:navigationIcon="@drawable/arrow_back"
-                app:layout_collapseMode="pin"/>
+                android:elevation="0dp"
+                app:layout_collapseMode="pin"
+                app:menu="@menu/add_to_my_list_menu"
+                app:navigationIcon="@drawable/arrow_back" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

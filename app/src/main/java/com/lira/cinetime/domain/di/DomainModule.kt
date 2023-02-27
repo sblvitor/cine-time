@@ -5,6 +5,9 @@ import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
 import com.lira.cinetime.domain.movies.nowPlaying.GetNowPlayingMoviesUseCase
 import com.lira.cinetime.domain.movies.popularMovies.GetPopularMoviesUseCase
 import com.lira.cinetime.domain.movies.topRated.GetTopRatedMoviesUseCase
+import com.lira.cinetime.domain.myLists.AddMovieToFavoritesUseCase
+import com.lira.cinetime.domain.myLists.DeleteFavoriteMovieUseCase
+import com.lira.cinetime.domain.myLists.IsMovieFavoriteUseCase
 import com.lira.cinetime.domain.search.GetMultiSearchResultUseCase
 import com.lira.cinetime.domain.search.GetTrendingUseCase
 import com.lira.cinetime.domain.tvShows.airingToday.GetAiringTodayTvUseCase
@@ -38,6 +41,9 @@ object DomainModule {
             factory { GetTrendingUseCase(get()) }
             factory { GetMultiSearchResultUseCase(get()) }
             factory { AddUserToDBUseCase(get()) }
+            factory { AddMovieToFavoritesUseCase(get()) }
+            factory { IsMovieFavoriteUseCase(get()) }
+            factory { DeleteFavoriteMovieUseCase(get()) }
         }
     }
 
