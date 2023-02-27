@@ -5,6 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="textAppearanceTitleLarge">@style/TextAppearance.CineTime.TitleLarge</item>
         <item name="textAppearanceTitleMedium">@style/TextAppearance.CineTime.TitleMedium</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="Theme.CineTime" parent="Base.Theme.CineTime" />

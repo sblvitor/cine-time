@@ -64,4 +64,6 @@
     <string name="search_hint">Busque por filme, série ou elenco</string>
     <string name="search_something">Busque por algo!</string>
     <string name="txt_name">Nome</string>
+    <string name="favorite_menu_title">Favorito</string>
+    <string name="watch_list_menu_title">Lista para assitir</string>
 </resources>

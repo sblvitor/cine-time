@@ -82,4 +82,6 @@
     <string name="txt_trending" translatable="false">Trending</string>
     <string name="txt_name">Name</string>
     <string name="person_image_cd" translatable="false">Person Image</string>
+    <string name="favorite_menu_title">Favorite</string>
+    <string name="watch_list_menu_title">Watch List</string>
 </resources>
