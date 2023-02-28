@@ -16,4 +16,10 @@ interface FirestoreRepository {
 
     suspend fun deleteFavoriteMovie(movieId: Long, userId: String)
 
+    fun addMovieToWatchList(movie: Movie): Flow<DocumentReference>
+
+    fun isThisMovieInToWatch(movieId: Long, userId: String): Flow<QuerySnapshot>
+
+    suspend fun deleteToWatchMovie(movieId: Long, userId: String)
+
 }

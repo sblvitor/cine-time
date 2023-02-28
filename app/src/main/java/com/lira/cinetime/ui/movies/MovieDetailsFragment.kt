@@ -36,6 +36,7 @@ class MovieDetailsFragment : Fragment() {
     private val args: MovieDetailsFragmentArgs by navArgs()
 
     private var isFavorite: Boolean = false
+    private var isInToWatch: Boolean = false
 
     private val binding get() = _binding!!
 
@@ -49,6 +50,7 @@ class MovieDetailsFragment : Fragment() {
         val movieId = args.movieId
         movieDetailsViewModel.getMovieDetails(movieId)
         movieDetailsViewModel.checkIfFavorite(movieId)
+        movieDetailsViewModel.checkIfInToWatch(movieId)
         binding.rvMovieCast.adapter = castAdapter
         collectData()
         setupAppBar()
@@ -90,24 +92,44 @@ class MovieDetailsFragment : Fragment() {
                     MovieDetailsViewModel.DBState.Loading -> {
                         // nothing
                     }
-                    is MovieDetailsViewModel.DBState.AddFailure -> {
+                    is MovieDetailsViewModel.DBState.AddFavoriteFailure -> {
                         Snackbar
                             .make((requireActivity()).findViewById(android.R.id.content), "${it.error.message}", Snackbar.LENGTH_LONG)
                             .show()
                         binding.movieDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
                             ResourcesCompat.getDrawable(resources, R.drawable.favorite_border, null)
                     }
-                    is MovieDetailsViewModel.DBState.AddSuccess -> {
+                    is MovieDetailsViewModel.DBState.AddFavoriteSuccess -> {
                         Snackbar
                             .make((requireActivity()).findViewById(android.R.id.content), "Adicionado aos favoritos!", Snackbar.LENGTH_LONG)
                             .show()
                         isFavorite = true
+                    }
+                    is MovieDetailsViewModel.DBState.AddToWatchFailure -> {
+                        Snackbar
+                            .make((requireActivity()).findViewById(android.R.id.content), "${it.error.message}", Snackbar.LENGTH_LONG)
+                            .show()
+                        binding.movieDetailsToolbar.menu.findItem(R.id.watch_list_button).icon =
+                            ResourcesCompat.getDrawable(resources, R.drawable.playlist_add, null)
+                    }
+                    is MovieDetailsViewModel.DBState.AddToWatchSuccess -> {
+                        Snackbar
+                            .make((requireActivity()).findViewById(android.R.id.content), "Adicionado à lista \"Para assistir\"!", Snackbar.LENGTH_LONG)
+                            .show()
+                        isInToWatch = true
                     }
                     is MovieDetailsViewModel.DBState.IsFavorite -> {
                         if(it.favorite) {
                             isFavorite = true
                             binding.movieDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
                                 ResourcesCompat.getDrawable(resources, R.drawable.favorite, null)
+                        }
+                    }
+                    is MovieDetailsViewModel.DBState.IsInToWatch -> {
+                        if(it.inToWatch){
+                            isInToWatch = true
+                            binding.movieDetailsToolbar.menu.findItem(R.id.watch_list_button).icon =
+                                ResourcesCompat.getDrawable(resources, R.drawable.playlist_remove, null)
                         }
                     }
                     is MovieDetailsViewModel.DBState.Error -> {
@@ -128,7 +150,7 @@ class MovieDetailsFragment : Fragment() {
                     R.id.favorite_list_button -> {
                         if(!isFavorite){
                             menuItem.icon = ResourcesCompat.getDrawable(resources, R.drawable.favorite, null)
-                            movieDetailsViewModel.addMovieToFavorites(
+                            movieDetailsViewModel.addToFavorites(
                                 movieId = movieDetails.id,
                                 title = movieDetails.title,
                                 posterPath = movieDetails.posterPath
@@ -141,6 +163,18 @@ class MovieDetailsFragment : Fragment() {
                         true
                     }
                     R.id.watch_list_button -> {
+                        if(!isInToWatch) {
+                            menuItem.icon = ResourcesCompat.getDrawable(resources, R.drawable.playlist_remove, null)
+                            movieDetailsViewModel.addToWatchList(
+                                movieId = movieDetails.id,
+                                title = movieDetails.title,
+                                posterPath = movieDetails.posterPath
+                            )
+                        } else {
+                            menuItem.icon = ResourcesCompat.getDrawable(resources, R.drawable.playlist_add, null)
+                            movieDetailsViewModel.deleteMovieInToWatch(movieDetails.id)
+                            isInToWatch = false
+                        }
                         true
                     }
                     else -> {
