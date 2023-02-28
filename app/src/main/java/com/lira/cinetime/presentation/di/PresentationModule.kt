@@ -33,7 +33,7 @@ object PresentationModule {
             viewModel { PopularTvViewModel(get()) }
             viewModel { AiringTodayTvViewModel(get()) }
             viewModel { TopRatedTvViewModel(get()) }
-            viewModel { TvDetailsViewModel(get()) }
+            viewModel { TvDetailsViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
             viewModel { SearchViewModel(get(), get()) }
         }
     }

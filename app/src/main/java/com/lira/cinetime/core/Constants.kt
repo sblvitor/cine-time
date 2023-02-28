@@ -11,5 +11,6 @@ object Constants {
     const val FAVORITES: String = "favorites"
     const val MOVIES: String = "movies"
     const val TO_WATCH: String = "to watch"
+    const val TV_SHOWS: String = "tv shows"
 
 }
