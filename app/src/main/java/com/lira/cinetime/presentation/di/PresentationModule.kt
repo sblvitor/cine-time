@@ -29,7 +29,7 @@ object PresentationModule {
             viewModel { PopularMoviesViewModel(get()) }
             viewModel { NowPlayingViewModel(get()) }
             viewModel { TopRatedViewModel(get()) }
-            viewModel { MovieDetailsViewModel(get(), get(), get(), get()) }
+            viewModel { MovieDetailsViewModel(get(), get(), get(), get(), get()) }
             viewModel { PopularTvViewModel(get()) }
             viewModel { AiringTodayTvViewModel(get()) }
             viewModel { TopRatedTvViewModel(get()) }

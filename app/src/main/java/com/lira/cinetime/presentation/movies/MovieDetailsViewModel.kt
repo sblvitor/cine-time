@@ -3,9 +3,7 @@ package com.lira.cinetime.presentation.movies
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.ktx.Firebase
 import com.lira.cinetime.data.models.firebase.Movie
 import com.lira.cinetime.data.models.movies.movieDetails.MovieDetailsResponse
 import com.lira.cinetime.domain.authFlow.GetCurrentUserUseCase
@@ -16,7 +14,8 @@ import com.lira.cinetime.domain.myLists.IsMovieFavoriteUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class MovieDetailsViewModel(private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
+class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
+                            private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
                             private val isMovieFavoriteUseCase: IsMovieFavoriteUseCase,
                             private val addMovieToFavoritesUseCase: AddMovieToFavoritesUseCase,
                             private val deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase) : ViewModel() {
@@ -26,6 +25,12 @@ class MovieDetailsViewModel(private val getMovieDetailsUseCase: GetMovieDetailsU
 
     private val _dbOperations = MutableStateFlow<DBState>(DBState.Loading)
     val dbOperations = _dbOperations.asStateFlow()
+
+    private var user: FirebaseUser? = null
+
+    init {
+        user = getCurrentUserUseCase()
+    }
 
     fun getMovieDetails(movieId: Long) {
         viewModelScope.launch {
@@ -39,9 +44,6 @@ class MovieDetailsViewModel(private val getMovieDetailsUseCase: GetMovieDetailsU
     }
 
     fun checkIfFavorite(movieId: Long) {
-        // Refatorar
-        val user = Firebase.auth.currentUser
-
         viewModelScope.launch {
             isMovieFavoriteUseCase(movieId, user!!.uid)
                 .catch {
@@ -57,10 +59,9 @@ class MovieDetailsViewModel(private val getMovieDetailsUseCase: GetMovieDetailsU
     }
 
     fun addMovieToFavorites(movieId: Long, title: String, posterPath: String?) {
-        // Refatorar
-        val user = Firebase.auth.currentUser
 
         val movie = Movie(user!!.uid, movieId, title, posterPath)
+
         viewModelScope.launch {
             addMovieToFavoritesUseCase(movie)
                 .onStart {
@@ -76,9 +77,6 @@ class MovieDetailsViewModel(private val getMovieDetailsUseCase: GetMovieDetailsU
     }
 
     fun deleteFavoriteMovie(movieId: Long) {
-        // Refatorar
-        val user = Firebase.auth.currentUser
-
         viewModelScope.launch {
             deleteFavoriteMovieUseCase(movieId, user!!.uid)
         }
