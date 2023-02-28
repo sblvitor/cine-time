@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 class LogInUseCase(private val authRepository: ServiceAuthRepository) {
 
-    suspend operator fun invoke(email: String, password: String): Flow<AuthResult> {
+    operator fun invoke(email: String, password: String): Flow<AuthResult> {
         return authRepository.logIn(email, password)
     }
 
