@@ -1,85 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/half_margin_default"
-    app:cardElevation="@dimen/half_margin_default"
-    app:cardUseCompatPadding="true">
+    android:layout_height="275dp"
+    android:padding="@dimen/margin_default"
+    android:clickable="true"
+    android:focusable="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/iv_popular_movie_backdrop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/iv_popular_movie_poster"
-            android:layout_width="125dp"
-            android:layout_height="190dp"
-            android:contentDescription="@string/movie_poster_cd"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+        android:layout_height="match_parent"
+        android:contentDescription="@string/movie_poster_cd"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars"
+        android:foreground="?attr/selectableItemBackground"/>
 
 
-        <TextView
-            android:id="@+id/tv_popular_movie_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/half_margin_default"
-            android:layout_marginTop="@dimen/margin_default"
-            android:layout_marginEnd="@dimen/half_margin_default"
-            android:ellipsize="end"
-            android:fontFamily="@font/montserrat_bold"
-            android:maxLines="3"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_popular_movie_poster"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Deadpool" />
+    <TextView
+        android:id="@+id/tv_popular_movie_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/rb_popular_movie"
+        android:layout_alignStart="@id/tv_popular_movie_genres"
+        android:layout_alignEnd="@id/tv_popular_movie_genres"
+        android:ellipsize="end"
+        android:fontFamily="@font/montserrat_bold"
+        android:maxLines="2"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:text="Deadpool" />
 
-        <TextView
-            android:id="@+id/tv_rating"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/half_margin_default"
-            android:layout_marginEnd="@dimen/half_margin_default"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/yellow_rating"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_popular_movie_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_popular_movie_title"
-            tools:text="Rating: 8.6" />
+    <RatingBar
+        android:id="@+id/rb_popular_movie"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_popular_movie_genres"
+        android:layout_alignStart="@+id/tv_popular_movie_genres"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.1"
+        android:progressTint="@color/yellow_rating" />
+
+    <TextView
+        android:id="@+id/tv_popular_movie_genres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_popular_movie_backdrop"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_default"
+        android:textColor="@color/white"
+        tools:text="Action, Adventure" />
 
 
-        <com.google.android.material.chip.ChipGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_popular_movie_title"
-            android:layout_marginBottom="@dimen/half_margin_default">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/popular_movie_chip_one"
-                style="@style/Widget.Material3.Chip.Suggestion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                tools:text="Ação" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/popular_movie_chip_two"
-                style="@style/Widget.Material3.Chip.Suggestion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                tools:text="Romance" />
-
-        </com.google.android.material.chip.ChipGroup>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.cardview.widget.CardView>
+</RelativeLayout>
