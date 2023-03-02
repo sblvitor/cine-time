@@ -2,9 +2,7 @@ package com.lira.cinetime.data.firebase.firestore
 
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.QuerySnapshot
-import com.lira.cinetime.data.models.firebase.Movie
-import com.lira.cinetime.data.models.firebase.TvShow
-import com.lira.cinetime.data.models.firebase.User
+import com.lira.cinetime.data.models.firebase.*
 import kotlinx.coroutines.flow.Flow
 
 interface FirestoreRepository {
@@ -35,5 +33,13 @@ interface FirestoreRepository {
     fun isThisTvInToWatch(tvId: Long, userId: String): Flow<QuerySnapshot>
 
     suspend fun deleteToWatchTv(tvId: Long, userId: String)
+
+    fun getAllFavoriteMovies(userId: String): Flow<List<Movie>>
+
+    fun getAllToWatchMovies(userId: String): Flow<List<Movie>>
+
+    fun getAllFavoriteTv(userId: String): Flow<List<TvShow>>
+
+    fun getAllToWatchTv(userId: String): Flow<List<TvShow>>
 
 }

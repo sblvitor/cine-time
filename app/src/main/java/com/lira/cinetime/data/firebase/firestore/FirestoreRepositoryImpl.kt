@@ -2,11 +2,15 @@ package com.lira.cinetime.data.firebase.firestore
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.snapshots
+import com.google.firebase.firestore.ktx.toObjects
 import com.lira.cinetime.core.Constants
 import com.lira.cinetime.data.models.firebase.Movie
 import com.lira.cinetime.data.models.firebase.TvShow
 import com.lira.cinetime.data.models.firebase.User
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 
 class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepository {
@@ -170,6 +174,50 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
                     Log.w("delete", "Error deleting document", e)
                 }
         }
+    }
+
+    override fun getAllFavoriteMovies(userId: String): Flow<List<Movie>> {
+
+        val favMoviesRef = db.collection(Constants.LISTS)
+            .document(Constants.FAVORITES)
+            .collection(Constants.MOVIES)
+
+        return favMoviesRef
+            .whereEqualTo("userID", userId)
+            .snapshots().map { querySnapshot -> querySnapshot.toObjects() }
+    }
+
+    override fun getAllToWatchMovies(userId: String): Flow<List<Movie>> {
+
+        val toWatchMoviesRef = db.collection(Constants.LISTS)
+            .document(Constants.TO_WATCH)
+            .collection(Constants.MOVIES)
+
+        return toWatchMoviesRef
+            .whereEqualTo("userID", userId)
+            .snapshots().map { querySnapshot -> querySnapshot.toObjects() }
+    }
+
+    override fun getAllFavoriteTv(userId: String): Flow<List<TvShow>> {
+
+        val favTvRef = db.collection(Constants.LISTS)
+            .document(Constants.FAVORITES)
+            .collection(Constants.TV_SHOWS)
+
+        return favTvRef
+            .whereEqualTo("userID", userId)
+            .snapshots().map { querySnapshot -> querySnapshot.toObjects() }
+    }
+
+    override fun getAllToWatchTv(userId: String): Flow<List<TvShow>> {
+
+        val toWatchTvRef = db.collection(Constants.LISTS)
+            .document(Constants.TO_WATCH)
+            .collection(Constants.TV_SHOWS)
+
+        return toWatchTvRef
+            .whereEqualTo("userID", userId)
+            .snapshots().map { querySnapshot -> querySnapshot.toObjects() }
     }
 
 }

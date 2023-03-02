@@ -46,7 +46,7 @@
     <string name="war_politics">Guerra &amp; Política</string>
     <string name="movies_label">Filmes</string>
     <string name="tv_shows_label">Séries</string>
-    <string name="my_list_label">Minha Lista</string>
+    <string name="my_list_label">Minhas Listas</string>
     <string name="account_label">Conta</string>
     <string name="search_label">Busca</string>
     <string name="top_rated_label">Mais Votados</string>
@@ -66,4 +66,10 @@
     <string name="txt_name">Nome</string>
     <string name="favorite_menu_title">Favorito</string>
     <string name="watch_list_menu_title">Lista para assitir</string>
+    <string name="favorite_movies_label">Filmes Favoritos</string>
+    <string name="favorite_tv_label">Séries Favoritas</string>
+    <string name="to_watch_movies_label">Filmes Para Assistir</string>
+    <string name="to_watch_tv_shows_label">Séries Para Assitir</string>
+    <string name="see_more_txt">VER MAIS</string>
+    <string name="lists_label">Listas</string>
 </resources>

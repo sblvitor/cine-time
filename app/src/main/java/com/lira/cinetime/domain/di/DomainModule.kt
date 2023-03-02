@@ -51,6 +51,10 @@ object DomainModule {
             factory { AddTvToWatchUseCase(get()) }
             factory { IsTvInToWatchUseCase(get()) }
             factory { DeleteToWatchTvUseCase(get()) }
+            factory { GetAllFavoriteMoviesUseCase(get()) }
+            factory { GetAllToWatchMoviesUseCase(get()) }
+            factory { GetAllFavoriteTvUseCase(get()) }
+            factory { GetAllToWatchTvUseCase(get()) }
         }
     }
 
