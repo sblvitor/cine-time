@@ -95,27 +95,27 @@ class TvDetailsFragment : Fragment() {
                     }
                     is TvDetailsViewModel.DBState.AddFavoriteFailure -> {
                         Snackbar
-                            .make((requireActivity()).findViewById(android.R.id.content), "${it.error.message}", Snackbar.LENGTH_LONG)
+                            .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
                             .show()
                         binding.tvDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
                             ResourcesCompat.getDrawable(resources, R.drawable.favorite_border, null)
                     }
                     is TvDetailsViewModel.DBState.AddFavoriteSuccess -> {
                         Snackbar
-                            .make((requireActivity()).findViewById(android.R.id.content), "Adicionado aos favoritos!", Snackbar.LENGTH_LONG)
+                            .make(binding.root, "Adicionado aos favoritos!", Snackbar.LENGTH_LONG)
                             .show()
                         isFavorite = true
                     }
                     is TvDetailsViewModel.DBState.AddToWatchFailure -> {
                         Snackbar
-                            .make((requireActivity()).findViewById(android.R.id.content), "${it.error.message}", Snackbar.LENGTH_LONG)
+                            .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
                             .show()
                         binding.tvDetailsToolbar.menu.findItem(R.id.watch_list_button).icon =
                             ResourcesCompat.getDrawable(resources, R.drawable.playlist_add, null)
                     }
                     is TvDetailsViewModel.DBState.AddToWatchSuccess -> {
                         Snackbar
-                            .make((requireActivity()).findViewById(android.R.id.content), "Adicionado à lista \"Para assistir\"!", Snackbar.LENGTH_LONG)
+                            .make(binding.root, "Adicionado à lista \"Para assistir\"!", Snackbar.LENGTH_LONG)
                             .show()
                         isInToWatch = true
                     }

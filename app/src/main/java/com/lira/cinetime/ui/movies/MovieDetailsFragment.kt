@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 import com.lira.cinetime.R
@@ -102,27 +103,27 @@ class MovieDetailsFragment : Fragment() {
                     }
                     is MovieDetailsViewModel.DBState.AddFavoriteFailure -> {
                         Snackbar
-                            .make((requireActivity()).findViewById(android.R.id.content), "${it.error.message}", Snackbar.LENGTH_LONG)
+                            .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
                             .show()
                         binding.movieDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
                             ResourcesCompat.getDrawable(resources, R.drawable.favorite_border, null)
                     }
                     is MovieDetailsViewModel.DBState.AddFavoriteSuccess -> {
                         Snackbar
-                            .make((requireActivity()).findViewById(android.R.id.content), "Adicionado aos favoritos!", Snackbar.LENGTH_LONG)
+                            .make(binding.root, "Adicionado aos favoritos!", Snackbar.LENGTH_LONG)
                             .show()
                         isFavorite = true
                     }
                     is MovieDetailsViewModel.DBState.AddToWatchFailure -> {
                         Snackbar
-                            .make((requireActivity()).findViewById(android.R.id.content), "${it.error.message}", Snackbar.LENGTH_LONG)
+                            .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
                             .show()
                         binding.movieDetailsToolbar.menu.findItem(R.id.watch_list_button).icon =
                             ResourcesCompat.getDrawable(resources, R.drawable.playlist_add, null)
                     }
                     is MovieDetailsViewModel.DBState.AddToWatchSuccess -> {
                         Snackbar
-                            .make((requireActivity()).findViewById(android.R.id.content), "Adicionado à lista \"Para assistir\"!", Snackbar.LENGTH_LONG)
+                            .make(binding.root, "Adicionado à lista \"Para assistir\"!", Snackbar.LENGTH_LONG)
                             .show()
                         isInToWatch = true
                     }
