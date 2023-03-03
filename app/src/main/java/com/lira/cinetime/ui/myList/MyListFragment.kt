@@ -28,9 +28,6 @@ class MyListFragment : Fragment() {
     private val movieHeaderAdapter by lazy { MovieHeaderAdapter() }
     private val tvHeaderAdapter by lazy { TvHeaderAdapter() }
 
-    private val movieList = arrayListOf<ParentMovie>()
-    private val tvList = arrayListOf<ParentTv>()
-
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -46,13 +43,19 @@ class MyListFragment : Fragment() {
 
         lifecycleScope.launch {
             myListViewModel.allData.flowWithLifecycle(lifecycle, Lifecycle.State.CREATED).collectLatest { result ->
-                movieList.add(ParentMovie(getString(R.string.to_watch_movies_label), result.toWatchMovies))
-                movieList.add(ParentMovie(getString(R.string.favorite_movies_label), result.favMovies))
-                tvList.add(ParentTv(getString(R.string.to_watch_tv_shows_label), result.toWatchTvShows))
                 //result.toWatchTvShows.tvShow?.let { toWatchTv -> tvList.add(ParentTv(getString(R.string.to_watch_tv_shows_label), toWatchTv)) }
-                tvList.add(ParentTv(getString(R.string.favorite_tv_label), result.favTvShows))
-                parentMoviesAdapter.submitList(movieList)
-                parentTvAdapter.submitList(tvList)
+                parentMoviesAdapter.submitList(
+                    listOf(
+                    ParentMovie(getString(R.string.to_watch_movies_label), result.toWatchMovies),
+                    ParentMovie(getString(R.string.favorite_movies_label), result.favMovies)
+                    )
+                )
+                parentTvAdapter.submitList(
+                    listOf(
+                        ParentTv(getString(R.string.to_watch_tv_shows_label), result.toWatchTvShows),
+                        ParentTv(getString(R.string.favorite_tv_label), result.favTvShows)
+                    )
+                )
             }
         }
     }
