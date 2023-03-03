@@ -3,10 +3,12 @@ package com.lira.cinetime.ui.myList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.lira.cinetime.R
 import com.lira.cinetime.data.models.firebase.ParentMovie
 import com.lira.cinetime.databinding.ItemParentMoviesBinding
 
@@ -29,7 +31,9 @@ class ParentMoviesAdapter: ListAdapter<ParentMovie, ParentMoviesAdapter.ViewHold
 
             if(item.movies.isEmpty()) {
                 binding.ibAddMovies.visibility = View.VISIBLE
-                // click..
+                binding.ibAddMovies.setOnClickListener {
+                    it.findNavController().navigate(R.id.action_nav_my_list_to_nav_search)
+                }
             }
 
             val adapter = ChildMoviesAdapter()

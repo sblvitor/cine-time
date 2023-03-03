@@ -74,6 +74,11 @@
         <action
             android:id="@+id/action_nav_my_list_to_nav_tv_details"
             app:destination="@id/nav_tv_details" />
+        <action
+            android:id="@+id/action_nav_my_list_to_nav_search"
+            app:destination="@id/nav_search"
+            app:popUpTo="@id/nav_my_list"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
