@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="275dp"
-    android:padding="@dimen/margin_default"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:padding="@dimen/margin_default">
 
     <ImageView
         android:id="@+id/iv_popular_movie_backdrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/movie_poster_cd"
+        android:foreground="?attr/selectableItemBackground"
         android:scaleType="centerCrop"
-        tools:srcCompat="@tools:sample/avatars"
-        android:foreground="?attr/selectableItemBackground"/>
+        tools:srcCompat="@tools:sample/avatars" />
 
 
     <TextView
@@ -41,8 +41,8 @@
         android:layout_alignStart="@+id/tv_popular_movie_genres"
         android:isIndicator="true"
         android:numStars="5"
-        android:stepSize="0.1"
-        android:progressTint="@color/yellow_rating" />
+        android:progressTint="@color/yellow_rating"
+        android:stepSize="0.1" />
 
     <TextView
         android:id="@+id/tv_popular_movie_genres"
