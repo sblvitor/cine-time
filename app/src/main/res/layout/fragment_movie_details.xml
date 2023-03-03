@@ -159,6 +159,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/half_margin_default"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat"
@@ -168,16 +169,23 @@
                 app:layout_constraintTop_toBottomOf="@id/txt_movie_overview"
                 tools:text="Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’Challa’s death.  As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda." />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/d_one_movie_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_overview" />
+
             <TextView
                 android:id="@+id/txt_movie_available_at"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/half_margin_default"
+                android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/txt_available_at"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/txt_movie_overview"
-                app:layout_constraintTop_toBottomOf="@id/tv_movie_overview" />
+                app:layout_constraintTop_toBottomOf="@id/d_one_movie_details" />
 
             <TextView
                 android:id="@+id/tv_movie_not_available"
@@ -194,8 +202,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_movie_provider_one"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="@dimen/half_margin_default"
                 android:contentDescription="@string/provider_logo_cd"
                 android:scaleType="centerCrop"
@@ -208,8 +216,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_movie_provider_two"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="@dimen/half_margin_default"
                 android:contentDescription="@string/provider_logo_cd"
                 android:scaleType="centerCrop"
@@ -222,8 +230,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_movie_provider_three"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="@dimen/half_margin_default"
                 android:contentDescription="@string/provider_logo_cd"
                 android:scaleType="centerCrop"
@@ -236,8 +244,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_movie_provider_four"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="@dimen/half_margin_default"
                 android:contentDescription="@string/provider_logo_cd"
                 android:scaleType="centerCrop"
@@ -248,21 +256,29 @@
                 tools:src="@drawable/popcorn_icon"
                 tools:visibility="visible" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/d_two_movie_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/iv_movie_provider_one" />
+
             <TextView
                 android:id="@+id/txt_movie_cast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/half_margin_default"
+                android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/txt_cast"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@id/txt_movie_overview"
-                app:layout_constraintTop_toBottomOf="@id/iv_movie_provider_one" />
+                app:layout_constraintTop_toBottomOf="@id/d_two_movie_details" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_movie_cast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/half_margin_default"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
