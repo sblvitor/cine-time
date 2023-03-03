@@ -61,7 +61,7 @@ class TopRatedAdapter: PagingDataAdapter<TopRatedResult, TopRatedAdapter.ViewHol
                     }
                 }
             } else {
-                binding.tvTopRatedMovieGenres.visibility = View.GONE
+                binding.tvTopRatedMovieGenres.visibility = View.INVISIBLE
             }
 
             itemView.setOnClickListener {

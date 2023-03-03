@@ -63,7 +63,7 @@ class PopularMoviesAdapter: PagingDataAdapter<PopularMoviesResult, PopularMovies
                     }
                 }
             } else {
-                binding.tvPopularMovieGenres.visibility = View.GONE
+                binding.tvPopularMovieGenres.visibility = View.INVISIBLE
             }
 
             itemView.setOnClickListener {

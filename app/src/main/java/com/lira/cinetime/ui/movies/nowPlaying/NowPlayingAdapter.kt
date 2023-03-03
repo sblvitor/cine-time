@@ -61,7 +61,7 @@ class NowPlayingAdapter: PagingDataAdapter<NowPlayingResult, NowPlayingAdapter.V
                     }
                 }
             } else {
-                binding.tvNowPlayingMovieGenres.visibility = View.GONE
+                binding.tvNowPlayingMovieGenres.visibility = View.INVISIBLE
             }
 
             itemView.setOnClickListener {

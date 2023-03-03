@@ -30,41 +30,45 @@ class PopularTvAdapter: PagingDataAdapter<PopularTvResult, PopularTvAdapter.View
     inner class ViewHolder(private val binding: ItemPopularTvShowBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: PopularTvResult) {
-            binding.apply {
-                tvPopularTvTitle.text = item.name
-                val rating = "Rating: " + item.voteAverage.toString()
-                binding.tvTvRating.text = rating
-                if(item.genreIDS.isNotEmpty()) {
-                    if (item.genreIDS.size >= 2) {
-                        popularTvChipOne.text =
-                            itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[0]))
-                        binding.popularTvChipTwo.text =
-                            itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[1]))
-                    } else {
-                        binding.popularTvChipOne.text =
-                            itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[0]))
-                        binding.popularTvChipTwo.visibility = View.GONE
+
+            val backdropPath: String = "https://image.tmdb.org/t/p/original/" + item.backdropPath
+
+            Glide
+                .with(binding.root.context)
+                .load(backdropPath)
+                .placeholder(R.drawable.backdrop_placeholder)
+                .into(binding.ivPopularTvBackdrop)
+
+            binding.tvPopularTvTitle.text = item.name
+
+            binding.rbPopularTv.rating = ((item.voteAverage / 10.0) * 5.0).toFloat()
+
+            if(item.genreIDS.isNotEmpty()) {
+                when {
+                    item.genreIDS.size >= 3 -> {
+                        val genres = itemView.context.getString(genresIDsToNamesResources(item.genreIDS[0])) + ", " +
+                                itemView.context.getString(genresIDsToNamesResources(item.genreIDS[1])) + ", " +
+                                itemView.context.getString(genresIDsToNamesResources(item.genreIDS[2]))
+                        binding.tvPopularTvGenres.text = genres
                     }
-                } else {
-                    binding.popularTvChipOne.visibility = View.GONE
-                    binding.popularTvChipTwo.visibility = View.GONE
+                    item.genreIDS.size == 2 -> {
+                        val genres = itemView.context.getString(genresIDsToNamesResources(item.genreIDS[0])) + ", " +
+                                itemView.context.getString(genresIDsToNamesResources(item.genreIDS[1]))
+                        binding.tvPopularTvGenres.text = genres
+                    }
+                    else -> {
+                        binding.tvPopularTvGenres.text = itemView.context.getString(genresIDsToNamesResources(item.genreIDS[0]))
+                    }
                 }
-
-                val posterPath: String = "https://image.tmdb.org/t/p/w342/" + item.posterPath
-
-                Glide
-                    .with(binding.root.context)
-                    .load(posterPath)
-                    .placeholder(R.drawable.film_poster_placeholder)
-                    .into(binding.ivPopularTvPoster)
-
+            } else {
+                binding.tvPopularTvGenres.visibility = View.INVISIBLE
             }
+
             itemView.setOnClickListener {
                 val action = TvShowFragmentDirections.actionNavTvShowsToNavTvDetails(item.id)
                 it.findNavController().navigate(action)
             }
         }
-
     }
 
     class DiffCallBack: DiffUtil.ItemCallback<PopularTvResult>() {

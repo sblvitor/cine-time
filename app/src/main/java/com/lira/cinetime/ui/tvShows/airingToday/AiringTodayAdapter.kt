@@ -29,34 +29,39 @@ class AiringTodayAdapter: PagingDataAdapter<AiringTodayTvResult, AiringTodayAdap
     inner class ViewHolder(private val binding: ItemAiringTodayBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: AiringTodayTvResult) {
-            binding.apply {
-                tvAiringTodayTvTitle.text = item.name
-                val rating = "Rating: " + item.voteAverage.toString()
-                binding.tvAiringTodayRating.text = rating
-                if(item.genreIDS.isNotEmpty()) {
-                    if (item.genreIDS.size >= 2) {
-                        airingTodayTvChipOne.text =
-                            itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[0]))
-                        binding.airingTodayTvChipTwo.text =
-                            itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[1]))
-                    } else {
-                        binding.airingTodayTvChipOne.text =
-                            itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[0]))
-                        binding.airingTodayTvChipTwo.visibility = View.GONE
+            val backdropPath: String = "https://image.tmdb.org/t/p/original/" + item.backdropPath
+
+            Glide
+                .with(binding.root.context)
+                .load(backdropPath)
+                .placeholder(R.drawable.backdrop_placeholder)
+                .into(binding.ivAiringTodayTvBackdrop)
+
+            binding.tvAiringTodayTvTitle.text = item.name
+
+            binding.rbAiringTodayTv.rating = ((item.voteAverage / 10.0) * 5.0).toFloat()
+
+            if(item.genreIDS.isNotEmpty()) {
+                when {
+                    item.genreIDS.size >= 3 -> {
+                        val genres = itemView.context.getString(genresIDsToNamesResources(item.genreIDS[0])) + ", " +
+                                itemView.context.getString(genresIDsToNamesResources(item.genreIDS[1])) + ", " +
+                                itemView.context.getString(genresIDsToNamesResources(item.genreIDS[2]))
+                        binding.tvAiringTodayTvGenres.text = genres
                     }
-                } else {
-                    binding.airingTodayTvChipOne.visibility = View.GONE
-                    binding.airingTodayTvChipTwo.visibility = View.GONE
+                    item.genreIDS.size == 2 -> {
+                        val genres = itemView.context.getString(genresIDsToNamesResources(item.genreIDS[0])) + ", " +
+                                itemView.context.getString(genresIDsToNamesResources(item.genreIDS[1]))
+                        binding.tvAiringTodayTvGenres.text = genres
+                    }
+                    else -> {
+                        binding.tvAiringTodayTvGenres.text = itemView.context.getString(genresIDsToNamesResources(item.genreIDS[0]))
+                    }
                 }
-
-                val posterPath: String = "https://image.tmdb.org/t/p/w342/" + item.posterPath
-
-                Glide
-                    .with(binding.root.context)
-                    .load(posterPath)
-                    .placeholder(R.drawable.film_poster_placeholder)
-                    .into(binding.ivAiringTodayTvPoster)
+            } else {
+                binding.tvAiringTodayTvGenres.visibility = View.INVISIBLE
             }
+
             itemView.setOnClickListener {
                 val action = TvShowFragmentDirections.actionNavTvShowsToNavTvDetails(item.id)
                 it.findNavController().navigate(action)

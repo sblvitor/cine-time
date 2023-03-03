@@ -30,34 +30,39 @@ class TopRatedTvAdapter: PagingDataAdapter<TopRatedTvResult, TopRatedTvAdapter.V
     inner class ViewHolder(private val binding: ItemTopRatedTvBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: TopRatedTvResult) {
-            binding.apply {
-                tvTopRatedTvTitle.text = item.name
-                val rating = "Rating: " + item.voteAverage.toString()
-                binding.tvTopRatedRating.text = rating
-                if(item.genreIDS.isNotEmpty()) {
-                    if (item.genreIDS.size >= 2) {
-                        topRatedTvChipOne.text =
-                            itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[0]))
-                        binding.topRatedTvChipTwo.text =
-                            itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[1]))
-                    } else {
-                        binding.topRatedTvChipOne.text =
-                            itemView.context.resources.getString(genresIDsToNamesResources(item.genreIDS[0]))
-                        binding.topRatedTvChipTwo.visibility = View.GONE
+            val backdropPath: String = "https://image.tmdb.org/t/p/original/" + item.backdropPath
+
+            Glide
+                .with(binding.root.context)
+                .load(backdropPath)
+                .placeholder(R.drawable.backdrop_placeholder)
+                .into(binding.ivTopRatedTvBackdrop)
+
+            binding.tvTopRatedTvTitle.text = item.name
+
+            binding.rbTopRatedTv.rating = ((item.voteAverage / 10.0) * 5.0).toFloat()
+
+            if(item.genreIDS.isNotEmpty()) {
+                when {
+                    item.genreIDS.size >= 3 -> {
+                        val genres = itemView.context.getString(genresIDsToNamesResources(item.genreIDS[0])) + ", " +
+                                itemView.context.getString(genresIDsToNamesResources(item.genreIDS[1])) + ", " +
+                                itemView.context.getString(genresIDsToNamesResources(item.genreIDS[2]))
+                        binding.tvToRatedTvGenres.text = genres
                     }
-                } else {
-                    binding.topRatedTvChipOne.visibility = View.GONE
-                    binding.topRatedTvChipTwo.visibility = View.GONE
+                    item.genreIDS.size == 2 -> {
+                        val genres = itemView.context.getString(genresIDsToNamesResources(item.genreIDS[0])) + ", " +
+                                itemView.context.getString(genresIDsToNamesResources(item.genreIDS[1]))
+                        binding.tvToRatedTvGenres.text = genres
+                    }
+                    else -> {
+                        binding.tvToRatedTvGenres.text = itemView.context.getString(genresIDsToNamesResources(item.genreIDS[0]))
+                    }
                 }
-
-                val posterPath: String = "https://image.tmdb.org/t/p/w342/" + item.posterPath
-
-                Glide
-                    .with(binding.root.context)
-                    .load(posterPath)
-                    .placeholder(R.drawable.film_poster_placeholder)
-                    .into(binding.ivTopRatedTvPoster)
+            } else {
+                binding.tvToRatedTvGenres.visibility = View.INVISIBLE
             }
+
             itemView.setOnClickListener {
                 val action = TvShowFragmentDirections.actionNavTvShowsToNavTvDetails(item.id)
                 it.findNavController().navigate(action)
