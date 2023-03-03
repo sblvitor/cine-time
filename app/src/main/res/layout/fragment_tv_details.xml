@@ -101,6 +101,17 @@
                 app:srb_stepSize="0.1" />
 
             <TextView
+                android:id="@+id/txt_tv_overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/txt_overview"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+                app:layout_constraintTop_toBottomOf="@id/rb_tv_details" />
+
+            <TextView
                 android:id="@+id/tv_number_of_seasons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,7 +120,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@id/iv_tv_dot"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
-                app:layout_constraintTop_toBottomOf="@id/rb_tv_details"
+                app:layout_constraintTop_toBottomOf="@id/txt_tv_overview"
                 tools:text="5 temporadas" />
 
             <ImageView
@@ -135,64 +146,80 @@
                 app:layout_constraintTop_toTopOf="@id/tv_number_of_seasons"
                 tools:text="62 episódios" />
 
-            <TextView
-                android:id="@+id/txt_tv_overview"
-                android:layout_width="wrap_content"
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/d_ep_season_overview"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/half_margin_default"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="@string/txt_overview"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
+                android:layout_marginTop="@dimen/margin_default"
+                app:dividerInsetEnd="@dimen/margin_default"
+                app:dividerInsetStart="@dimen/margin_default"
                 app:layout_constraintTop_toBottomOf="@id/tv_number_of_seasons" />
 
             <TextView
                 android:id="@+id/tv_tv_overview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="6"
                 app:layout_constraintEnd_toEndOf="@id/tv_tv_title_details"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
-                app:layout_constraintTop_toBottomOf="@id/txt_tv_overview"
+                app:layout_constraintTop_toBottomOf="@id/d_ep_season_overview"
                 tools:text="Situado duas décadas após a implosão de nossa sociedade, o drama seguirá Joel, um sobrevivente difícil, que é contratado para contrabandear uma garota de 14 anos chamada Ellie para fora de uma zona de quarentena opressiva. O que começa como um pequeno trabalho logo se torna uma jornada brutal e de partir o coração, já que os dois precisam atravessar os Estados Unidos e dependem um do outro para sobreviver." />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/d_overview_dates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                app:dividerInsetEnd="@dimen/margin_default"
+                app:dividerInsetStart="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/tv_tv_overview" />
 
             <TextView
                 android:id="@+id/tv_last_air_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/montserrat_bold"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
-                app:layout_constraintTop_toBottomOf="@id/tv_tv_overview"
+                app:layout_constraintTop_toBottomOf="@id/d_overview_dates"
                 tools:text="Último episódio: 19/02/2023" />
 
             <TextView
                 android:id="@+id/tv_next_air_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/montserrat_bold"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
                 app:layout_constraintTop_toBottomOf="@id/tv_last_air_date"
                 tools:text="Próximo episódio: 26/02/2023" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/d_dates_available"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/tv_next_air_date" />
 
             <TextView
                 android:id="@+id/txt_tv_available_at"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/half_margin_default"
+                android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/txt_available_at"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
-                app:layout_constraintTop_toBottomOf="@id/tv_next_air_date" />
+                app:layout_constraintTop_toBottomOf="@id/d_dates_available" />
 
             <TextView
                 android:id="@+id/tv_tv_not_available"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/half_margin_default"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:text="@string/txt_not_available"
                 android:visibility="gone"
@@ -202,8 +229,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_tv_provider_one"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="@dimen/half_margin_default"
                 android:contentDescription="@string/provider_logo_cd"
                 android:scaleType="centerCrop"
@@ -216,8 +243,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_tv_provider_two"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="@dimen/half_margin_default"
                 android:contentDescription="@string/provider_logo_cd"
                 android:scaleType="centerCrop"
@@ -230,8 +257,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_tv_provider_three"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="@dimen/half_margin_default"
                 android:contentDescription="@string/provider_logo_cd"
                 android:scaleType="centerCrop"
@@ -244,8 +271,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_tv_provider_four"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="@dimen/half_margin_default"
                 android:contentDescription="@string/provider_logo_cd"
                 android:scaleType="centerCrop"
@@ -256,21 +283,29 @@
                 tools:src="@drawable/popcorn_icon"
                 tools:visibility="visible" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/d_available_logos_cast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@id/iv_tv_provider_one" />
+
             <TextView
                 android:id="@+id/txt_tv_cast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/half_margin_default"
+                android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/txt_cast"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
-                app:layout_constraintTop_toBottomOf="@id/iv_tv_provider_one" />
+                app:layout_constraintTop_toBottomOf="@id/d_available_logos_cast" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_tv_cast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/half_margin_default"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -187,7 +187,7 @@ class TvDetailsFragment : Fragment() {
             Glide
                 .with(root)
                 .load(backdropPath)
-                .placeholder(R.drawable.film_poster_placeholder)
+                .placeholder(R.drawable.backdrop_placeholder)
                 .into(ivTvPosterDetails)
 
             // Title
