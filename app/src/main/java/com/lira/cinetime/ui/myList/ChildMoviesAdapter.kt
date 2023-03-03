@@ -2,6 +2,7 @@ package com.lira.cinetime.ui.myList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,13 @@ class ChildMoviesAdapter: ListAdapter<Movie, ChildMoviesAdapter.ViewHolder>(Diff
                     .into(binding.ivChildPosterMovie)
             } else {
                 binding.ivChildPosterMovie.setImageResource(R.drawable.film_poster_placeholder)
+            }
+
+            itemView.setOnClickListener {
+                val action = item.movieId?.let { id ->
+                    MyListFragmentDirections.actionNavMyListToNavMovieDetails(id)
+                }
+                action?.let { it1 -> it.findNavController().navigate(it1) }
             }
         }
     }
