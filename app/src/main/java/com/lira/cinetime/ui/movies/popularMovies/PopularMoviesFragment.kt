@@ -16,6 +16,7 @@ import com.lira.cinetime.R
 import com.lira.cinetime.databinding.FragmentPopularMoviesBinding
 import com.lira.cinetime.presentation.movies.PopularMoviesViewModel
 import com.lira.cinetime.ui.tryAgainUtil.TryAgainAdapter
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -49,8 +50,10 @@ class PopularMoviesFragment : Fragment() {
 
         //Movies
         lifecycleScope.launch {
-            popularMoviesViewModel.popularMovies.collectLatest { movies ->
-                adapter.submitData(movies)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                popularMoviesViewModel.popularMovies.collectLatest { movies ->
+                    adapter.submitData(movies)
+                }
             }
         }
 

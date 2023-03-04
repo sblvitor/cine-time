@@ -46,8 +46,10 @@ class TopRatedFragment : Fragment() {
         binding.rvTopRated.adapter = adapter
 
         lifecycleScope.launch {
-            topRatedViewModel.topRatedMovies.collectLatest { topRatedMovies ->
-                adapter.submitData(topRatedMovies)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                topRatedViewModel.topRatedMovies.collectLatest { topRatedMovies ->
+                    adapter.submitData(topRatedMovies)
+                }
             }
         }
 

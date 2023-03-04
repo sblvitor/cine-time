@@ -38,8 +38,10 @@ class AiringTodayTvFragment : Fragment() {
         binding.rvAiringTodayTv.adapter = adapter
 
         lifecycleScope.launch {
-            airingTodayTvViewModel.airingToday.collectLatest {
-                adapter.submitData(it)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                airingTodayTvViewModel.airingToday.collectLatest {
+                    adapter.submitData(it)
+                }
             }
         }
 

@@ -38,8 +38,10 @@ class PopularTvFragment : Fragment() {
         binding.rvPopularTv.adapter = adapter
 
         lifecycleScope.launch {
-            popularTvViewModel.popularTv.collectLatest { tvShows ->
-                adapter.submitData(tvShows)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                popularTvViewModel.popularTv.collectLatest { tvShows ->
+                    adapter.submitData(tvShows)
+                }
             }
         }
 

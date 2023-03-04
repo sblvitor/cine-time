@@ -38,8 +38,10 @@ class TopRatedTvFragment : Fragment() {
         binding.rvTopRatedTv.adapter = adapter
 
         lifecycleScope.launch {
-            topRatedTvViewModel.topRatedTv.collectLatest { topRatedTv ->
-                adapter.submitData(topRatedTv)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                topRatedTvViewModel.topRatedTv.collectLatest { topRatedTv ->
+                    adapter.submitData(topRatedTv)
+                }
             }
         }
 
