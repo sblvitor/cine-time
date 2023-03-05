@@ -11,6 +11,7 @@ import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
 import com.lira.cinetime.domain.myLists.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import okio.IOException
 import retrofit2.HttpException
 
 class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
@@ -49,16 +50,12 @@ class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
     // Favorites
     fun checkIfFavorite(movieId: Long) {
         viewModelScope.launch {
-            isMovieFavoriteUseCase(movieId, user!!.uid)
-                .catch {
-                    _dbOperations.value = DBState.Error(it)
-                }
-                .collect {
-                    if(it.documents.isNotEmpty())
-                        _dbOperations.value = DBState.IsFavorite(true)
-                    else
-                        _dbOperations.value = DBState.IsFavorite(false)
-                }
+            try {
+                val result = isMovieFavoriteUseCase(movieId, user!!.uid)
+                _dbOperations.value = DBState.IsFavorite(result)
+            } catch (e: IOException) {
+                _dbOperations.value = DBState.Error(e)
+            }
         }
     }
 
@@ -89,16 +86,12 @@ class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
     // To Watch
     fun checkIfInToWatch(movieId: Long) {
         viewModelScope.launch {
-            isMovieInToWatchUseCase(movieId, user!!.uid)
-                .catch {
-                    _dbOperations.value = DBState.Error(it)
-                }
-                .collect {
-                    if(it.documents.isNotEmpty())
-                        _dbOperations.value = DBState.IsInToWatch(true)
-                    else
-                        _dbOperations.value = DBState.IsInToWatch(false)
-                }
+            try {
+                val result = isMovieInToWatchUseCase(movieId, user!!.uid)
+                _dbOperations.value = DBState.IsInToWatch(result)
+            } catch (e: IOException) {
+                _dbOperations.value = DBState.Error(e)
+            }
         }
     }
 

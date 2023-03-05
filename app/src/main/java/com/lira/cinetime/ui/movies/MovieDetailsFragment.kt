@@ -95,55 +95,81 @@ class MovieDetailsFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            movieDetailsViewModel.dbOperations.collectLatest {
-                when(it) {
-                    MovieDetailsViewModel.DBState.Loading -> {
-                        // nothing
-                    }
-                    is MovieDetailsViewModel.DBState.AddFavoriteFailure -> {
-                        Snackbar
-                            .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
-                            .show()
-                        binding.movieDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
-                            ResourcesCompat.getDrawable(resources, R.drawable.favorite_border, null)
-                    }
-                    is MovieDetailsViewModel.DBState.AddFavoriteSuccess -> {
-                        Snackbar
-                            .make(binding.root, "Adicionado aos favoritos!", Snackbar.LENGTH_LONG)
-                            .show()
-                        isFavorite = true
-                    }
-                    is MovieDetailsViewModel.DBState.AddToWatchFailure -> {
-                        Snackbar
-                            .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
-                            .show()
-                        binding.movieDetailsToolbar.menu.findItem(R.id.watch_list_button).icon =
-                            ResourcesCompat.getDrawable(resources, R.drawable.playlist_add, null)
-                    }
-                    is MovieDetailsViewModel.DBState.AddToWatchSuccess -> {
-                        Snackbar
-                            .make(binding.root, "Adicionado à lista \"Para assistir\"!", Snackbar.LENGTH_LONG)
-                            .show()
-                        isInToWatch = true
-                    }
-                    is MovieDetailsViewModel.DBState.IsFavorite -> {
-                        if(it.favorite) {
-                            isFavorite = true
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                movieDetailsViewModel.dbOperations.collectLatest {
+                    when (it) {
+                        MovieDetailsViewModel.DBState.Loading -> {
+                            // nothing
+                        }
+                        is MovieDetailsViewModel.DBState.AddFavoriteFailure -> {
+                            Snackbar
+                                .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
+                                .show()
                             binding.movieDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
-                                ResourcesCompat.getDrawable(resources, R.drawable.favorite, null)
+                                ResourcesCompat.getDrawable(
+                                    resources,
+                                    R.drawable.favorite_border,
+                                    null
+                                )
                         }
-                    }
-                    is MovieDetailsViewModel.DBState.IsInToWatch -> {
-                        if(it.inToWatch){
-                            isInToWatch = true
+                        is MovieDetailsViewModel.DBState.AddFavoriteSuccess -> {
+                            Snackbar
+                                .make(
+                                    binding.root,
+                                    "Adicionado aos favoritos!",
+                                    Snackbar.LENGTH_LONG
+                                )
+                                .show()
+                            isFavorite = true
+                        }
+                        is MovieDetailsViewModel.DBState.AddToWatchFailure -> {
+                            Snackbar
+                                .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
+                                .show()
                             binding.movieDetailsToolbar.menu.findItem(R.id.watch_list_button).icon =
-                                ResourcesCompat.getDrawable(resources, R.drawable.playlist_remove, null)
+                                ResourcesCompat.getDrawable(
+                                    resources,
+                                    R.drawable.playlist_add,
+                                    null
+                                )
                         }
-                    }
-                    is MovieDetailsViewModel.DBState.Error -> {
-                        createDialog {
-                            setMessage(it.error.message)
-                        }.show()
+                        is MovieDetailsViewModel.DBState.AddToWatchSuccess -> {
+                            Snackbar
+                                .make(
+                                    binding.root,
+                                    "Adicionado à lista \"Para assistir\"!",
+                                    Snackbar.LENGTH_LONG
+                                )
+                                .show()
+                            isInToWatch = true
+                        }
+                        is MovieDetailsViewModel.DBState.IsFavorite -> {
+                            if (it.favorite) {
+                                isFavorite = true
+                                binding.movieDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
+                                    ResourcesCompat.getDrawable(
+                                        resources,
+                                        R.drawable.favorite,
+                                        null
+                                    )
+                            }
+                        }
+                        is MovieDetailsViewModel.DBState.IsInToWatch -> {
+                            if (it.inToWatch) {
+                                isInToWatch = true
+                                binding.movieDetailsToolbar.menu.findItem(R.id.watch_list_button).icon =
+                                    ResourcesCompat.getDrawable(
+                                        resources,
+                                        R.drawable.playlist_remove,
+                                        null
+                                    )
+                            }
+                        }
+                        is MovieDetailsViewModel.DBState.Error -> {
+                            createDialog {
+                                setMessage(it.error.message)
+                            }.show()
+                        }
                     }
                 }
             }

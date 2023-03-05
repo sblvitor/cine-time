@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import okio.IOException
 import retrofit2.HttpException
 
 class TvDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
@@ -50,16 +51,12 @@ class TvDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
     // Favorites
     fun checkIfFavorite(tvId: Long) {
         viewModelScope.launch {
-            isTvFavoriteUseCase(tvId, user!!.uid)
-                .catch {
-                    _dbOperations.value = DBState.ErrorDB(it)
-                }
-                .collect {
-                    if(it.documents.isNotEmpty())
-                        _dbOperations.value = DBState.IsFavorite(true)
-                    else
-                        _dbOperations.value = DBState.IsFavorite(false)
-                }
+            try {
+                val result = isTvFavoriteUseCase(tvId, user!!.uid)
+                _dbOperations.value = DBState.IsFavorite(result)
+            } catch (e: IOException) {
+                _dbOperations.value = DBState.ErrorDB(e)
+            }
         }
     }
 
@@ -87,16 +84,12 @@ class TvDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
     // To Watch
     fun checkIfInToWatch(tvId: Long) {
         viewModelScope.launch {
-            isTvInToWatchUseCase(tvId, user!!.uid)
-                .catch {
-                    _dbOperations.value = DBState.ErrorDB(it)
-                }
-                .collect {
-                    if(it.documents.isNotEmpty())
-                        _dbOperations.value = DBState.IsInToWatch(true)
-                    else
-                        _dbOperations.value = DBState.IsInToWatch(false)
-                }
+            try {
+                val result = isTvInToWatchUseCase(tvId, user!!.uid)
+                _dbOperations.value = DBState.IsInToWatch(result)
+            } catch (e: IOException) {
+                _dbOperations.value = DBState.ErrorDB(e)
+            }
         }
     }
 

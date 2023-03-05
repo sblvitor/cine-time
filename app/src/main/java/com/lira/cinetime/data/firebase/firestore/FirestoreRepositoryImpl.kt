@@ -35,13 +35,18 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
             .await())
     }
 
-    override fun isThisMovieFavorite(movieId: Long, userId: String) = flow {
-        emit(db.collection(Constants.LISTS)
+    override suspend fun isThisMovieFavorite(movieId: Long, userId: String): Boolean {
+        val result = db.collection(Constants.LISTS)
             .document(Constants.FAVORITES)
             .collection(Constants.MOVIES)
             .whereEqualTo("movieId", movieId)
             .whereEqualTo("userID", userId)
-            .get().await())
+            .get().await()
+
+        if(result.documents.isEmpty())
+            return false
+
+        return true
     }
 
     override suspend fun deleteFavoriteMovie(movieId: Long, userId: String) {
@@ -73,13 +78,18 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
             .await())
     }
 
-    override fun isThisMovieInToWatch(movieId: Long, userId: String) = flow {
-        emit(db.collection(Constants.LISTS)
+    override suspend fun isThisMovieInToWatch(movieId: Long, userId: String): Boolean {
+        val result = db.collection(Constants.LISTS)
             .document(Constants.TO_WATCH)
             .collection(Constants.MOVIES)
             .whereEqualTo("movieId", movieId)
             .whereEqualTo("userID", userId)
-            .get().await())
+            .get().await()
+
+        if(result.documents.isEmpty())
+            return false
+
+        return true
     }
 
     override suspend fun deleteToWatchMovie(movieId: Long, userId: String) {
@@ -110,13 +120,18 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
             .await())
     }
 
-    override fun isThisTvFavorite(tvId: Long, userId: String) = flow {
-        emit(db.collection(Constants.LISTS)
+    override suspend fun isThisTvFavorite(tvId: Long, userId: String): Boolean {
+        val result = db.collection(Constants.LISTS)
             .document(Constants.FAVORITES)
             .collection(Constants.TV_SHOWS)
             .whereEqualTo("tvId", tvId)
             .whereEqualTo("userID", userId)
-            .get().await())
+            .get().await()
+
+        if(result.documents.isEmpty())
+            return false
+
+        return true
     }
 
     override suspend fun deleteFavoriteTv(tvId: Long, userId: String) {
@@ -147,13 +162,18 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
             .await())
     }
 
-    override fun isThisTvInToWatch(tvId: Long, userId: String) = flow {
-        emit(db.collection(Constants.LISTS)
+    override suspend fun isThisTvInToWatch(tvId: Long, userId: String): Boolean {
+        val result = db.collection(Constants.LISTS)
             .document(Constants.TO_WATCH)
             .collection(Constants.TV_SHOWS)
             .whereEqualTo("tvId", tvId)
             .whereEqualTo("userID", userId)
-            .get().await())
+            .get().await()
+
+        if(result.documents.isEmpty())
+            return false
+
+        return true
     }
 
     override suspend fun deleteToWatchTv(tvId: Long, userId: String) {

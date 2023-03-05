@@ -88,55 +88,81 @@ class TvDetailsFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            tvDetailsViewModel.dbOperations.collectLatest {
-                when(it) {
-                    TvDetailsViewModel.DBState.LoadingDB -> {
-                        // nothing
-                    }
-                    is TvDetailsViewModel.DBState.AddFavoriteFailure -> {
-                        Snackbar
-                            .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
-                            .show()
-                        binding.tvDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
-                            ResourcesCompat.getDrawable(resources, R.drawable.favorite_border, null)
-                    }
-                    is TvDetailsViewModel.DBState.AddFavoriteSuccess -> {
-                        Snackbar
-                            .make(binding.root, "Adicionado aos favoritos!", Snackbar.LENGTH_LONG)
-                            .show()
-                        isFavorite = true
-                    }
-                    is TvDetailsViewModel.DBState.AddToWatchFailure -> {
-                        Snackbar
-                            .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
-                            .show()
-                        binding.tvDetailsToolbar.menu.findItem(R.id.watch_list_button).icon =
-                            ResourcesCompat.getDrawable(resources, R.drawable.playlist_add, null)
-                    }
-                    is TvDetailsViewModel.DBState.AddToWatchSuccess -> {
-                        Snackbar
-                            .make(binding.root, "Adicionado à lista \"Para assistir\"!", Snackbar.LENGTH_LONG)
-                            .show()
-                        isInToWatch = true
-                    }
-                    is TvDetailsViewModel.DBState.IsFavorite -> {
-                        if(it.favorite) {
-                            isFavorite = true
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                tvDetailsViewModel.dbOperations.collectLatest {
+                    when (it) {
+                        TvDetailsViewModel.DBState.LoadingDB -> {
+                            // nothing
+                        }
+                        is TvDetailsViewModel.DBState.AddFavoriteFailure -> {
+                            Snackbar
+                                .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
+                                .show()
                             binding.tvDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
-                                ResourcesCompat.getDrawable(resources, R.drawable.favorite, null)
+                                ResourcesCompat.getDrawable(
+                                    resources,
+                                    R.drawable.favorite_border,
+                                    null
+                                )
                         }
-                    }
-                    is TvDetailsViewModel.DBState.IsInToWatch -> {
-                        if(it.inToWatch){
-                            isInToWatch = true
+                        is TvDetailsViewModel.DBState.AddFavoriteSuccess -> {
+                            Snackbar
+                                .make(
+                                    binding.root,
+                                    "Adicionado aos favoritos!",
+                                    Snackbar.LENGTH_LONG
+                                )
+                                .show()
+                            isFavorite = true
+                        }
+                        is TvDetailsViewModel.DBState.AddToWatchFailure -> {
+                            Snackbar
+                                .make(binding.root, "${it.error.message}", Snackbar.LENGTH_LONG)
+                                .show()
                             binding.tvDetailsToolbar.menu.findItem(R.id.watch_list_button).icon =
-                                ResourcesCompat.getDrawable(resources, R.drawable.playlist_remove, null)
+                                ResourcesCompat.getDrawable(
+                                    resources,
+                                    R.drawable.playlist_add,
+                                    null
+                                )
                         }
-                    }
-                    is TvDetailsViewModel.DBState.ErrorDB -> {
-                        createDialog {
-                            setMessage(it.error.message)
-                        }.show()
+                        is TvDetailsViewModel.DBState.AddToWatchSuccess -> {
+                            Snackbar
+                                .make(
+                                    binding.root,
+                                    "Adicionado à lista \"Para assistir\"!",
+                                    Snackbar.LENGTH_LONG
+                                )
+                                .show()
+                            isInToWatch = true
+                        }
+                        is TvDetailsViewModel.DBState.IsFavorite -> {
+                            if (it.favorite) {
+                                isFavorite = true
+                                binding.tvDetailsToolbar.menu.findItem(R.id.favorite_list_button).icon =
+                                    ResourcesCompat.getDrawable(
+                                        resources,
+                                        R.drawable.favorite,
+                                        null
+                                    )
+                            }
+                        }
+                        is TvDetailsViewModel.DBState.IsInToWatch -> {
+                            if (it.inToWatch) {
+                                isInToWatch = true
+                                binding.tvDetailsToolbar.menu.findItem(R.id.watch_list_button).icon =
+                                    ResourcesCompat.getDrawable(
+                                        resources,
+                                        R.drawable.playlist_remove,
+                                        null
+                                    )
+                            }
+                        }
+                        is TvDetailsViewModel.DBState.ErrorDB -> {
+                            createDialog {
+                                setMessage(it.error.message)
+                            }.show()
+                        }
                     }
                 }
             }
