@@ -14,7 +14,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 import com.lira.cinetime.R
@@ -74,7 +73,7 @@ class MovieDetailsFragment : Fragment() {
     private fun collectData() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                movieDetailsViewModel.movieDetails.collectLatest {
+                movieDetailsViewModel.movieDetails.collect {
                     when(it) {
                         MovieDetailsViewModel.State.Loading -> {
                             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)

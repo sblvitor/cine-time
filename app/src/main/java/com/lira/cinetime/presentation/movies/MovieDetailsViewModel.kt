@@ -11,6 +11,7 @@ import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
 import com.lira.cinetime.domain.myLists.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
                             private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
@@ -35,12 +36,13 @@ class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
 
     fun getMovieDetails(movieId: Long) {
         viewModelScope.launch {
-            getMovieDetailsUseCase(movieId)
-                .catch {
-                    _movieDetails.value = State.Error(it)
-                } .collect {
-                    _movieDetails.value = State.Success(it)
-                }
+            try {
+                val result = getMovieDetailsUseCase(movieId)
+                _movieDetails.value = State.Success(result)
+            } catch (e: HttpException) {
+                _movieDetails.value = State.Error(e)
+            }
+
         }
     }
 

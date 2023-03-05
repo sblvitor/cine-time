@@ -1,6 +1,5 @@
 package com.lira.cinetime.data.repositories.moviesRepository
 
-import android.os.RemoteException
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -11,8 +10,6 @@ import com.lira.cinetime.data.models.movies.popularMovies.PopularMoviesResult
 import com.lira.cinetime.data.models.movies.topRated.TopRatedResult
 import com.lira.cinetime.data.services.TheMoviesService
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import retrofit2.HttpException
 
 class MoviesRepositoryImpl(private val service: TheMoviesService): MoviesRepository {
 
@@ -52,18 +49,13 @@ class MoviesRepositoryImpl(private val service: TheMoviesService): MoviesReposit
         ).flow
     }
 
-    override fun getMovieDetails(movieId: Long): Flow<MovieDetailsResponse> {
-        return flow {
-            try {
-                emit(service.getMovieDetails(
-                    movieId = movieId,
-                    api_key = Constants.API_KEY,
-                    language = Constants.LANG_PT_BR,
-                    append_to_response = "watch/providers,credits"))
-            } catch (e: HttpException) {
-                throw RemoteException(e.message)
-            }
-        }
+    override suspend fun getMovieDetails(movieId: Long): MovieDetailsResponse {
+        return service.getMovieDetails(
+            movieId = movieId,
+            api_key = Constants.API_KEY,
+            language = Constants.LANG_PT_BR,
+            append_to_response = "watch/providers,credits"
+        )
     }
 
 }

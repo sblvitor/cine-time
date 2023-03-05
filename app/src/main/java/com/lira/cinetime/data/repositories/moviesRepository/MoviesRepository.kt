@@ -15,6 +15,6 @@ interface MoviesRepository {
 
     fun getTopRatedMovies(): Flow<PagingData<TopRatedResult>>
 
-    fun getMovieDetails(movieId: Long): Flow<MovieDetailsResponse>
+    suspend fun getMovieDetails(movieId: Long): MovieDetailsResponse
 
 }

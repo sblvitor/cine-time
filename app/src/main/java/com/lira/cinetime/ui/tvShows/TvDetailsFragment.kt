@@ -66,7 +66,7 @@ class TvDetailsFragment : Fragment() {
     private fun collectData() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                tvDetailsViewModel.tvDetails.collectLatest {
+                tvDetailsViewModel.tvDetails.collect {
                     when(it) {
                         TvDetailsViewModel.State.Loading -> {
                             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)

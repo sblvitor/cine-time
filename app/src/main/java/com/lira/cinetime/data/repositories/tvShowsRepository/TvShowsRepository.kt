@@ -15,6 +15,6 @@ interface TvShowsRepository {
 
     fun getTopRatedTv(): Flow<PagingData<TopRatedTvResult>>
 
-    fun getTvDetails(tvId: Long): Flow<TvDetailsResponse>
+    suspend fun getTvDetails(tvId: Long): TvDetailsResponse
 
 }

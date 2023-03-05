@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class TvDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
                          private val getTvDetailsUseCase: GetTvDetailsUseCase,
@@ -37,12 +38,12 @@ class TvDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
 
     fun getTvDetails(tvId: Long){
         viewModelScope.launch {
-            getTvDetailsUseCase(tvId)
-                .catch {
-                    _tvDetails.value = State.Error(it)
-                } .collect {
-                    _tvDetails.value = State.Success(it)
-                }
+            try {
+                val result = getTvDetailsUseCase(tvId)
+                _tvDetails.value = State.Success(result)
+            } catch (e: HttpException) {
+                _tvDetails.value = State.Error(e)
+            }
         }
     }
 
