@@ -41,7 +41,7 @@ class RegisterFragment : Fragment() {
                     Snackbar.make((requireActivity()).findViewById(android.R.id.content), "${it.error.message}", Snackbar.LENGTH_LONG).show()
                 }
                 is RegisterViewModel.State.Success -> {
-                    binding.tvWrongCredentialsRegister.visibility = View.GONE
+                    binding.tvWrongCredentialsRegister.visibility = View.INVISIBLE
                     registerViewModel.addUserToDB(
                         it.user!!.uid,
                         binding.etNameRegister.text.toString(),

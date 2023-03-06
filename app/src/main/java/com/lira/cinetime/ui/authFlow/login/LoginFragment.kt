@@ -40,7 +40,7 @@ class LoginFragment : Fragment() {
                     binding.tvWrongCredentialsLogin.visibility = View.VISIBLE
                 }
                 is LoginViewModel.State.Success -> {
-                    binding.tvWrongCredentialsLogin.visibility = View.GONE
+                    binding.tvWrongCredentialsLogin.visibility = View.INVISIBLE
                     dialog.dismiss()
                     findNavController().navigate(R.id.action_nav_login_to_nav_movies)
                 }
