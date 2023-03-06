@@ -73,4 +73,7 @@
     <string name="see_more_txt">VER MAIS</string>
     <string name="lists_label">Listas</string>
     <string name="edit_profile_txt">Editar Perfil</string>
+    <string name="txt_preferences">Preferências</string>
+    <string name="txt_dark_mode">Modo Escuro</string>
+    <string name="txt_logout">Sair</string>
 </resources>

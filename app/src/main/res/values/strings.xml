@@ -92,4 +92,7 @@
     <string name="add_image_button_cd" translatable="false">Add image button</string>
     <string name="lists_label">Lists</string>
     <string name="edit_profile_txt">Edit Profile</string>
+    <string name="txt_preferences">Preferences</string>
+    <string name="txt_dark_mode">Dark Mode</string>
+    <string name="txt_logout">Logout</string>
 </resources>

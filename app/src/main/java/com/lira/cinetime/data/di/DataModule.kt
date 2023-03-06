@@ -9,6 +9,8 @@ import com.lira.cinetime.data.firebase.auth.ServiceAuthRepository
 import com.lira.cinetime.data.firebase.auth.ServiceAuthRepositoryImpl
 import com.lira.cinetime.data.firebase.firestore.FirestoreRepository
 import com.lira.cinetime.data.firebase.firestore.FirestoreRepositoryImpl
+import com.lira.cinetime.data.preferences.SettingsRepository
+import com.lira.cinetime.data.preferences.SettingsRepositoryImpl
 import com.lira.cinetime.data.repositories.moviesRepository.MoviesRepository
 import com.lira.cinetime.data.repositories.moviesRepository.MoviesRepositoryImpl
 import com.lira.cinetime.data.repositories.searchRepository.SearchRepository
@@ -32,7 +34,7 @@ object DataModule {
     private const val OK_HTTP: String = "OkHttp"
 
     fun load(){
-        loadKoinModules(firebaseInstancesModule() + firebaseRepositoriesModule() + networkModules() + repositoriesModule())
+        loadKoinModules(firebaseInstancesModule() + firebaseRepositoriesModule() + networkModules() + repositoriesModule() + settingsRepositoryModule())
     }
 
     private fun networkModules(): Module {
@@ -87,6 +89,12 @@ object DataModule {
         return module {
             single<ServiceAuthRepository> { ServiceAuthRepositoryImpl(get()) }
             single<FirestoreRepository> { FirestoreRepositoryImpl(get()) }
+        }
+    }
+
+    private fun settingsRepositoryModule(): Module {
+        return module {
+            single<SettingsRepository> { SettingsRepositoryImpl(get()) }
         }
     }
 }

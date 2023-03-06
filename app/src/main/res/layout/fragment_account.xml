@@ -61,4 +61,78 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_email" />
 
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/d_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        app:layout_constraintTop_toBottomOf="@id/btn_edit_profile" />
+
+    <TextView
+        android:id="@+id/tv_preferences"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:text="@string/txt_preferences"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/d_one" />
+
+    <TextView
+        android:id="@+id/tv_dark_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:drawablePadding="2dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/txt_dark_mode"
+        android:textSize="20sp"
+        app:drawableStartCompat="@drawable/dark_mode"
+        app:layout_constraintStart_toStartOf="@id/tv_preferences"
+        app:layout_constraintTop_toBottomOf="@id/tv_preferences" />
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/theme_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:checked="true"
+        app:layout_constraintBottom_toBottomOf="@id/tv_dark_mode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_dark_mode" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/d_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        app:layout_constraintTop_toBottomOf="@id/theme_switch" />
+
+    <TextView
+        android:id="@+id/tv_account"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:text="@string/account_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/d_two" />
+
+    <Button
+        style="@style/Widget.Material3.Button.TextButton.Icon"
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/txt_logout"
+        android:textSize="20sp"
+        app:icon="@drawable/logout"
+        app:layout_constraintStart_toStartOf="@id/tv_account"
+        app:layout_constraintTop_toBottomOf="@id/tv_account" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@ object PresentationModule {
 
     private fun viewModelModule(): Module {
         return module {
-            viewModel { MainViewModel(get(), get()) }
+            viewModel { MainViewModel(get(), get(), get()) }
             viewModel { LoginViewModel(get()) }
             viewModel { RegisterViewModel(get(), get()) }
             viewModel { MoviesViewModel(get()) }
@@ -38,7 +38,7 @@ object PresentationModule {
             viewModel { TvDetailsViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
             viewModel { SearchViewModel(get(), get()) }
             viewModel { MyListViewModel(get(), get(), get(), get(), get()) }
-            viewModel { AccountViewModel(get(), get()) }
+            viewModel { AccountViewModel(get(), get(), get(), get()) }
         }
     }
 

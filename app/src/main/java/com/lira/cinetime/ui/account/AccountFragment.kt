@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createDialog
 import com.lira.cinetime.core.createProgressDialog
 import com.lira.cinetime.data.models.firebase.User
+import com.lira.cinetime.data.preferences.UiMode
 import com.lira.cinetime.databinding.FragmentAccountBinding
 import com.lira.cinetime.presentation.account.AccountViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -73,6 +75,25 @@ class AccountFragment : Fragment() {
             tvName.text = user.name
 
             tvEmail.text = user.email
+
+            themeSwitch.apply {
+                setOnCheckedChangeListener { _, isChecked ->
+                    accountViewModel.onThemeModeSwitched(if(isChecked) UiMode.DARK else UiMode.LIGHT)
+                }
+
+                lifecycleScope.launch {
+                    repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        accountViewModel.currentThemeMode.observe(viewLifecycleOwner) { uiMode ->
+                            isChecked = uiMode == UiMode.DARK
+                        }
+                    }
+                }
+            }
+
+            btnLogout.setOnClickListener {
+                accountViewModel.signOut()
+                it.findNavController().navigate(R.id.action_nav_account_to_navigation_login_flow)
+            }
         }
     }
 

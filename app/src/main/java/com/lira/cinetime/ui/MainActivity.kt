@@ -4,14 +4,20 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lira.cinetime.R
+import com.lira.cinetime.data.preferences.UiMode
 import com.lira.cinetime.databinding.ActivityMainBinding
 import com.lira.cinetime.presentation.MainViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +45,14 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         navView.itemIconTintList = null
 
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                mainViewModel.currentThemeMode.observe(this@MainActivity) { uiMode ->
+                    AppCompatDelegate.setDefaultNightMode(if (uiMode == UiMode.DARK) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
+        }
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
                 R.id.nav_register -> {
@@ -61,26 +75,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            R.id.action_sign_out -> {
-                mainViewModel.signOut()
-                val navController = findNavController(R.id.nav_host_fragment_content_main)
-                navController.navigate(R.id.action_global_navigation_login_flow)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }*/
 }

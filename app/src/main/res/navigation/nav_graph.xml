@@ -85,7 +85,13 @@
         android:id="@+id/nav_account"
         android:name="com.lira.cinetime.ui.account.AccountFragment"
         android:label="@string/account_label"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_nav_account_to_navigation_login_flow"
+            app:destination="@id/navigation_login_flow"
+            app:popUpTo="@id/nav_movies"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
     <navigation
         android:id="@+id/navigation_login_flow"
