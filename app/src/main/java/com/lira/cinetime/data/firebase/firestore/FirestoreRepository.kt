@@ -1,6 +1,7 @@
 package com.lira.cinetime.data.firebase.firestore
 
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.lira.cinetime.data.models.firebase.Movie
 import com.lira.cinetime.data.models.firebase.TvShow
 import com.lira.cinetime.data.models.firebase.User
@@ -9,6 +10,8 @@ import kotlinx.coroutines.flow.Flow
 interface FirestoreRepository {
 
     suspend fun addUser(user: User)
+
+    suspend fun getUser(userId: String): DocumentSnapshot?
 
     fun addMovieToFavorites(movie: Movie): Flow<DocumentReference>
 

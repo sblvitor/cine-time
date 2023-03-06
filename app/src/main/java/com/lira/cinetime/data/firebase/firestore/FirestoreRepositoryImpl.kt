@@ -1,6 +1,7 @@
 package com.lira.cinetime.data.firebase.firestore
 
 import android.util.Log
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.snapshots
 import com.google.firebase.firestore.ktx.toObjects
@@ -17,7 +18,7 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
 
     override suspend fun addUser(user: User) {
         db.collection(Constants.USERS)
-            .document(user.id)
+            .document(user.id!!)
             .set(user)
             .addOnCompleteListener {
                 Log.d("Register", "addUser: DocumentSnapshot successfully written!")
@@ -25,6 +26,15 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
             .addOnFailureListener {
                 Log.w("Register", "addUser: Error adding document", it)
             }
+    }
+
+    override suspend fun getUser(userId: String): DocumentSnapshot? {
+        val userRef = db.collection(Constants.USERS).document(userId)
+        try {
+            return userRef.get().await() ?: null
+        } catch (e: Exception) {
+            throw Exception(e)
+        }
     }
 
     override fun addMovieToFavorites(movie: Movie) = flow {

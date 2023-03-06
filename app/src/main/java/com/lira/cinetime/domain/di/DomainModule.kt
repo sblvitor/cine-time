@@ -1,5 +1,6 @@
 package com.lira.cinetime.domain.di
 
+import com.lira.cinetime.domain.account.GetUserFirestoreUseCase
 import com.lira.cinetime.domain.authFlow.*
 import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
 import com.lira.cinetime.domain.movies.nowPlaying.GetNowPlayingMoviesUseCase
@@ -55,6 +56,7 @@ object DomainModule {
             factory { GetAllToWatchMoviesUseCase(get()) }
             factory { GetAllFavoriteTvUseCase(get()) }
             factory { GetAllToWatchTvUseCase(get()) }
+            factory { GetUserFirestoreUseCase(get()) }
         }
     }
 
