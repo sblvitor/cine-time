@@ -1,5 +1,6 @@
 package com.lira.cinetime.presentation.movies
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
@@ -9,8 +10,11 @@ import com.lira.cinetime.data.models.movies.movieDetails.MovieDetailsResponse
 import com.lira.cinetime.domain.authFlow.GetCurrentUserUseCase
 import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
 import com.lira.cinetime.domain.myLists.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okio.IOException
 import retrofit2.HttpException
 
@@ -35,26 +39,31 @@ class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
         user = getCurrentUserUseCase()
     }
 
-    fun getMovieDetails(movieId: Long) {
-        viewModelScope.launch {
-            try {
-                val result = getMovieDetailsUseCase(movieId)
-                _movieDetails.value = State.Success(result)
-            } catch (e: HttpException) {
-                _movieDetails.value = State.Error(e)
-            }
+    private val handler = CoroutineExceptionHandler { _, throwable ->
+        Log.e("MovieDetails", "Caught: $throwable")
+    }
 
+    fun getMovieDetails(movieId: Long) {
+        viewModelScope.launch(handler) {
+            runCatching {
+                getMovieDetailsUseCase(movieId)
+            }.onSuccess { result ->
+                _movieDetails.value = State.Success(result)
+            }.onFailure {
+                _movieDetails.value = State.Error(it)
+            }
         }
     }
 
     // Favorites
     fun checkIfFavorite(movieId: Long) {
-        viewModelScope.launch {
-            try {
-                val result = isMovieFavoriteUseCase(movieId, user!!.uid)
+        viewModelScope.launch(handler) {
+            runCatching {
+                isMovieFavoriteUseCase(movieId, user!!.uid)
+            }.onSuccess { result ->
                 _dbOperations.value = DBState.IsFavorite(result)
-            } catch (e: IOException) {
-                _dbOperations.value = DBState.Error(e)
+            }.onFailure {
+                _dbOperations.value = DBState.Error(it)
             }
         }
     }
@@ -85,12 +94,13 @@ class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
 
     // To Watch
     fun checkIfInToWatch(movieId: Long) {
-        viewModelScope.launch {
-            try {
-                val result = isMovieInToWatchUseCase(movieId, user!!.uid)
+        viewModelScope.launch(handler) {
+            runCatching {
+                isMovieInToWatchUseCase(movieId, user!!.uid)
+            }.onSuccess { result ->
                 _dbOperations.value = DBState.IsInToWatch(result)
-            } catch (e: IOException) {
-                _dbOperations.value = DBState.Error(e)
+            }.onFailure {
+                _dbOperations.value = DBState.Error(it)
             }
         }
     }

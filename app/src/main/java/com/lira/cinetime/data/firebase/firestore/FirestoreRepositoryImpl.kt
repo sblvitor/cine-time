@@ -36,17 +36,22 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
     }
 
     override suspend fun isThisMovieFavorite(movieId: Long, userId: String): Boolean {
-        val result = db.collection(Constants.LISTS)
-            .document(Constants.FAVORITES)
-            .collection(Constants.MOVIES)
-            .whereEqualTo("movieId", movieId)
-            .whereEqualTo("userID", userId)
-            .get().await()
+        try {
+            val result = db.collection(Constants.LISTS)
+                .document(Constants.FAVORITES)
+                .collection(Constants.MOVIES)
+                .whereEqualTo("movieId", movieId)
+                .whereEqualTo("userID", userId)
+                .get().await()
 
-        if(result.documents.isEmpty())
-            return false
+            if(result.documents.isEmpty())
+                return false
 
-        return true
+            return true
+        } catch (e: Exception) {
+            throw Exception(e)
+        }
+
     }
 
     override suspend fun deleteFavoriteMovie(movieId: Long, userId: String) {
@@ -79,17 +84,21 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
     }
 
     override suspend fun isThisMovieInToWatch(movieId: Long, userId: String): Boolean {
-        val result = db.collection(Constants.LISTS)
-            .document(Constants.TO_WATCH)
-            .collection(Constants.MOVIES)
-            .whereEqualTo("movieId", movieId)
-            .whereEqualTo("userID", userId)
-            .get().await()
+        try {
+            val result = db.collection(Constants.LISTS)
+                .document(Constants.TO_WATCH)
+                .collection(Constants.MOVIES)
+                .whereEqualTo("movieId", movieId)
+                .whereEqualTo("userID", userId)
+                .get().await()
 
-        if(result.documents.isEmpty())
-            return false
+            if(result.documents.isEmpty())
+                return false
 
-        return true
+            return true
+        } catch (e: Exception) {
+            throw Exception(e)
+        }
     }
 
     override suspend fun deleteToWatchMovie(movieId: Long, userId: String) {
