@@ -11,12 +11,8 @@ import com.lira.cinetime.domain.authFlow.GetCurrentUserUseCase
 import com.lira.cinetime.domain.movies.movieDetails.GetMovieDetailsUseCase
 import com.lira.cinetime.domain.myLists.*
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okio.IOException
-import retrofit2.HttpException
 
 class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
                             private val getMovieDetailsUseCase: GetMovieDetailsUseCase,

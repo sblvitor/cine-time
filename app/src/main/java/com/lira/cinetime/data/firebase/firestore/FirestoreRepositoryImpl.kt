@@ -130,17 +130,21 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
     }
 
     override suspend fun isThisTvFavorite(tvId: Long, userId: String): Boolean {
-        val result = db.collection(Constants.LISTS)
-            .document(Constants.FAVORITES)
-            .collection(Constants.TV_SHOWS)
-            .whereEqualTo("tvId", tvId)
-            .whereEqualTo("userID", userId)
-            .get().await()
+        try {
+            val result = db.collection(Constants.LISTS)
+                .document(Constants.FAVORITES)
+                .collection(Constants.TV_SHOWS)
+                .whereEqualTo("tvId", tvId)
+                .whereEqualTo("userID", userId)
+                .get().await()
 
-        if(result.documents.isEmpty())
-            return false
+            if(result.documents.isEmpty())
+                return false
 
-        return true
+            return true
+        } catch (e: Exception){
+            throw Exception(e)
+        }
     }
 
     override suspend fun deleteFavoriteTv(tvId: Long, userId: String) {
@@ -172,17 +176,21 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
     }
 
     override suspend fun isThisTvInToWatch(tvId: Long, userId: String): Boolean {
-        val result = db.collection(Constants.LISTS)
-            .document(Constants.TO_WATCH)
-            .collection(Constants.TV_SHOWS)
-            .whereEqualTo("tvId", tvId)
-            .whereEqualTo("userID", userId)
-            .get().await()
+        try {
+            val result = db.collection(Constants.LISTS)
+                .document(Constants.TO_WATCH)
+                .collection(Constants.TV_SHOWS)
+                .whereEqualTo("tvId", tvId)
+                .whereEqualTo("userID", userId)
+                .get().await()
 
-        if(result.documents.isEmpty())
-            return false
+            if(result.documents.isEmpty())
+                return false
 
-        return true
+            return true
+        } catch (e: Exception) {
+            throw Exception(e)
+        }
     }
 
     override suspend fun deleteToWatchTv(tvId: Long, userId: String) {
