@@ -264,9 +264,11 @@ class TvDetailsFragment : Fragment() {
             // Last Air Date and Next Air Date
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-                val lastAirDate =  LocalDate.parse(tvDetails.lastAirDate)
-                val lastAirDateText = getString(R.string.last_air_date) + " " + lastAirDate.format(formatter)
-                tvLastAirDate.text = lastAirDateText
+                if(tvDetails.lastAirDate != null){
+                    val lastAirDate =  LocalDate.parse(tvDetails.lastAirDate)
+                    val lastAirDateText = getString(R.string.last_air_date) + " " + lastAirDate.format(formatter)
+                    tvLastAirDate.text = lastAirDateText
+                }
 
                 if(tvDetails.nextEpisodeToAir != null){
                     val nextAirDate = LocalDate.parse(tvDetails.nextEpisodeToAir.airDate)

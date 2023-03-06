@@ -12,7 +12,7 @@ data class TvDetailsResponse(
     val homepage: String,
     val id: Long,
     @SerializedName("last_air_date")
-    val lastAirDate: String,
+    val lastAirDate: String?,
     @SerializedName("last_episode_to_air")
     val lastEpisodeToAir: TEpisodeToAir,
     val name: String,
