@@ -53,8 +53,10 @@ class SearchFragment : Fragment() {
 
         // Trending
         lifecycleScope.launch {
-            searchViewModel.trending.collectLatest { trending ->
-                trendingAdapter.submitData(trending)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                searchViewModel.trending.collectLatest { trending ->
+                    trendingAdapter.submitData(trending)
+                }
             }
         }
 
