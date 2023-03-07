@@ -7,8 +7,8 @@ import kotlinx.coroutines.tasks.await
 
 class ServiceAuthRepositoryImpl(private val auth: FirebaseAuth): ServiceAuthRepository {
 
-    override fun getCurrentUser(): FirebaseUser? {
-        return auth.currentUser
+    override fun getCurrentUser() = flow {
+        emit(auth.currentUser)
     }
 
     override fun logIn(email: String, password: String) = flow {

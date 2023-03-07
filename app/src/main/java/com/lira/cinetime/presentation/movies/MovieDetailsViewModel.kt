@@ -14,7 +14,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
+class MovieDetailsViewModel(private val getCurrentUserUseCase: GetCurrentUserUseCase,
                             private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
                             private val isMovieFavoriteUseCase: IsMovieFavoriteUseCase,
                             private val addMovieToFavoritesUseCase: AddMovieToFavoritesUseCase,
@@ -32,7 +32,11 @@ class MovieDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
     private var user: FirebaseUser? = null
 
     init {
-        user = getCurrentUserUseCase()
+        viewModelScope.launch {
+            getCurrentUserUseCase().collect {
+                user = it
+            }
+        }
     }
 
     private val handler = CoroutineExceptionHandler { _, throwable ->

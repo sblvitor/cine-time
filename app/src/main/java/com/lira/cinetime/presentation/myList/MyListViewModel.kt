@@ -1,7 +1,8 @@
 package com.lira.cinetime.presentation.myList
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseUser
+import androidx.lifecycle.viewModelScope
 import com.lira.cinetime.data.models.firebase.AllData
 import com.lira.cinetime.data.models.firebase.Movie
 import com.lira.cinetime.data.models.firebase.TvShow
@@ -10,8 +11,8 @@ import com.lira.cinetime.domain.myLists.GetAllFavoriteMoviesUseCase
 import com.lira.cinetime.domain.myLists.GetAllFavoriteTvUseCase
 import com.lira.cinetime.domain.myLists.GetAllToWatchMoviesUseCase
 import com.lira.cinetime.domain.myLists.GetAllToWatchTvUseCase
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
 
 class MyListViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
                       private val getAllFavoriteMoviesUseCase: GetAllFavoriteMoviesUseCase,
@@ -19,35 +20,43 @@ class MyListViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
                       private val getAllFavoriteTvUseCase: GetAllFavoriteTvUseCase,
                       private val getAllToWatchTvUseCase: GetAllToWatchTvUseCase) : ViewModel() {
 
-    private var user: FirebaseUser? = null
+    private val userId: Flow<String> = getCurrentUserUseCase().map { user -> user!!.uid }
 
-    init {
-        user = getCurrentUserUseCase()
-    }
-
-    val allData: Flow<AllData> = combine(
-        getAllToWatchMovies(),
-        getAllFavoriteMovies(),
-        getAllToWatchTv(),
-        getAllFavoriteTv()
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val allData: StateFlow<State> = userId.flatMapLatest { newUserId ->
+        combine(
+        getAllToWatchMovies(newUserId),
+        getAllFavoriteMovies(newUserId),
+        getAllToWatchTv(newUserId),
+        getAllFavoriteTv(newUserId)
     ) { toWatchMovies, favMovies, toWatchTv, favTv ->
-        AllData(toWatchMovies, favMovies, toWatchTv, favTv)
+        State.Success(AllData(toWatchMovies, favMovies, toWatchTv, favTv))
+    } }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = State.Loading
+    )
+
+    private fun getAllToWatchMovies(userId: String): Flow<List<Movie>> {
+        Log.e("TAG", userId)
+        return getAllToWatchMoviesUseCase(userId)
     }
 
-    private fun getAllToWatchMovies(): Flow<List<Movie>> {
-        return getAllToWatchMoviesUseCase(user!!.uid)
+    private fun getAllFavoriteMovies(userId: String): Flow<List<Movie>> {
+        return getAllFavoriteMoviesUseCase(userId)
     }
 
-    private fun getAllFavoriteMovies(): Flow<List<Movie>> {
-        return getAllFavoriteMoviesUseCase(user!!.uid)
+    private fun getAllToWatchTv(userId: String): Flow<List<TvShow>> {
+        return getAllToWatchTvUseCase(userId)
     }
 
-    private fun getAllToWatchTv(): Flow<List<TvShow>> {
-        return getAllToWatchTvUseCase(user!!.uid)
+    private fun getAllFavoriteTv(userId: String): Flow<List<TvShow>> {
+        return getAllFavoriteTvUseCase(userId)
     }
 
-    private fun getAllFavoriteTv(): Flow<List<TvShow>> {
-        return getAllFavoriteTvUseCase(user!!.uid)
+    sealed class State {
+        object Loading: State()
+        data class Success(val result: AllData): State()
     }
 
 }

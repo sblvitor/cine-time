@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class AccountViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
+class AccountViewModel(private val getCurrentUserUseCase: GetCurrentUserUseCase,
                        private val getUserFirestoreUseCase: GetUserFirestoreUseCase,
                        private val settingsRepository: SettingsRepository,
                        private val signOutUseCase: SignOutUseCase) : ViewModel() {
@@ -26,11 +26,15 @@ class AccountViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
     private val _currentThemeMode = MutableLiveData<UiMode>()
     val currentThemeMode: LiveData<UiMode> = _currentThemeMode
 
-    var user: FirebaseUser? = null
+    private var user: FirebaseUser? = null
 
     init {
-        user = getCurrentUserUseCase()
-        user?.let { getUser(it.uid) }
+        viewModelScope.launch {
+            getCurrentUserUseCase().collect { result ->
+                user = result
+                user?.let { getUser(it.uid) }
+            }
+        }
 
         viewModelScope.launch {
             settingsRepository.uiModeFlow.collect {

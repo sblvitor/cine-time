@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
-class TvDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
+class TvDetailsViewModel(private val getCurrentUserUseCase: GetCurrentUserUseCase,
                          private val getTvDetailsUseCase: GetTvDetailsUseCase,
                          private val addTvToFavoritesUseCase: AddTvToFavoritesUseCase,
                          private val isTvFavoriteUseCase: IsTvFavoriteUseCase,
@@ -34,7 +34,11 @@ class TvDetailsViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
     private var user: FirebaseUser? = null
 
     init {
-        user = getCurrentUserUseCase()
+        viewModelScope.launch {
+            getCurrentUserUseCase().collect {
+                user = it
+            }
+        }
     }
 
     private val handler = CoroutineExceptionHandler { _, throwable ->

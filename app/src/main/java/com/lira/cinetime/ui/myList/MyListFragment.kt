@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ConcatAdapter
 import com.lira.cinetime.R
+import com.lira.cinetime.core.createProgressDialog
 import com.lira.cinetime.data.models.firebase.ParentMovie
 import com.lira.cinetime.data.models.firebase.ParentTv
 import com.lira.cinetime.databinding.FragmentMyListBinding
@@ -22,6 +23,7 @@ class MyListFragment : Fragment() {
 
     private var _binding: FragmentMyListBinding? = null
     private val myListViewModel by viewModel<MyListViewModel>()
+    private val dialog by lazy { createProgressDialog() }
 
     private val parentMoviesAdapter by lazy { ParentMoviesAdapter() }
     private val parentTvAdapter by lazy { ParentTvAdapter() }
@@ -42,20 +44,32 @@ class MyListFragment : Fragment() {
         binding.rvLists.adapter = concatAdapter
 
         lifecycleScope.launch {
-            myListViewModel.allData.flowWithLifecycle(lifecycle, Lifecycle.State.CREATED).collectLatest { result ->
-                //result.toWatchTvShows.tvShow?.let { toWatchTv -> tvList.add(ParentTv(getString(R.string.to_watch_tv_shows_label), toWatchTv)) }
-                parentMoviesAdapter.submitList(
-                    listOf(
-                    ParentMovie(getString(R.string.to_watch_movies_label), result.toWatchMovies),
-                    ParentMovie(getString(R.string.favorite_movies_label), result.favMovies)
-                    )
-                )
-                parentTvAdapter.submitList(
-                    listOf(
-                        ParentTv(getString(R.string.to_watch_tv_shows_label), result.toWatchTvShows),
-                        ParentTv(getString(R.string.favorite_tv_label), result.favTvShows)
-                    )
-                )
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                myListViewModel.allData.collectLatest {
+                    when(it) {
+                        MyListViewModel.State.Loading -> {
+                            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                            dialog.show()
+                        }
+                        is MyListViewModel.State.Success -> {
+                            dialog.dismiss()
+                            parentMoviesAdapter.submitList(
+                                listOf(
+                                    ParentMovie(getString(R.string.to_watch_movies_label), it.result.toWatchMovies),
+                                    ParentMovie(getString(R.string.favorite_movies_label), it.result.favMovies)
+                                )
+                            )
+                            parentTvAdapter.submitList(
+                                listOf(
+                                    ParentTv(getString(R.string.to_watch_tv_shows_label), it.result.toWatchTvShows),
+                                    ParentTv(getString(R.string.favorite_tv_label), it.result.favTvShows)
+                                )
+                            )
+                        }
+                    }
+                    //result.toWatchTvShows.tvShow?.let { toWatchTv -> tvList.add(ParentTv(getString(R.string.to_watch_tv_shows_label), toWatchTv)) }
+
+                }
             }
         }
     }
