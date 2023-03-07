@@ -38,7 +38,6 @@ class MyListViewModel(getCurrentUserUseCase: GetCurrentUserUseCase,
     )
 
     private fun getAllToWatchMovies(userId: String): Flow<List<Movie>> {
-        Log.e("TAG", userId)
         return getAllToWatchMoviesUseCase(userId)
     }
 
