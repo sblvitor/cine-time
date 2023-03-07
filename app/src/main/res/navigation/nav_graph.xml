@@ -91,7 +91,20 @@
             app:destination="@id/navigation_login_flow"
             app:popUpTo="@id/nav_movies"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_account_to_nav_edit_profile"
+            app:destination="@id/nav_edit_profile"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_edit_profile"
+        android:name="com.lira.cinetime.ui.account.EditProfileFragment"
+        android:label="@string/edit_profile_txt"
+        tools:layout="@layout/fragment_edit_profile" />
 
     <navigation
         android:id="@+id/navigation_login_flow"

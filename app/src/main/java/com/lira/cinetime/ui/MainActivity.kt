@@ -68,6 +68,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_tv_details -> {
                     navView.visibility = View.GONE
                 }
+                R.id.nav_edit_profile -> {
+                    navView.visibility = View.GONE
+                }
                 else -> {
                     navView.visibility = View.VISIBLE
                 }

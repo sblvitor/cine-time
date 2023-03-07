@@ -76,6 +76,10 @@ class AccountFragment : Fragment() {
 
             tvEmail.text = user.email
 
+            btnEditProfile.setOnClickListener {
+                it.findNavController().navigate(R.id.action_nav_account_to_nav_edit_profile)
+            }
+
             themeSwitch.apply {
                 setOnCheckedChangeListener { _, isChecked ->
                     accountViewModel.onThemeModeSwitched(if(isChecked) UiMode.DARK else UiMode.LIGHT)
