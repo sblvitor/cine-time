@@ -76,4 +76,5 @@
     <string name="txt_preferences">Preferências</string>
     <string name="txt_dark_mode">Modo Escuro</string>
     <string name="txt_logout">Sair</string>
+    <string name="txt_update">Atualizar</string>
 </resources>

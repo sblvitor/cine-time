@@ -77,7 +77,8 @@ class AccountFragment : Fragment() {
             tvEmail.text = user.email
 
             btnEditProfile.setOnClickListener {
-                it.findNavController().navigate(R.id.action_nav_account_to_nav_edit_profile)
+                val action = AccountFragmentDirections.actionNavAccountToNavEditProfile(user)
+                it.findNavController().navigate(action)
             }
 
             themeSwitch.apply {
