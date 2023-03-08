@@ -40,7 +40,7 @@ object PresentationModule {
             viewModel { SearchViewModel(get(), get()) }
             viewModel { MyListViewModel(get(), get(), get(), get(), get()) }
             viewModel { AccountViewModel(get(), get(), get(), get()) }
-            viewModel { EditProfileViewModel() }
+            viewModel { EditProfileViewModel(get(), get(), get(), get()) }
         }
     }
 

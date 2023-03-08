@@ -13,6 +13,12 @@ interface FirestoreRepository {
 
     suspend fun getUser(userId: String): DocumentSnapshot?
 
+    suspend fun updateUserProfileImage(userId: String, profileImg: String)
+
+    suspend fun updateUserName(userId: String, name: String)
+
+    suspend fun updateUserProfileImgAndName(userId: String, profileImg: String, name: String)
+
     fun addMovieToFavorites(movie: Movie): Flow<DocumentReference>
 
     suspend fun isThisMovieFavorite(movieId: Long, userId: String): Boolean

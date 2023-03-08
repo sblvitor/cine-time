@@ -70,6 +70,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     //Firestore DB
     implementation 'com.google.firebase:firebase-firestore-ktx'
+    //Storage
+    implementation 'com.google.firebase:firebase-storage-ktx'
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

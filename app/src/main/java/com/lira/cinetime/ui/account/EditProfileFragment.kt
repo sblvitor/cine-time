@@ -9,25 +9,34 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createDialog
 import com.lira.cinetime.data.models.firebase.User
 import com.lira.cinetime.databinding.FragmentEditProfileBinding
 import com.lira.cinetime.presentation.account.EditProfileViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import okio.IOException
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.File
 
 class EditProfileFragment : Fragment() {
 
@@ -82,11 +91,35 @@ class EditProfileFragment : Fragment() {
             }
 
         setupUI(user)
+        collectData()
     }
 
     private fun setupAppBar() {
         binding.editProfileToolbar.setNavigationOnClickListener {
             it.findNavController().navigateUp()
+        }
+    }
+
+    private fun collectData() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                editProfileViewModel.update.collectLatest {
+                    when(it) {
+                        EditProfileViewModel.State.Loading -> {}
+                        EditProfileViewModel.State.Success -> {
+                            binding.progressBarEditProfile.visibility = View.GONE
+                            Snackbar.make(binding.root, "Perfil atualizado com sucesso!", Snackbar.LENGTH_SHORT).show()
+                            binding.root.findNavController().navigateUp()
+                        }
+                        is EditProfileViewModel.State.Error -> {
+                            binding.progressBarEditProfile.visibility = View.GONE
+                            createDialog {
+                                setMessage(it.error.localizedMessage)
+                            }.show()
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -113,7 +146,7 @@ class EditProfileFragment : Fragment() {
                         requireContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE
                         ) == PackageManager.PERMISSION_GRANTED -> {
-                        val galleryIntent = Intent(Intent.ACTION_GET_CONTENT).apply {
+                        val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
                             type = "image/*"
                         }
                         register.launch(galleryIntent)
@@ -129,7 +162,32 @@ class EditProfileFragment : Fragment() {
             }
 
             btnUpdate.setOnClickListener {
-
+                val inputName = etNameUpdate.text.toString()
+                if(inputName.isNotEmpty()) {
+                    when {
+                        selectedImage != null -> {
+                            val ext = getFileExt(selectedImage!!)
+                            if(inputName != user.name) {
+                                progressBarEditProfile.visibility = View.VISIBLE
+                                editProfileViewModel.updateUserProfileImgAndName(user.id!!, selectedImage!!, ext, inputName)
+                            }
+                            else {
+                                progressBarEditProfile.visibility = View.VISIBLE
+                                editProfileViewModel.updateUserProfileImg(user.id!!, selectedImage!!, ext)
+                            }
+                        }
+                        else -> {
+                            if(inputName != user.name) {
+                                progressBarEditProfile.visibility = View.VISIBLE
+                                editProfileViewModel.updateUserName(user.id!!, inputName)
+                            }
+                            else
+                                Toast.makeText(requireContext(),"Nada a ser alterado", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(requireContext(),"Insira um nome!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -151,6 +209,10 @@ class EditProfileFragment : Fragment() {
             .setNegativeButton("No, thanks") { dialog, _ ->
                 dialog.dismiss()
             }.create().show()
+    }
+
+    private fun getFileExt(uri: Uri): String? {
+        return MimeTypeMap.getSingleton().getExtensionFromMimeType(requireContext().contentResolver.getType(uri))
     }
 
     override fun onDestroy() {

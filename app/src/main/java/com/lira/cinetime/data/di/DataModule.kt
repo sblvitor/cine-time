@@ -4,11 +4,14 @@ import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.google.gson.GsonBuilder
 import com.lira.cinetime.data.firebase.auth.ServiceAuthRepository
 import com.lira.cinetime.data.firebase.auth.ServiceAuthRepositoryImpl
 import com.lira.cinetime.data.firebase.firestore.FirestoreRepository
 import com.lira.cinetime.data.firebase.firestore.FirestoreRepositoryImpl
+import com.lira.cinetime.data.firebase.storage.StorageRepository
+import com.lira.cinetime.data.firebase.storage.StorageRepositoryImpl
 import com.lira.cinetime.data.preferences.SettingsRepository
 import com.lira.cinetime.data.preferences.SettingsRepositoryImpl
 import com.lira.cinetime.data.repositories.moviesRepository.MoviesRepository
@@ -82,6 +85,7 @@ object DataModule {
             //FirebaseAuth.getInstance()
             single { Firebase.auth }
             single { Firebase.firestore }
+            single { Firebase.storage }
         }
     }
 
@@ -89,6 +93,7 @@ object DataModule {
         return module {
             single<ServiceAuthRepository> { ServiceAuthRepositoryImpl(get()) }
             single<FirestoreRepository> { FirestoreRepositoryImpl(get()) }
+            single<StorageRepository> { StorageRepositoryImpl(get()) }
         }
     }
 

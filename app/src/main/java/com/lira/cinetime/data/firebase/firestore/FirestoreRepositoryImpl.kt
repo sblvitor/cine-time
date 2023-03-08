@@ -37,6 +37,28 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
         }
     }
 
+    override suspend fun updateUserProfileImage(userId: String, profileImg: String) {
+        val userRef = db.collection(Constants.USERS).document(userId)
+
+        userRef.update("profileImage", profileImg).await()
+    }
+
+    override suspend fun updateUserName(userId: String, name: String) {
+        val userRef = db.collection(Constants.USERS).document(userId)
+
+        userRef.update("name", name).await()
+    }
+
+    override suspend fun updateUserProfileImgAndName(userId: String, profileImg: String, name: String) {
+        val userRef = db.collection(Constants.USERS).document(userId)
+
+        db.runBatch { batch ->
+            batch.update(userRef, "profileImage", profileImg)
+            batch.update(userRef, "name", name)
+        }.await()
+    }
+
+
     override fun addMovieToFavorites(movie: Movie) = flow {
         emit(db.collection(Constants.LISTS)
             .document(Constants.FAVORITES)
