@@ -2,14 +2,19 @@ package com.lira.cinetime.data.firebase.firestore
 
 import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.snapshots
 import com.google.firebase.firestore.ktx.toObjects
 import com.lira.cinetime.core.Constants
 import com.lira.cinetime.data.models.firebase.Movie
 import com.lira.cinetime.data.models.firebase.TvShow
 import com.lira.cinetime.data.models.firebase.User
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
@@ -28,13 +33,26 @@ class FirestoreRepositoryImpl(private val db: FirebaseFirestore): FirestoreRepos
             }
     }
 
-    override suspend fun getUser(userId: String): DocumentSnapshot? {
-        val userRef = db.collection(Constants.USERS).document(userId)
-        try {
-            return userRef.get().await() ?: null
-        } catch (e: Exception) {
-            throw Exception(e)
+    override fun getUser(userId: String): Flow<User> = callbackFlow {
+        val listener = object: EventListener<DocumentSnapshot> {
+
+            override fun onEvent(snapshot: DocumentSnapshot?, exception: FirebaseFirestoreException?) {
+                if(exception != null) {
+                    //An error occurred
+                    cancel()
+                    return
+                }
+
+                if(snapshot != null && snapshot.exists()) {
+                    // The user document has data
+                    val user = snapshot.toObject(User::class.java)
+                    trySend(user!!)
+                }
+            }
         }
+
+        val registration = db.collection(Constants.USERS).document(userId).addSnapshotListener(listener)
+        awaitClose { registration.remove() }
     }
 
     override suspend fun updateUserProfileImage(userId: String, profileImg: String) {

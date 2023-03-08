@@ -1,7 +1,6 @@
 package com.lira.cinetime.data.firebase.firestore
 
 import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
 import com.lira.cinetime.data.models.firebase.Movie
 import com.lira.cinetime.data.models.firebase.TvShow
 import com.lira.cinetime.data.models.firebase.User
@@ -11,7 +10,7 @@ interface FirestoreRepository {
 
     suspend fun addUser(user: User)
 
-    suspend fun getUser(userId: String): DocumentSnapshot?
+    fun getUser(userId: String): Flow<User>
 
     suspend fun updateUserProfileImage(userId: String, profileImg: String)
 

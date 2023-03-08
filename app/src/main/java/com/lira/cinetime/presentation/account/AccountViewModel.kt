@@ -11,9 +11,11 @@ import com.lira.cinetime.data.preferences.UiMode
 import com.lira.cinetime.domain.account.GetUserFirestoreUseCase
 import com.lira.cinetime.domain.authFlow.GetCurrentUserUseCase
 import com.lira.cinetime.domain.authFlow.SignOutUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AccountViewModel(private val getCurrentUserUseCase: GetCurrentUserUseCase,
                        private val getUserFirestoreUseCase: GetUserFirestoreUseCase,
@@ -46,10 +48,10 @@ class AccountViewModel(private val getCurrentUserUseCase: GetCurrentUserUseCase,
     private fun getUser(userId: String) {
         viewModelScope.launch {
             try {
-                val result = getUserFirestoreUseCase(userId)
-                if(result != null) {
-                    val resultUser = result.toObject(User::class.java)
-                    _fireUser.value = State.Success(resultUser!!)
+                withContext(Dispatchers.IO) {
+                    getUserFirestoreUseCase(userId).collect { user ->
+                        _fireUser.value = State.Success(user)
+                    }
                 }
             } catch (e: Exception) {
                 _fireUser.value = State.Error(e)
