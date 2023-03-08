@@ -6,6 +6,21 @@
         <item name="textAppearanceTitleLarge">@style/TextAppearance.CineTime.TitleLarge</item>
         <item name="textAppearanceTitleMedium">@style/TextAppearance.CineTime.TitleMedium</item>
         <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">#00000000</item>
+        <item name="colorOnPrimaryContainer">@color/white_with_transparency</item>
+        <item name="colorSecondary">@color/theme_yellow</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondaryContainer">@color/theme_yellow_with_transparency</item>
+        <item name="colorOnSecondaryContainer">@color/black_with_transparency</item>
+
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+
     </style>
 
     <style name="Theme.CineTime" parent="Base.Theme.CineTime" />

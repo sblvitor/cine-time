@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createProgressDialog
+import com.lira.cinetime.core.hideSoftKeyboard
 import com.lira.cinetime.databinding.FragmentLoginBinding
 import com.lira.cinetime.presentation.authFlow.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,6 +55,7 @@ class LoginFragment : Fragment() {
 
             btnConfirmLogin.setOnClickListener {
                 loginViewModel.logIn(etEmailLogin.text.toString(), etPasswordLogin.text.toString())
+                it.hideSoftKeyboard()
             }
         }
     }

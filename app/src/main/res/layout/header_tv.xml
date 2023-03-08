@@ -11,19 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_see_more_tv"
-        app:layout_constraintBottom_toBottomOf="@id/btn_see_more_tv"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/tv_shows_label" />
-
-    <Button
-        android:id="@+id/btn_see_more_tv"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/see_more_txt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

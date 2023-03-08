@@ -17,9 +17,9 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_airing_today" />
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_bar_airing_today_tv"
-        style="?android:attr/progressBarStyle"
+        android:indeterminate="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

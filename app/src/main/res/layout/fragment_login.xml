@@ -23,9 +23,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
+        android:fontFamily="@font/montserrat_bold"
         android:text="@string/txt_log_in"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="22sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_popcorn" />
@@ -35,8 +36,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/half_margin_default"
+        android:fontFamily="@font/montserrat"
         android:maxLines="3"
         android:text="@string/txt_glad_login"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_login"
         app:layout_constraintTop_toBottomOf="@id/tv_login" />
@@ -45,14 +48,13 @@
         android:id="@+id/tv_wrong_credentials_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_glad"
-        app:layout_constraintStart_toStartOf="@id/tv_login"
+        android:layout_marginTop="@dimen/half_margin_default"
         android:text="@string/txt_wrong_credentials"
         android:textColor="@color/red"
-        android:layout_marginTop="@dimen/half_margin_default"
         android:visibility="invisible"
-        tools:visibility="visible"
-        />
+        app:layout_constraintStart_toStartOf="@id/tv_login"
+        app:layout_constraintTop_toBottomOf="@id/tv_glad"
+        tools:visibility="visible" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_email"
@@ -145,6 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
         android:text="@string/txt_doesnt_have_account"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_confirm_login" />

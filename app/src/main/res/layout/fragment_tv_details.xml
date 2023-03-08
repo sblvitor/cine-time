@@ -16,7 +16,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             style="?attr/collapsingToolbarLayoutLargeStyle"
             android:layout_width="match_parent"
-            android:layout_height="275dp"
+            android:layout_height="250dp"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -37,7 +37,8 @@
                 android:elevation="0dp"
                 app:layout_collapseMode="pin"
                 app:menu="@menu/add_to_my_list_menu"
-                app:navigationIcon="@drawable/arrow_back" />
+                app:navigationIcon="@drawable/arrow_back"
+                app:navigationIconTint="@color/white" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -62,6 +63,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
                 android:maxLines="2"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +77,7 @@
                 android:layout_marginTop="@dimen/half_margin_default"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center"
+                android:textColor="?attr/colorOnSurface"
                 app:layout_constraintEnd_toEndOf="@id/tv_tv_title_details"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
                 app:layout_constraintTop_toBottomOf="@id/tv_tv_title_details"
@@ -107,6 +110,7 @@
                 android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/txt_overview"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
                 app:layout_constraintTop_toBottomOf="@id/rb_tv_details" />
@@ -117,6 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/half_margin_default"
                 android:fontFamily="@font/montserrat"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@id/iv_tv_dot"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
@@ -133,7 +138,8 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_number_of_seasons"
                 app:layout_constraintEnd_toStartOf="@id/tv_number_of_episodes"
                 app:layout_constraintStart_toEndOf="@id/tv_number_of_seasons"
-                app:layout_constraintTop_toTopOf="@id/tv_number_of_seasons" />
+                app:layout_constraintTop_toTopOf="@id/tv_number_of_seasons"
+                app:tint="?attr/colorOnSurface" />
 
             <TextView
                 android:id="@+id/tv_number_of_episodes"
@@ -163,6 +169,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="6"
+                android:textColor="?attr/colorOnSurface"
                 app:layout_constraintEnd_toEndOf="@id/tv_tv_title_details"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
                 app:layout_constraintTop_toBottomOf="@id/d_ep_season_overview"
@@ -183,6 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
+                android:textColor="?attr/colorOnSurface"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
                 app:layout_constraintTop_toBottomOf="@id/d_overview_dates"
                 tools:text="Último episódio: 19/02/2023" />
@@ -192,6 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
+                android:textColor="?attr/colorOnSurface"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
                 app:layout_constraintTop_toBottomOf="@id/tv_last_air_date"
                 tools:text="Próximo episódio: 26/02/2023" />
@@ -210,6 +219,7 @@
                 android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/txt_available_at"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
                 app:layout_constraintTop_toBottomOf="@id/d_dates_available" />
@@ -222,6 +232,7 @@
                 android:layout_marginTop="@dimen/half_margin_default"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:text="@string/txt_not_available"
+                android:textColor="?attr/colorOnSurface"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -297,6 +308,7 @@
                 android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/txt_cast"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@id/tv_tv_title_details"
                 app:layout_constraintTop_toBottomOf="@id/d_available_logos_cast" />

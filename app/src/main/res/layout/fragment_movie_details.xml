@@ -16,7 +16,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             style="?attr/collapsingToolbarLayoutLargeStyle"
             android:layout_width="match_parent"
-            android:layout_height="275dp"
+            android:layout_height="250dp"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -37,7 +37,8 @@
                 android:elevation="0dp"
                 app:layout_collapseMode="pin"
                 app:menu="@menu/add_to_my_list_menu"
-                app:navigationIcon="@drawable/arrow_back" />
+                app:navigationIcon="@drawable/arrow_back"
+                app:navigationIconTint="@color/white" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -63,6 +64,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
                 android:maxLines="2"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +78,7 @@
                 android:layout_marginTop="@dimen/half_margin_default"
                 android:layout_marginEnd="@dimen/half_margin_default"
                 android:fontFamily="@font/montserrat"
+                android:textColor="?attr/colorOnSurface"
                 app:layout_constraintEnd_toStartOf="@id/iv_movie_first_dot"
                 app:layout_constraintTop_toBottomOf="@id/tv_movie_title_details"
                 tools:text="2022" />
@@ -89,13 +92,15 @@
                 android:src="@drawable/dot_separator"
                 app:layout_constraintBottom_toBottomOf="@id/tv_year_release_details"
                 app:layout_constraintEnd_toStartOf="@id/tv_movie_genres_details"
-                app:layout_constraintTop_toTopOf="@id/tv_year_release_details" />
+                app:layout_constraintTop_toTopOf="@id/tv_year_release_details"
+                app:tint="?attr/colorOnSurface" />
 
             <TextView
                 android:id="@+id/tv_movie_genres_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
+                android:textColor="?attr/colorOnSurface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_year_release_details"
@@ -110,7 +115,8 @@
                 android:src="@drawable/dot_separator"
                 app:layout_constraintBottom_toBottomOf="@id/tv_year_release_details"
                 app:layout_constraintStart_toEndOf="@id/tv_movie_genres_details"
-                app:layout_constraintTop_toTopOf="@id/tv_year_release_details" />
+                app:layout_constraintTop_toTopOf="@id/tv_year_release_details"
+                app:tint="?attr/colorOnSurface" />
 
             <TextView
                 android:id="@+id/tv_movie_runtime_details"
@@ -118,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/half_margin_default"
                 android:fontFamily="@font/montserrat"
+                android:textColor="?attr/colorOnSurface"
                 app:layout_constraintStart_toEndOf="@id/iv_movie_second_dot"
                 app:layout_constraintTop_toTopOf="@id/tv_year_release_details"
                 tools:text="2h 42m" />
@@ -150,6 +157,7 @@
                 android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/txt_overview"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rb_movie_details" />
@@ -164,6 +172,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="6"
+                android:textColor="?attr/colorOnSurface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_movie_overview"
@@ -183,6 +192,7 @@
                 android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/txt_available_at"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/txt_movie_overview"
                 app:layout_constraintTop_toBottomOf="@id/d_one_movie_details" />
@@ -195,6 +205,7 @@
                 android:layout_marginTop="@dimen/half_margin_default"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:text="@string/txt_not_available"
+                android:textColor="?attr/colorOnSurface"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -270,6 +281,7 @@
                 android:layout_marginTop="@dimen/margin_default"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/txt_cast"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@id/txt_movie_overview"
                 app:layout_constraintTop_toBottomOf="@id/d_two_movie_details" />

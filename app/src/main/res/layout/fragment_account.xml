@@ -28,6 +28,7 @@
         android:layout_marginEnd="@dimen/margin_default"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +43,7 @@
         android:layout_marginEnd="@dimen/margin_default"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,8 +90,10 @@
         android:drawablePadding="2dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/txt_dark_mode"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="20sp"
         app:drawableStartCompat="@drawable/dark_mode"
+        app:drawableTint="?attr/colorOnSurface"
         app:layout_constraintStart_toStartOf="@id/tv_preferences"
         app:layout_constraintTop_toBottomOf="@id/tv_preferences" />
 
@@ -123,8 +127,8 @@
         app:layout_constraintTop_toBottomOf="@id/d_two" />
 
     <Button
-        style="@style/Widget.Material3.Button.TextButton.Icon"
         android:id="@+id/btn_logout"
+        style="@style/Widget.Material3.Button.TextButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"

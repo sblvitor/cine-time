@@ -7,4 +7,11 @@
     <color name="yellow_rating">#FFBC03</color>
     <color name="movie_title_color">#303133</color>
     <color name="sub_movie_title_color">#ACACAD</color>
+
+    <color name="theme_yellow">#FFEB3B</color>
+    <color name="theme_yellow_with_transparency">#FFFFEB3B</color>
+    <color name="black_with_transparency">#FF000000</color>
+    <color name="white_with_transparency">#FFFFFFFF</color>
+    <color name="black_bg">#1C1C1C</color>
+
 </resources>

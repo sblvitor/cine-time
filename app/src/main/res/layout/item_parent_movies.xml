@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/half_margin_default"
         android:fontFamily="@font/montserrat"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

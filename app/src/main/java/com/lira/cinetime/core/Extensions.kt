@@ -1,12 +1,14 @@
 package com.lira.cinetime.core
 
 import android.app.Activity
+import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.ProgressBar
+import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.lira.cinetime.R
 
 fun Fragment.createDialog(block: MaterialAlertDialogBuilder.() -> Unit = {}): androidx.appcompat.app.AlertDialog {
@@ -19,9 +21,19 @@ fun Fragment.createDialog(block: MaterialAlertDialogBuilder.() -> Unit = {}): an
 fun Fragment.createProgressDialog(): AlertDialog {
     return createDialog {
         val padding = this@createProgressDialog.resources.getDimensionPixelOffset(R.dimen.margin_default)
-        val progressBar = ProgressBar(activity)
+        val progressBar = CircularProgressIndicator(requireContext())
         progressBar.setPadding(padding, padding, padding, padding)
-        setView(progressBar)
+        progressBar.isIndeterminate = true
+
+        val layout = LinearLayout(requireContext())
+        layout.orientation = LinearLayout.VERTICAL
+        layout.addView(progressBar)
+
+        val lp = progressBar.layoutParams as LinearLayout.LayoutParams
+        lp.gravity = Gravity.CENTER_HORIZONTAL
+        progressBar.layoutParams = lp
+
+        setView(layout)
 
         setPositiveButton(null, null)
         setCancelable(false)

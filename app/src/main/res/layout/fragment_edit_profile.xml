@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/arrow_back"
+            app:navigationIconTint="?attr/colorOnSurface"
             app:title="@string/edit_profile_txt" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -42,6 +43,7 @@
         android:layout_marginEnd="@dimen/margin_default"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,9 +83,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_name_update" />
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_bar_edit_profile"
-        style="?android:attr/progressBarStyle"
+        android:indeterminate="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
