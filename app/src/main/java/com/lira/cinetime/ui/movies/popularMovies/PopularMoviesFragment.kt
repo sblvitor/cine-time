@@ -11,12 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.transition.MaterialSharedAxis
 import com.lira.cinetime.R
 import com.lira.cinetime.databinding.FragmentPopularMoviesBinding
 import com.lira.cinetime.presentation.movies.PopularMoviesViewModel
 import com.lira.cinetime.ui.tryAgainUtil.TryAgainAdapter
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,13 +28,6 @@ class PopularMoviesFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentPopularMoviesBinding.inflate(inflater, container, false)

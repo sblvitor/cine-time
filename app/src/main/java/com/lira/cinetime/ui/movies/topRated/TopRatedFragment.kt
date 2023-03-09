@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.transition.MaterialSharedAxis
 import com.lira.cinetime.R
 import com.lira.cinetime.databinding.FragmentTopRatedBinding
 import com.lira.cinetime.presentation.movies.TopRatedViewModel
@@ -27,13 +26,6 @@ class TopRatedFragment : Fragment() {
     private val adapter by lazy { TopRatedAdapter() }
 
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentTopRatedBinding.inflate(inflater, container, false)

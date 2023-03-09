@@ -17,7 +17,9 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_nav_movies_to_nav_movie_details"
-            app:destination="@id/nav_movie_details" />
+            app:destination="@id/nav_movie_details"
+            app:enterAnim="@anim/push_up_in"
+            app:popExitAnim="@anim/push_down_out" />
     </fragment>
 
     <fragment
@@ -37,7 +39,9 @@
         tools:layout="@layout/fragment_tv_show" >
         <action
             android:id="@+id/action_nav_tv_shows_to_nav_tv_details"
-            app:destination="@id/nav_tv_details" />
+            app:destination="@id/nav_tv_details"
+            app:enterAnim="@anim/push_up_in"
+            app:popExitAnim="@anim/push_down_out" />
     </fragment>
 
     <fragment
@@ -57,10 +61,14 @@
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_nav_search_to_nav_movie_details"
-            app:destination="@id/nav_movie_details" />
+            app:destination="@id/nav_movie_details"
+            app:enterAnim="@anim/push_up_in"
+            app:popExitAnim="@anim/push_down_out" />
         <action
             android:id="@+id/action_nav_search_to_nav_tv_details"
-            app:destination="@id/nav_tv_details" />
+            app:destination="@id/nav_tv_details"
+            app:enterAnim="@anim/push_up_in"
+            app:popExitAnim="@anim/push_down_out" />
     </fragment>
 
     <fragment
@@ -70,15 +78,21 @@
         tools:layout="@layout/fragment_my_list" >
         <action
             android:id="@+id/action_nav_my_list_to_nav_movie_details"
-            app:destination="@id/nav_movie_details" />
+            app:destination="@id/nav_movie_details"
+            app:enterAnim="@anim/push_up_in"
+            app:popExitAnim="@anim/push_down_out"/>
         <action
             android:id="@+id/action_nav_my_list_to_nav_tv_details"
-            app:destination="@id/nav_tv_details" />
+            app:destination="@id/nav_tv_details"
+            app:enterAnim="@anim/push_up_in"
+            app:popExitAnim="@anim/push_down_out"/>
         <action
             android:id="@+id/action_nav_my_list_to_nav_search"
             app:destination="@id/nav_search"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
             app:popUpTo="@id/nav_my_list"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -89,8 +103,10 @@
         <action
             android:id="@+id/action_nav_account_to_navigation_login_flow"
             app:destination="@id/navigation_login_flow"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
             app:popUpTo="@id/nav_movies"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_nav_account_to_nav_edit_profile"
             app:destination="@id/nav_edit_profile"
@@ -121,7 +137,11 @@
             tools:layout="@layout/fragment_login">
             <action
                 android:id="@+id/action_nav_login_to_nav_register"
-                app:destination="@id/nav_register" />
+                app:destination="@id/nav_register"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
             <action
                 android:id="@+id/action_nav_login_to_nav_movies"
                 app:destination="@id/nav_movies"
@@ -136,6 +156,8 @@
             <action
                 android:id="@+id/action_nav_register_to_nav_login"
                 app:destination="@id/nav_login"
+                app:enterAnim="@anim/slide_in_left"
+                app:exitAnim="@anim/slide_out_right"
                 app:popUpTo="@id/nav_login"
                 app:popUpToInclusive="true" />
             <action

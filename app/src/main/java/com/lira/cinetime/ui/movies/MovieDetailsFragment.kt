@@ -15,7 +15,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.transition.MaterialSharedAxis
 import com.lira.cinetime.R
 import com.lira.cinetime.core.createDialog
 import com.lira.cinetime.core.createProgressDialog
@@ -40,13 +39,6 @@ class MovieDetailsFragment : Fragment() {
     private var isInToWatch: Boolean = false
 
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
