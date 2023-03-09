@@ -147,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/half_margin_default"
                 android:fontFamily="@font/montserrat"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/iv_tv_dot"
                 app:layout_constraintTop_toTopOf="@id/tv_number_of_seasons"
