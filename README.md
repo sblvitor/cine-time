@@ -12,5 +12,18 @@ melhores práticas de desenvolvimento.
 <img src="art/pop_movies.jpeg" width="19%"/> <img src="art/top_rated_series.jpeg" width="19%"/> <img src="art/trending.jpeg" width="19%"/> <img src="art/my_lists.jpeg" width="19%"/> <img src="art/serie_details.jpeg" width="19%"/>
 </p>
 
+## Features
+* 100% Kotlin
+* MVVM + Clean Architecture
+* Kotlin Coroutines + Flows
+* Dependency Injection
+* HTTP Client
+* Firebase
+* Componentes da Arquitetura Android
+  * Navigation Component, etc
+* Single Activity Pattern
+* Material Design 3
+* Lottie Animation
 
-## :construction: :construction: :construction: :construction:
+## Tech Stacks
+:construction: :construction: :construction: :construction:
