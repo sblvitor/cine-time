@@ -48,7 +48,4 @@ As tech stacks utilizadas neste projeto são:
 > Obs: Minímo SDK level 26
 
 ## Download
-:construction: :construction: :construction: :construction:
-
-## Estrutura dos Packages
-:construction: :construction: :construction: :construction:
+Vá até [Releases](https://github.com/sblvitor/cine-time/releases) para fazer o download da última versão do app.
